@@ -1,0 +1,40 @@
+.pagination {
+  $pagination-border-radius: 2px;
+
+  > li {
+
+    &:first-child {
+      a, span {
+        border-bottom-left-radius: $pagination-border-radius;
+        border-top-left-radius: $pagination-border-radius;
+      }
+    }
+
+    &:last-child {
+      a, span {
+        border-bottom-right-radius: $pagination-border-radius;
+        border-top-right-radius: $pagination-border-radius;
+      }
+    }
+
+    > a {
+      color: $theme-color;
+
+      &:hover, &:active {
+        color: darken($theme-color, 4%);
+      }
+    }
+
+    > a, > span {
+      min-width: rem-calc(40);
+      text-align: center;
+    }
+  }
+
+  > .active {
+    a, a:hover, a:focus, span {
+      border-color: $theme-color;
+      background-color: $theme-color;
+    }
+  }
+}

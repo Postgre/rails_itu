@@ -1,0 +1,211 @@
+/* Generic user and user avatar block styles */
+
+$user-block-avatar-size: rem-calc(30);
+$user-block-avatar-size-sm: rem-calc(25);
+$user-block-avatar-size-xs: rem-calc(18);
+
+.user-avatar {
+  width: $user-block-avatar-size;
+  height: $user-block-avatar-size;
+  border-radius: 50%;
+  background: #252525;
+  overflow: hidden;
+
+  > img {
+    width: $user-block-avatar-size;
+  }
+
+  .user-avatar-icon {
+    color: white;
+    line-height: $user-block-avatar-size;
+    text-align: center;
+  }
+
+  // Modifiers
+  &.user-avatar-sm {
+    width: $user-block-avatar-size-sm;
+    height: $user-block-avatar-size-sm;
+    font-size: 0.75em;
+
+    > img {
+      width: $user-block-avatar-size-sm;
+    }
+
+    .user-avatar-icon {
+      line-height: $user-block-avatar-size-sm;
+    }
+  }
+
+  &.user-avatar-xs {
+    width: $user-block-avatar-size-xs;
+    height: $user-block-avatar-size-xs;
+    font-size: 0.5em;
+
+    > img {
+      width: $user-block-avatar-size-xs;
+    }
+
+    .user-avatar-icon {
+      line-height: $user-block-avatar-size-xs;
+    }
+  }
+}
+
+.user-block {
+  font-size: $base-font-size;
+  min-height: $user-block-avatar-size;
+
+  .user-avatar {
+    float: left;
+  }
+
+  .user-details {
+    margin-left: $user-block-avatar-size + rem-calc(10);
+  }
+
+  .user-name {
+    @extend .break-word;
+
+    line-height: 1.1em;
+    // padding-top: 0.1875em;
+    padding-top: 0.09375em;
+
+    &:last-child {
+      line-height: $user-block-avatar-size;
+    }
+  }
+
+  .user-sub-label {
+    font-size: 0.75em;
+    font-weight: 200;
+    color: #999;
+
+    .label {
+      font-size: 0.916666667em;
+    }
+
+    &.user-sub-label-block {
+      padding-top: 0.3em;
+    }
+  }
+
+  .user-sub-label-sm {
+    font-size: 0.65em;
+  }
+
+  &.user-block-sm {
+    min-height: $user-block-avatar-size-sm;
+
+    .user-details {
+      margin-left: $user-block-avatar-size-sm + rem-calc(5);
+    }
+
+    .user-name {
+      font-size: 0.85em;
+
+      &:last-child {
+        line-height: $user-block-avatar-size-sm;
+      }
+    }
+
+    .user-sub-label {
+      font-size: 0.7em;
+    }
+  }
+}
+
+.user-block-inline {
+  display: inline-block;
+
+  .user-avatar {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.0625em;
+    margin-bottom: 0.25em;
+    // width: 1.25em;
+    // height: 1.25em;
+    width: rem-calc(16);
+    height: rem-calc(16);
+
+    > img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .user-avatar-icon {
+      line-height: rem-calc(16);
+    }
+
+    // TODO: Move .user-avatar and its modifiers from inside .user-block-inline
+    &.user-avatar-default {
+      font-size: rem-calc(10);
+      width: rem-calc(16);
+      height: rem-calc(16);
+    }
+
+    &.user-avatar-xs {
+      font-size: rem-calc(8);
+      width: rem-calc(12);
+      height: rem-calc(12);
+
+      .user-avatar-icon {
+        line-height: rem-calc(12);
+      }
+    }
+
+    &.user-avatar-sm {
+      font-size: rem-calc(9);
+      width: rem-calc(14);
+      height: rem-calc(14);
+
+      .user-avatar-icon {
+        line-height: rem-calc(14);
+      }
+    }
+
+    &.user-avatar-lg {
+      font-size: rem-calc(12);
+      width: rem-calc(20);
+      height: rem-calc(20);
+
+      .user-avatar-icon {
+        line-height: rem-calc(20);
+      }
+    }
+
+    &.user-avatar-xl {
+      font-size: rem-calc(18);
+      width: rem-calc(30);
+      height: rem-calc(30);
+
+      .user-avatar-icon {
+        line-height: rem-calc(30);
+      }
+    }
+  }
+
+  .user-name {
+    display: inline;
+    min-height: initial;
+  }
+}
+
+// Inverse color modifier
+
+.user-block-inverse {
+  .user-avatar {
+    background: white;
+
+    .user-avatar-icon {
+      color: #252525;
+    }
+  }
+
+  .user-details {
+    color: white;
+  }
+
+  .user-sub-label {
+    color: rgba(white, 0.5);
+  }
+}

@@ -1,0 +1,93 @@
+<div class="popover popover-custom interview-form-popover" ng-controller="InterviewFormPopoverCtrl">
+  <div class="arrow"></div>
+  <div class="popover-content">
+    <form name="_form" class="form-horizontal" ng-submit="submit()" novalidate>
+
+      <div class="form-group row" ng-if="model.$modelErrors.job">
+        <div class="col-sm-8 col-sm-offset-4">
+          <div class="form-validation-summary has-bottom-arrow">
+            {{ model.$modelErrors.job }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-hint col-sm-8 col-sm-offset-4">
+          Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+        </div>
+      </div>
+
+      <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+        <div class="col-sm-8 col-sm-offset-4">
+          <div class="form-validation-summary has-bottom-arrow">
+            <div class="validation-summary-main">
+              Some of the data you entered is not valid.
+            </div>
+            <div class="validation-summary-sub">
+              Please review the form, fix the issues and try again.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label><i class="control-label-icon fa fa-map-marker"></i> Suggested location</label>
+
+        <input type="text" name="location" mz-model-error ng-model="model.location" class="form-control" placeholder="Enter location"
+               ui-typeahead="address.formattedAddress as address.formattedAddress for address in getAddresses($viewValue)"
+               ng-model-options="{ debounce: 300 }" autofocus="true" required>
+        <div field-errors>
+          <div field-error="required">Please provide the interview location</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label><i class="control-label-icon fa fa-clock-o"></i> Suggested time</label>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" bs-datepicker ng-model="model.date" required mz-model-error data-autoclose="1" placeholder="Date" size="10">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" bs-timepicker ng-model="model.date" required mz-model-error data-autoclose="1" placeholder="Time" size="8">
+          </div>
+        </div>
+
+        <div field-errors>
+          <div field-error="required">Please provide the interview date and time</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>Additional information</label>
+
+        <textarea rows="3" ng-model="model.details" mz-model-error></textarea>
+        <div field-errors></div>
+      </div>
+
+
+      <div class="form-buttons">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-4">
+            <button type="submit" class="btn btn-primary submit-btn"
+                    ng-class=" { 'is-loading': formIsLoading() }"
+                    ng-disabled="(_form.$invalid && !_form.$submitted) || formIsLoading()">
+              <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+              <span ng-if="!formIsLoading()">
+                <span ng-if="!isEdit">Invite to an interview</span>
+                <span ng-if="isEdit">Update interview details</span>
+              </span>
+              <span ng-if="formIsLoading()">Saving...</span>
+            </button>
+            <span class="form-buttons-splitter-text">OR</span>
+            <a ng-click="$hide()" class="btn btn-link-underline">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

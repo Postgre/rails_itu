@@ -1,0 +1,23 @@
+<div class="content">
+  <div class="options-section">
+    <i class="fa fa-arrow-circle-left"></i>
+    <a ui-sref="company.candidates.list.search" class="link-underline">Back to list</a>
+
+    <div class="pull-right">
+     <!--  <button ng-if="!resumeCtrl.candidate.isFavorite" type="button"
+              ng-click="resumeCtrl.candidate.favorite({ companyId: $stateParams.companyId })"
+              bs-tooltip title="Star this candidate" class="btn icon-btn favorite-btn">
+        <i class="fa fa-star-o"></i>
+      </button>
+      <button ng-if="resumeCtrl.candidate.isFavorite" type="button"
+              ng-click="resumeCtrl.candidate.unfavorite({ companyId: $stateParams.companyId })"
+              bs-tooltip title="Unstar this candidate" class="btn icon-btn favorite-btn is-active">
+        <i class="fa fa-star"></i>
+      </button> -->
+      <a xui-sref="company.interviews.invite({ candidateId: resumeCtrl.candidate.id })" ng-click="invite()" class="btn btn-default btn-sm">Invite to an interview</a>
+    </div>
+  </div>
+
+  <div class="content-padded"
+       candidate-resume candidate="resumeCtrl.candidate"></div>
+</div>

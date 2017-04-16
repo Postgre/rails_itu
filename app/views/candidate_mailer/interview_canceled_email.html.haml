@@ -1,0 +1,12 @@
+Dear #{@candidate_name}
+%br/
+Your invitation to
+%a{href: "#{url_for(controller: 'app', action: 'index', only_path: false)}#!/candidate/interviews/#{@interview.id}"}
+  interview
+for the #{@job_name} position by #{@company_name}
+has being canceled by the employer.
+%br
+Sincerely,
+%br
+ITU Bridge Staff.
+%br/

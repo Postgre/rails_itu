@@ -1,0 +1,77 @@
+<div class="popover popover-custom interview-form-popover" ng-controller="JobApplyPopoverController">
+  <div class="arrow"></div>
+  <div class="popover-content">
+    <form name="_form" class="form-horizontal" ng-submit="submit($hide)" novalidate>
+
+      <div class="form-group row" ng-if="model.$modelErrors.job">
+        <div class="col-sm-8 col-sm-offset-4">
+          <div class="form-validation-summary has-bottom-arrow">
+            {{ model.$modelErrors.job }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-hint col-sm-8 col-sm-offset-4">
+          Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+        </div>
+      </div>
+
+      <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+        <div class="col-sm-8 col-sm-offset-4">
+          <div class="form-validation-summary has-bottom-arrow">
+            <div class="validation-summary-main">
+              Some of the data you entered is not valid.
+            </div>
+            <div class="validation-summary-sub">
+              Please review the form, fix the issues and try again.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div form-group>
+        <label>Cover letter</label>
+
+        <textarea rows="3" ng-model="model.cover_letter" mz-model-error placeholder="Enter Cover Letter" required></textarea>
+        <div field-errors>
+          <div field-error="required">Please provide Cover Letter</div>
+        </div>
+      </div>
+
+      <div form-group>
+        <label>Resume</label>
+        <input type="file"
+               ng-file-select ng-model="model.resume_file"
+               ng-file-change="onFileSelect($file)"
+               accept=".pdf,.doc,.docx,.rtf"
+               data-filename-placement="inside"
+               required>
+
+        <div field-errors>
+          <div field-error="required">Please choose the resume file to upload</div>
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-4">
+            <button type="submit" class="btn btn-primary submit-btn"
+                    ng-class=" { 'is-loading': formIsLoading() }"
+                    ng-disabled="(_form.$invalid && !model.resume_file && !_form.$submitted) || formIsLoading()">
+              <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+              <span ng-if="!formIsLoading()">
+                <span ng-if="!isEdit">Submit application</span>
+                <span ng-if="isEdit">Update application details</span>
+              </span>
+              <span ng-if="formIsLoading()">Saving...</span>
+            </button>
+            <span class="form-buttons-splitter-text">OR</span>
+            <a ng-click="$hide()" class="btn btn-link-underline">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

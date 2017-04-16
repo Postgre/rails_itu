@@ -1,0 +1,8 @@
+Dear #{@candidate_name}
+
+#{@staff_name} has recommended '#{@job_name}' position by '#{@company_name}' for you.
+You may see details of job here:
+= url_for(controller: 'app', action: 'index', only_path: false) + '#!/candidate/jobs'
+
+Sincerely,
+ITU Bridge Staff.

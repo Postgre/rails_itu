@@ -1,0 +1,14 @@
+$candidate-avatar-placeholder-size: rem-calc(100);
+.candidate-avatar-placeholder {
+  width: $candidate-avatar-placeholder-size;
+  height: $candidate-avatar-placeholder-size;
+
+  .image-placeholder-icon {
+    font-size: rem-calc(20);
+    line-height: $candidate-avatar-placeholder-size;
+  }
+}
+
+.staff-recommended-candidate-list-item {
+  margin-bottom: rem-calc(8);
+}

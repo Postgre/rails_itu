@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Manage</strong> your interview invitations</h1>
+      <div class="content-sub-heading">
+        Here is the list of interviews you're invited to by potential employers.
+        Either accept, reject or suggest a more comfortable time for you to attend.
+      </div>
+    </header>
+
+    <div class="list-blocks interviews-list">
+      <div class="empty-list-block empty-list-block-lg" ng-if="!interviews.length">
+        <div class="empty-list-icon"><i class="fa fa-comment-o"></i></div>
+        <div class="empty-list-msg">
+          No interviews yet
+        </div>
+        <div class="empty-list-note">
+          No company has invited you to an interview just yet.
+        </div>
+      </div>
+
+      <!-- Interview -->
+      <div class="list-item-block interview-list-item interview-list-item-is-{{ interview.state }}" interview-list-item ng-repeat="interview in interviews" interview="interview" aspect="candidate"></div>
+      <!-- / Interview -->
+    </div>
+
+  </div>
+</div>

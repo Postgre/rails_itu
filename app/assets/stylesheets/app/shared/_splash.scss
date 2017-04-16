@@ -1,0 +1,44 @@
+/* Temporary Splash screen styles */
+
+.splash {
+  flex: 1;
+  margin: rem-calc(40) auto;
+  width: rem-calc(600);
+  border: 2px solid rgba(white, 0.9);
+  border-radius: 4px;
+}
+
+.splash-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: rem-calc(30);
+}
+
+.splash-link-btn {
+  display: block;
+  padding: rem-calc(30);
+  font-size: rem-calc(24);
+  font-weight: 100;
+  border-radius: 3px;
+  color: white;
+  background: $theme-color;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(20);
+  }
+
+  &:hover, &:focus, &:active {
+    background: rgba($theme-color, 0.6);
+    text-decoration: none;
+    color: white;
+  }
+
+  &:active {
+    background: rgba($theme-color, 0.4);
+  }
+}

@@ -1,0 +1,71 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Manage</strong> your employment/contract positions</h1>
+      <div class="content-sub-heading">
+        Please provide a list of all your employment/contracting positions.
+        Make sure to provide enough details and achievements.
+      </div>
+    </header>
+
+    <a ui-sref="candidate.resume.employment.add" class="btn btn-block btn-light add-item-wide-btn">
+      <i class="fa fa-plus"></i> Add position
+    </a>
+
+    <div class="employment-records loading-indicator-container">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': listCtrl.employmentRecords.$loading }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="empty-list-block empty-list-block-lg" ng-if="!listCtrl.employmentRecords.length">
+        <div class="empty-list-icon"><i class="fa fa-briefcase"></i></div>
+        <div class="empty-list-msg">
+          No employment information
+        </div>
+        <div class="empty-list-note">
+          You haven't provided any of your past or current jobs. Feel free to add some using the button above.
+        </div>
+      </div>
+
+      <!-- Employment record -->
+      <div class="resume-record-block" ng-repeat="employmentRecord in listCtrl.employmentRecords | orderBy: ['isCurrentJob', 'startDate']: true">
+        <div class="resume-record-block-aside">
+          {{ employmentRecord.startDate | date: 'MMM yyyy' }} &mdash; 
+          <span ng-if="employmentRecord.isCurrentJob">PRESENT</span>
+          <span ng-if="!employmentRecord.isCurrentJob">{{ employmentRecord.endDate | date: 'MMM yyyy' }}</span>
+        </div>
+        <div class="resume-record-block-body">
+          <div class="resume-record-block-options">
+            <a ui-sref="candidate.resume.employment.edit({ employmentRecordId: employmentRecord.id })" class="link-underline"><i class="fa fa-edit"></i> Edit</a>
+
+            <div dropdown class="confirm-box-inline-dropdown">
+              <button type="button" dropdown-toggle class="btn icon-btn"><i class="fa fa-times-circle"></i></button>
+
+              <div class="dropdown-menu confirm-box confirm-box-right">
+                <div class="confirm-box-icon">
+                  <i class="fa fa-trash-o"></i>
+                </div>
+                <div class="confirm-box-main">
+                  <div class="confirm-box-message">You are going to delete this employment position. Are you sure?</div>
+                  <div class="confirm-box-buttons">
+                    <button type="button" class="btn confirm-box-confirm-btn" ng-click="listCtrl.delete(employmentRecord)">Yes</button>
+                    <button type="button" class="btn confirm-box-cancel-btn">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="resume-record-block-heading">
+            {{ employmentRecord.companyName }} ({{ employmentRecord | fullAddress }})
+          </div>
+          <div class="resume-record-block-subheading">
+            {{ employmentRecord.jobTitle }}
+          </div>
+          <div class="resume-record-block-text" ng-bind-html="employmentRecord.description | nl2br"></div>
+        </div>
+      </div>
+      <!-- / Employment record -->
+    </div>
+
+  </div>
+</div>

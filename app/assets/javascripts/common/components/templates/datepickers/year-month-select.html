@@ -1,0 +1,9 @@
+<div class="year-month-select-group" ng-form="_datepickerForm">
+  <div class="select-control-default month-select-control">
+    <select class="form-control" name="month" ng-model="month" ng-options="month.value as month.name for month in months" ng-required="required" ng-disabled="disabled"></select>
+  </div>
+
+  <div class="select-control-default year-select-control">
+    <select class="form-control" name="year" ng-model="year" ng-options="year for year in years" ng-required="required" ng-disabled="disabled"></select>
+  </div>
+</div>

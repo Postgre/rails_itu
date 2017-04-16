@@ -1,0 +1,28 @@
+/* Account module styles */
+
+$account-image-size: rem-calc(100);
+
+.account-image {
+  padding: rem-calc(5);
+  width: $account-image-size;
+  height: $account-image-size;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1px 7px -2px rgba(black, 0.4);
+
+  img {
+    max-width: 100%;
+    border-radius: 1px;
+  }
+}
+
+.account-image-update-btn {
+  margin-top: rem-calc(5);
+  width: $account-image-size;
+  font-weight: 300;
+}
+
+.password-mask-icons {
+  margin-right: rem-calc(5);
+  color: rgba(black, 0.2);
+}

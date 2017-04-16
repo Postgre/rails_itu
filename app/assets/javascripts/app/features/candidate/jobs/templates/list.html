@@ -1,0 +1,87 @@
+<div class="content" data-ng-init="tab='jobs'">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Review</strong> the jobs</h1>
+      <div class="content-sub-heading">
+        Here is the list of jobs recommended to you or ones you've worked at.
+      </div>
+    </header>
+
+    <div ui-view="nav-tabs"></div>
+
+    <div class="list-search has-line-after job-search">
+      <form class="search-block" ng-submit="updateSearchQuery()" novalidate>
+        <div class="search-input-block">
+          <div class="search-icon" ng-if="!suggestionsLoading"><i class="fa fa-search"></i></div>
+          <div class="search-input-loading-icon" ng-if="suggestionsLoading"><i class="fa fa-refresh fa-spin"></i></div>
+
+          <input type="text" class="form-control input-lg search-input" ng-model="search.s" placeholder="Search" auto-focus
+                 ui-typeahead="searchQuery for searchQuery in suggestSearch($viewValue)"
+                 typeahead-on-select="onSuggestionSelected($item, $model, $label)"
+                 typeahead-loading="suggestionsLoading">
+          <div class="search-clear-btn" ng-click="clearSearch()" bs-tooltip title="Clear search" ng-if="search.s"><i class="fa fa-times"></i></div>
+        </div>
+        <div class="search-button-block">
+          <button type="submit" class="btn btn-primary btn-lg search-btn">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="filter-options-block" ng-if="showFilterOptions()">
+      <span class="filter-reset-link">
+        <span class="filter-reset-link-icon"><i class="fa fa-times"></i></span>
+        <a ui-sref="candidate.jobs.list" ui-sref-opts="{ inherit: false, reload: true }" class="link-underline">Clear filters</a>
+      </span>
+    </div>
+
+    <div class="list-with-sidebar has-cover list-loading-container">
+
+      <!-- List main -->
+      <div class="list-main list-blocks">
+        <div class="list-loading-container">
+          <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isListLoading() }">
+            <div class="loading-icon"><i class="fa fa-refresh fa-spin"></i></div>
+          </div>
+
+          <div class="empty-list-block empty-list-block-lg" ng-if="!$state.is('candidate.jobs.list.recommended') && !jobs.length && !isListLoading()">
+            <div class="empty-list-icon"><i class="fa fa-briefcase"></i></div>
+            <div class="empty-list-msg">
+              <span ng-if="$state.is('candidate.jobs.list')">No jobs are found</span>
+              <span ng-if="$state.is('candidate.jobs.list.recommended')">No <strong>recommended</strong> jobs are found</span>
+              <span ng-if="$state.is('candidate.jobs.list.starred')">No <strong>starred</strong> jobs are found</span>
+              <span ng-if="$state.is('candidate.jobs.list.applied')">No jobs you've <strong>applied for</strong> are found</span>
+            </div>
+            <div class="empty-list-note">
+              Try changing search or filter criteria and try again.
+            </div>
+          </div>
+
+          <div job-list-item ng-repeat="job in jobs | orderBy:orderField" job="job" aspect="candidate"
+               ng-if="!$state.is('candidate.jobs.list.recommended')" skill-filter-links="true"></div>
+
+
+          <div class="empty-list-block empty-list-block-lg" ng-if="$state.is('candidate.jobs.list.recommended') && !recommendedJobs.length && !isRecommendationListLoading()">
+            <div class="empty-list-icon"><i class="fa fa-briefcase"></i></div>
+            <div class="empty-list-msg">
+              No <strong>recommended</strong> jobs are found</span>
+            </div>
+            <div class="empty-list-note">
+              ITU Staff has not recommended any jobs to you just yet.
+            </div>
+          </div>
+
+          <div job-list-item ng-repeat="job in recommendedJobs" job="job" aspect="candidate" recommended-by="job.recommendationData.creator" ng-if="$state.is('candidate.jobs.list.recommended')" skill-filter-links="true"></div>
+        </div>
+
+        <div class="pagination" pagination ng-if="showPagination()" ng-model="pagination.currentPage"
+             total-items="pagination.totalItems" items-per-page="pagination.itemsPerPage" boundary-links="true"
+             direction-links="false" rotate="false"></div>
+      </div>
+      <!-- / List main -->
+
+      <!-- List side-filter -->
+      <div ui-view="side-filter" class="list-sidebar list-filters list-filter-side"></div>
+      <!-- / List side-filter -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+/* Flexible box layout model mixins */
+
+@mixin display-flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin align-items($value) {
+  -webkit-align-items: $value;
+  align-items: $value;
+}
+
+@mixin justify-content($value) {
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin flex-direction($value) {
+  -webkit-flex-direction: $value;
+  flex-direction: $value;
+}
+
+@mixin flex($value) {
+  -webkit-flex: $value;
+  flex: $value;
+}

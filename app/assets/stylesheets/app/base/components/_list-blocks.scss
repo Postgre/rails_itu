@@ -1,0 +1,282 @@
+/* Abstract data lists styles (not ul/ol, but generic lists for any kind of items) */
+
+// List layouts
+
+// List with sidebar
+.list-with-sidebar {
+  display: flex;
+
+  .list-main {
+    flex: 1;
+  }
+
+  .list-sidebar {
+    margin-left: rem-calc(15);
+    width: rem-calc(180);
+  }
+}
+
+// # Block items list
+// ------------------
+// List with items styled as blocks
+
+// ## List styles
+// ==============
+
+.list-blocks {
+
+}
+
+// ## "Block" list item styles
+// ===========================
+
+$list-item-border-color: #ddd;
+$list-item-border-radius: 3px;
+
+$list-item-image-size: rem-calc(100);
+$list-item-icon-size: rem-calc(30);
+
+.list-item-block {
+  box-shadow: 0 2px 0 0 $list-item-border-color;
+  border-radius: $list-item-border-radius;
+  background: white;
+
+  &:not(:last-of-type) {
+    margin-bottom: rem-calc(15);
+  }
+}
+
+// ## List item layout
+
+.list-item-body {
+  display: flex;
+  padding: rem-calc(15);
+  border-radius: $list-item-border-radius $list-item-border-radius 0 0;
+}
+
+.list-item-footer {
+  background: rgba($theme-color-inverse, 0.07);
+
+  // Tweaks depend on .list-item-block lower box-shadow y-offset
+  border-radius: 0 0 ($list-item-border-radius - 2px) ($list-item-border-radius - 2px);
+
+  // Container-specific modifiers
+  &.align-after-image {
+    padding-left: $list-item-image-size + rem-calc(30);
+
+    .list-item-actions-bottom {
+      padding-left: 0;
+    }
+  }
+
+  &.align-after-icon {
+    padding-left: $list-item-icon-size + rem-calc(30);
+
+    .list-item-actions-bottom {
+      padding-left: 0;
+    }
+  }
+}
+
+// ## List item body layout
+
+.list-item-left {
+  flex-shrink: 0;
+  margin-right: rem-calc(15);
+}
+
+.list-item-content {
+  flex: 1;
+}
+
+.list-item-content-header {
+  margin-bottom: rem-calc(5);
+}
+
+// ## List item sections
+
+.list-item-section {
+
+}
+
+.list-item-main-section {
+
+}
+
+.list-item-section-header {
+
+}
+
+
+// ## List item elements (independent on layouts)
+
+.list-item-image-block {
+  width: $list-item-image-size;
+  height: $list-item-image-size;
+  border-radius: 3px;
+  overflow: hidden;
+
+  > img {
+    max-width: $list-item-image-size;
+  }
+}
+
+.list-item-image-placeholder {
+  width: $list-item-image-size;
+  height: $list-item-image-size;
+  line-height: $list-item-image-size;
+  background: rgba($theme-color-black, 0.05);
+  color: rgba($theme-color-black, 0.5);
+  text-align: center;
+}
+
+.list-item-icon-block {
+  width: $list-item-icon-size;
+  height: $list-item-icon-size;
+  text-align: center;
+
+  .list-item-icon {
+    line-height: $list-item-icon-size;
+  }
+}
+
+.list-item-icon {
+  $list-item-icon-size: rem-calc(30);
+
+  width: $list-item-icon-size;
+  height: $list-item-icon-size;
+  margin-right: rem-calc(15);
+  background: $theme-color-inverse;
+  line-height: $list-item-icon-size;
+  font-size: rem-calc(12);
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &.list-item-icon-is-danger {
+    background: $theme-color-danger;
+  }
+}
+
+.list-item-heading {
+  @extend .break-word;
+
+  margin: 0;
+  padding-bottom: rem-calc(3);
+  font-size: rem-calc(22);
+  font-weight: 300;
+  // line-height: 1;
+  color: $theme-color-inverse;
+
+  a {
+    color: $theme-color-inverse;
+    border-color: #eee;
+
+    &:hover, &:active {
+      color: black;
+      border-color: #ccc;
+    }
+
+    &:active {
+      border-color: #333;
+    }
+  }
+}
+
+.list-item-sub-heading {
+  margin: 0;
+  font-size: rem-calc(13);
+  color: rgba(black, 0.4);
+}
+
+.list-item-text {
+  @extend .break-word;
+
+  padding: rem-calc(5) 0 rem-calc(5) 0;
+  font-size: rem-calc(13);
+  color: lighten($theme-color-black, 10%);
+
+  &.list-item-text-light {
+    color: rgba($theme-color-inverse, 0.7);
+  }
+
+  &.list-item-text-top-border {
+    padding-top: rem-calc(10);
+    margin-top: rem-calc(10);
+    border-top: 1px solid lighten($theme-color-grey, 13%);
+  }
+}
+
+
+
+// ## List item actions
+
+.list-item-actions {
+  color: rgba(black, 0.3);
+  font-weight: 300;
+}
+
+.list-item-actions-top, .list-item-icons-top {
+  @extend .list-item-actions;
+
+  float: right;
+  padding-left: rem-calc(10);
+  font-size: rem-calc(12);
+}
+
+.list-item-actions-group {
+  display: inline-block;
+
+  &:not(:first-child) {
+    border-left: 2px solid #eee;
+    margin-left: rem-calc(10);
+    padding-left: rem-calc(10);
+  }
+}
+
+.list-item-actions-bottom {
+  @extend .list-item-actions;
+
+  padding: rem-calc(7) rem-calc(15) rem-calc(5);
+  font-size: rem-calc(12);
+
+  // Nested button tweak
+  .btn + .btn {
+    margin-left: rem-calc(3);
+  }
+}
+
+// ## List item notifications (generic)
+
+.list-item-notification {
+  padding: rem-calc(10);
+  font-size: rem-calc(14);
+  text-align: center;
+  color: rgba($theme-color-inverse, 0.4);
+}
+
+.list-item-notification-success {
+  color: $positive-color;
+}
+
+// ## List item data properties
+
+.list-item-properties {
+  margin-top: rem-calc(10);
+  padding-top: rem-calc(10);
+  border-top: 1px solid #eee;
+
+  &.no-border {
+    border-top: none;
+    margin-top: 0;
+  }
+}
+
+
+// # List items groups
+// -------------------
+
+// TODO
+
+

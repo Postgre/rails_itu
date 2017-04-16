@@ -1,0 +1,9 @@
+/* Angular-related helpers styles */
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+a[ng-click] {
+  cursor: pointer;
+}

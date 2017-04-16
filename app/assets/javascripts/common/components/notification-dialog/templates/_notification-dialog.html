@@ -1,0 +1,17 @@
+<div class="modal-dialog modalbox-dialog notification-dialog-modal">
+  <div class="modal-content">
+    <header class="modal-header modal-header-lg">
+      <i class="notification-icon fa fa-info-circle"></i>
+      <h1 class="modal-heading notification-title">{{ title }}</h1>
+      <button class="modal-close-btn modal-close-icon" ng-click="$dismissModalbox()"><i class="fa fa-times"></i></button>
+    </header>
+
+    <div class="modal-body notification-text">
+      {{ text }}
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default modal-footer-btn" ng-click="$dismissModalbox()">{{ buttonText }}</button>
+    </div>
+  </div>
+</div>

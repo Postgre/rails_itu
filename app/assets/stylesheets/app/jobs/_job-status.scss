@@ -1,0 +1,62 @@
+/* Job Status elements styles */
+
+// Job status badge and icon
+$job-status-icon-size: rem-calc(30);
+.job-status-icon {
+  display: block;
+  float: left;
+  width: $job-status-icon-size;
+  height: $job-status-icon-size;
+  text-align: center;
+  border-radius: 50%;
+  background: #ddd;
+  color: white;
+
+  .fa {
+    font-size: rem-calc(12);
+    line-height: $job-status-icon-size;
+  }
+}
+
+.job-status-icon-is-published {
+  background: lighten($theme-color-inverse, 50%);
+}
+
+.job-status-icon-is-filled {
+  background: $theme-color-success;
+}
+
+.job-status-icon-is-closed {
+  background: $theme-color-inverse;
+}
+
+.job-status {
+  display: inline-block;
+  padding: rem-calc(3) rem-calc(10);
+  font-size: rem-calc(14);
+  font-weight: 300;
+  background: rgba($theme-color-grey, .7);
+  color: rgba($theme-color-black, 0.8);
+  border-radius: 2px;
+}
+
+.job-status-is-draft {
+  background: rgba($theme-color-inverse, 0.1);
+}
+
+.job-status-is-filled {
+  background: $theme-color-success;
+  color: white;
+}
+
+.job-status-is-closed {
+  background: $theme-color-black;
+  color: white;
+}
+
+// List item options placement
+.list-item-actions-top {
+  .job-status:not(:last-child) {
+    margin-right: rem-calc(5);
+  }
+}

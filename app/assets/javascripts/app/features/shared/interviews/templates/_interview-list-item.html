@@ -1,0 +1,176 @@
+<div>
+  <div class="list-item-body">
+    <div class="list-item-left">
+      <a ng-if="isCompanyViewing()" ui-sref="company.job-interview-details({ jobId: interview.job.id, interviewId: interview.id })" class="interview-list-item-icon interview-list-item-icon-is-{{ interview.state }}"><i class="fa fa-comment-o"></i></a>
+      <a ng-if="isCandidateViewing()" ui-sref="candidate.interviews.details({ interviewId: interview.id })" class="interview-list-item-icon"><i class="fa fa-comment-o"></i></a>
+    </div>
+
+    <div class="list-item-content">
+      <div class="list-item-actions-top">
+        <a ui-sref="company.job-interview-details({ jobId: interview.job.id, interviewId: interview.id })" class="btn btn-outline btn-xs" ng-if="isCompanyViewing()">See interview details</a>
+        <a ui-sref="candidate.interviews.details({ interviewId: interview.id })" class="btn btn-outline btn-xs" ng-if="isCandidateViewing()">See interview details</a>
+
+        <a ng-if="isCompanyViewing() && interview.canBeEdited()" ui-sref="company.job-interview-edit({ jobId: interview.job.id, interviewId: interview.id })" bs-tooltip title="Edit this interview" class="btn icon-btn">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </div>
+
+      <header class="list-item-content-header" ng-if="isCompanyViewing()">
+        <div class="user-block-inline">
+          <div class="user-avatar user-avatar-sm"><img ng-src="{{ interview.candidate.user.avatarUrl }}" alt=""></div>
+          <a ui-sref="company.job-candidate-resume({ jobId: interview.job.id, candidateId: interview.candidate.id })" class="user-name link-underline" >{{ interview.candidate.user | fullName }}</a>
+        </div>
+        <span class="job-reference" ng-if="!isJobContext()">
+          for <strong>{{ interview.job.title }}</strong>
+          <span ng-if="interview.job.isFilled() || interview.job.isClosed()" class="job-status job-status-is-{{ interview.job.state }}">
+            <i class="fa fa-check" ng-if="interview.job.isFilled()"></i>
+            <i class="fa fa-archive" ng-if="interview.job.isClosed()"></i>
+            {{ interview.job.state | jobStatus }}
+          </span>
+        </span>
+      </header>
+
+      <div class="item-properties no-top-padding" ng-if="isCandidateViewing()">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Company:
+            </div>
+            <div class="item-property-value">
+              <a ui-sref="company.dashboard({ companyId: interview.company.id })" class="link-underline" ng-if="isCompanyViewing()">
+                {{ interview.company.name }}
+              </a>
+              <span ng-if="isCandidateViewing()">
+                {{ interview.company.name }}
+              </span>
+            </div>
+          </div>
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Job:
+            </div>
+            <div class="item-property-value">
+              <a ui-sref="company.jobs.details.overview({ jobId: interview.job.id })" class="link-underline" ng-if="isCompanyViewing()">{{ interview.job.title }}</a>
+              <span ng-if="isCandidateViewing()">
+                {{ interview.job.title }}
+                <span ng-if="interview.job.isFilled() || interview.job.isClosed()" class="job-status job-status-is-{{ interview.job.state }}">
+                  <i class="fa fa-check" ng-if="interview.job.isFilled()"></i>
+                  <i class="fa fa-archive" ng-if="interview.job.isClosed()"></i>
+                  {{ interview.job.state | jobStatus }}
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-properties" ng-class="{ 'has-top-border': isCompanyViewing() }">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Suggested Time:
+            </div>
+            <div class="item-property-value">
+              <span class="text-date">{{ interview.date | date }}</span> at <span class="text-time">{{ interview.date | date: 'shortTime' }}</span>
+            </div>
+          </div>
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Suggested Location:
+            </div>
+            <div class="item-property-value">
+              {{ interview.location }}
+            </div>
+          </div>
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Status:
+            </div>
+            <div class="item-property-value">
+              <span class="interview-status interview-status-is-{{ interview.state }}">
+                <i class="fa fa-check" ng-if="interview.isAccepted() || interview.isHired()"></i>
+                {{ interview.state | interviewStatus }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-properties has-top-border" ng-if="interview.comments.length">
+        <i class="fa fa-comments"></i>
+
+        <a ng-if="isCandidateViewing()" ui-sref="candidate.interviews.details.comments({ interviewId: interview.id })" class="link-underline">
+          <span ng-pluralize count="interview.comments.length" when="{ '1': '1 comment', 'other': '{} comments' }"></span>
+        </a>
+
+        <a ng-if="isCompanyViewing()" ui-sref="company.job-interview-details.comments({ jobId: interview.job.id, interviewId: interview.id })" class="link-underline">
+          <span ng-pluralize count="interview.comments.length" when="{ '1': '1 comment', 'other': '{} comments' }"></span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="list-item-footer" ng-if="interview.job.isClosed()">
+    <div class="list-item-notification">
+      <i class="fa fa-archive"></i> The job position associated with this interview has been closed
+    </div>
+  </div>
+
+  <div class="list-item-footer" ng-if="showCandidateActions()">
+    <div class="list-item-actions list-item-actions-bottom">
+      <button type="button" ng-if="interview.canBeAccepted()" ng-click="accept()" class="btn btn-primary btn-sm interview-item-btn uppercase">Accept</button>
+      <button type="button" ng-if="interview.canBeRejected()" class="btn btn-danger btn-sm interview-item-btn uppercase" data-bs-popover data-template="app/features/company/interviews/templates/reject-interview-popover.html">Reject</button>
+      <span class="btn-divider-text" ng-if="(interview.canBeAccepted() || interview.canBeRejected()) && interview.canBeTimeRejected()">OR</span>
+      <a ng-if="interview.canBeTimeRejected()" ng-click="rejectTime()" class="link-underline">Suggest better time</a>
+    </div>
+  </div>
+
+  <div class="list-item-footer" ng-if="showCompanyActions()">
+    <div class="list-item-actions list-item-actions-bottom">
+      <div ng-if="interview.canBeSetHired()" dropdown class="confirm-box-inline-dropdown">
+        <button type="button" dropdown-toggle class="btn btn-primary btn-sm interview-item-btn uppercase">Candidate hired</button>
+
+        <div dropdown-menu class="dropdown-menu confirm-box confirm-box-right">
+          <div class="confirm-box-icon">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="confirm-box-main">
+            <div class="confirm-box-message">
+              You are going to mark that you've hired this candidate after successful interview. Are you sure?
+            </div>
+            <div class="confirm-box-buttons">
+              <button type="button" class="btn confirm-box-confirm-btn confirm-box-confirm-btn-positive" ng-click="setHired()">Yes</button>
+              <button type="button" class="btn confirm-box-cancel-btn">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div ng-if="interview.canBeCancelled()" dropdown class="confirm-box-inline-dropdown">
+        <button type="button" dropdown-toggle class="btn btn-danger btn-sm interview-item-btn uppercase">Cancel</button>
+
+        <div dropdown-menu class="dropdown-menu confirm-box confirm-box-right">
+          <div class="confirm-box-icon">
+            <i class="fa fa-times"></i>
+          </div>
+          <div class="confirm-box-main">
+            <div class="confirm-box-message">
+              You are going to cancel this interview. This action cannot be undone. Are you sure?
+            </div>
+            <div class="confirm-box-buttons">
+              <button type="button" class="btn confirm-box-confirm-btn" ng-click="cancel()">Yes, cancel</button>
+              <button type="button" class="btn confirm-box-cancel-btn">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="btn-divider-text" ng-if="interview.isTimeRejected() && (interview.canBeSetHired() || interview.canBeCancelled())">OR</span>
+
+      <span ng-if="interview.isTimeRejected() && interview.canBeEdited()">
+        <a ui-sref="company.job-interview-edit({ jobId: interview.job.id, interviewId: interview.id })" class="link-underline">Edit</a> to set new time
+      </span>
+    </div>
+  </div>
+</div>

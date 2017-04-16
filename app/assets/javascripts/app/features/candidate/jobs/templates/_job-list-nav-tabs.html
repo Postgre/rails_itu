@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs nav-tabs-outline nav-tabs-outline-thick">
+  <li><a ui-sref="candidate.jobs.list({ order: $stateParams.order, page: null })" xui-sref-opts="{ reload: true }"
+         ng-class="{ 'is-active': $state.is('candidate.jobs.list') }">All</a></li>
+  <li><a ui-sref="candidate.jobs.list.recommended({ order: $stateParams.order, page: null })"
+         ng-class="{ 'is-active': $state.is('candidate.jobs.list.recommended') }">
+         Recommended
+         <span class="badge" ng-if="recommendations.length">{{ recommendations.length }}</span>
+       </a></li>
+  <li><a ui-sref="candidate.jobs.list.applied({ order: $stateParams.order, page: null })"
+         ng-class="{ 'is-active': $state.is('candidate.jobs.list.applied') }">
+         Applied for
+         <span class="badge" ng-if="appliedForCount">{{ appliedForCount }}</span>
+       </a></li>
+  <li><a ui-sref="candidate.jobs.list.starred({ order: $stateParams.order, page: null })"
+         ng-class="{ 'is-active': $state.is('candidate.jobs.list.starred') }"><i class="fa fa-star"></i> Starred</a></li>
+</ul>

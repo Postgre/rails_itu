@@ -1,0 +1,72 @@
+// Forms validation-related styles
+
+// Validation states
+// =================
+
+.hint-validation-error {
+  @include block-arrow-top($error-color);
+
+  display: block;
+  margin-top: rem-calc(3);
+  padding: rem-calc(4) rem-calc(12) rem-calc(6);
+  font-size: rem-calc(11);
+  background: $error-color;
+  // font-style: italic;
+  font-weight: 300;
+  color: white;
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(10);
+  }
+}
+
+.control-label-is-error {
+  color: $error-color;
+}
+
+.form-control-is-error {
+  border-color: $error-color;
+  @include placeholder(rgba(darken($error-color, 25%), 0.3));
+
+  &:focus {
+    box-shadow: none;
+    border-color: darken($error-color, 15%);
+    // border-color: #444;
+    @include placeholder(#ccc);
+  }
+}
+
+.has-error {
+  .control-label {
+    @extend .control-label-is-error;
+  }
+
+  .form-control {
+    @extend .form-control-is-error;
+  }
+}
+
+.form-validation-summary {
+  $validation-summary-bg-color: mix(lighten($error-color, 10%), black, 80%);
+
+  padding: rem-calc(10) rem-calc(15);
+  font-size: rem-calc(14);
+  font-weight: 300;
+  color: white;
+  background: $validation-summary-bg-color;
+  border-radius: 2px;
+  text-align: center;
+
+  &.has-bottom-arrow {
+    @include block-arrow-bottom($validation-summary-bg-color);
+  }
+
+  .validation-summary-main {
+    font-weight: 600;
+  }
+
+  .validation-summary-sub {
+    font-size: rem-calc(13);
+    color: rgba(white, .6);
+  }
+}

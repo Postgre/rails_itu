@@ -1,0 +1,71 @@
+<div class="stat-dashboard">
+  <header class="stat-dashboard-header">
+    <div class="stat-dashboard-heading"><i class="stat-dashboard-heading-icon fa fa-bar-chart"></i> ITU Bridge basic stats</div>
+    <div class="stat-dashboard-note">Please note that stats are updated every <strong>10 minutes</strong></div>    
+  </header>
+
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Candidate stats -->
+      <div class="stat-widget-panel">
+        <div class="stat-widget-panel-top">
+          <div class="stat-widget-panel-top-heading">
+            Candidates
+          </div>
+        </div>
+
+        <div class="stat-widget-panel-icon candidate-stat-widget-panel-icon">
+          <i class="fa fa-graduation-cap"></i>
+        </div>
+
+
+        <div class="stat-widget-items">
+          <table class="table stat-table">
+            <tbody>
+              <tr ng-repeat="stat in stats.candidates">
+                <td class="stat-text-col">
+                  {{ stat.name }}
+                </td>
+                <td class="stat-num-col">
+                  {{ stat.value }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- / Candidate stats -->
+    </div>
+
+    <div class="col-md-6">
+      <!-- Company stats -->
+      <div class="stat-widget-panel">
+        <div class="stat-widget-panel-top">
+          <div class="stat-widget-panel-top-heading">
+            Companies
+          </div>
+        </div>
+
+        <div class="stat-widget-panel-icon company-stat-widget-panel-icon">
+          <i class="fa fa-building"></i>
+        </div>
+
+        <div class="stat-widget-items">
+          <table class="table stat-table">
+            <tbody>
+              <tr ng-repeat="stat in stats.companies">
+                <td class="stat-text-col">
+                  {{ stat.name }}
+                </td>
+                <td class="stat-num-col">
+                  {{ stat.value }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- / Company stats -->
+    </div>
+  </div>
+</div>

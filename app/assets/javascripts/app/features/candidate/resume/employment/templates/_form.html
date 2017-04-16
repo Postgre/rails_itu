@@ -1,0 +1,152 @@
+<form name="_form" class="form-horizontal loading-indicator-container" ng-submit="submit()" novalidate confirm-form-unload="true">
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isFormLoading() || areReferencesLoading() }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <div class="form-group row">
+    <div class="form-hint col-sm-8 col-sm-offset-4">
+      Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+    <div class="col-sm-8 col-sm-offset-4">
+      <div class="form-validation-summary has-bottom-arrow">
+        <div class="validation-summary-main">
+          Some of the data you entered is not valid.
+        </div>
+        <div class="validation-summary-sub">
+          Please review the form, fix the issues and try again.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div form-group class="form-group-lg">
+    <label>Company</label>
+
+    <input type="text" ng-model="model.companyName" required ng-minlength="4" mz-model-error>
+    <div field-errors>
+      <div field-error="required">You need to specify the name of the school/university</div>
+      <div field-error="minlength">Length should be more than 3 characters</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>Job title</label>
+
+    <input type="text" ng-model="model.jobTitle" required mz-model-error>
+    <div field-errors>
+      <div field-error="required">You need to provide your job title</div>
+    </div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Country</label>
+
+    <div class="select-control-default">
+      <select ui-select2 ng-model="model.countryIso3" required mz-model-error data-placeholder="Select Country">
+        <option value=""></option>
+        <option ng-repeat="country in countries | orderBy: 'name' track by country.id" value="{{ country.id }}">
+          {{ country.name }}
+        </option>
+      </select>
+    </div>
+    <div field-errors>
+      <div field-error="required">Please provide the country of your job</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>State / province</label>
+
+    <div class="select-control-default">
+      <div class="select-control-default">
+        <select ui-select2 ng-model="model.region" ng-required="regions.length" mz-model-error
+                data-placeholder="Select State/Province" ng-disabled="regions.$loading">
+          <option value=""></option>
+          <option ng-repeat="region in regions | orderBy: 'name' track by region.code" value="{{ region.name }}">
+            {{ region.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div field-errors>
+      <div field-error="required">Please specify the state / province</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>City</label>
+
+    <input type="text" ng-model="model.city" required mz-model-error>
+    <div field-errors>
+      <div field-error="required">Please provide the name of the city</div>
+    </div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Description</label>
+
+    <div text-angular ng-model="model.description" required mz-model-error></div>
+    <div field-errors>
+      <div field-error="required">Please provide a short description of work you've done at this job</div>
+    </div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Start date</label>
+
+    <div ng-ex-year-month-select ng-model="model.startDate" max-date="model.endDate" required mz-model-error></div>
+    <div field-errors>
+      <div field-error="required">Please provide a date when you started working</div>
+    </div>
+  </div>
+
+  <div form-group>
+    <label>End date</label>
+
+    <div ng-ex-year-month-select ng-model="model.endDate" min-date="model.startDate"
+         ng-required="!model.isCurrentJob" mz-model-error ng-disabled="model.isCurrentJob"></div>
+    <div field-errors>
+      <div field-error="required">Please provide an ending date or check that you're "working currently"</div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="model.isCurrentJob">
+        Working currently
+      </label>
+    </div>
+  </div>
+
+
+  <div class="form-buttons">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-4">
+        <button type="submit" class="btn btn-primary submit-btn"
+                ng-class=" { 'is-loading': isFormLoading() }"
+                ng-disabled="(_form.$invalid && !_form.$submitted) || isFormLoading()">
+          <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+          <span ng-if="!isFormLoading()">
+            <span ng-if="!isEdit">Create</span>
+            <span ng-if="isEdit">Save</span>
+          </span>
+          <span ng-if="isFormLoading()">Saving...</span>
+        </button>
+        <span class="form-buttons-splitter-text">OR</span>
+        <a ng-click="cancelForm()" class="btn btn-link-underline">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,12 @@
+.form-group{data: {'ng-if' => 'isStaff'}}
+  %input.form-control{type: 'text', placeholder: 'Subject', 'ng-required' => 'isStaff', data: {'ng-model' => 'newComment.title'}}
+.form-group
+  %textarea.form-control{rows: 6, placeholder: 'Comment', required: true, data: {'ng-model' => 'newComment.body'}}
+.form-actions
+  .row
+    .col-sm-12
+      .pull-right
+        %button.btn.btn-success{type: 'submit'}
+          Post comment
+        %button.btn.btn-danger{type: 'button', data: {'ng-click' => 'reply.id = 0', 'ng-show' => 'comment.id == reply.id'}}
+          Cancel

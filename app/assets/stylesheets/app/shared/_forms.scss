@@ -1,0 +1,271 @@
+/* Custom forms styles */
+
+// Form structure
+
+.main-content-form {
+  .main-content-body {
+    background: white;
+  }
+}
+
+.form-header {
+  margin-bottom: rem-calc(15);
+  padding-bottom: rem-calc(15);
+  border-bottom: 2px solid #eee;
+}
+
+.form-heading {
+  font-size: rem-calc(24);
+  color: rgba($theme-color, 0.7);
+}
+
+.form-sub-heading {
+  margin-top: rem-calc(5);
+  font-size: rem-calc(14);
+  color: rgba($theme-color-light, 0.5);
+}
+
+
+.form-hint {
+  margin-bottom: rem-calc(20); 
+  font-size: rem-calc(13);
+  color: #aaa;
+}
+
+.form-control {
+  padding: rem-calc(6) rem-calc(12);
+  border-radius: 2px;
+  // border-radius: 0;
+  border-color: #ccc;
+
+  @include placeholder(#ccc);
+
+  &:focus {
+    border-color: #999;
+    box-shadow: none;
+  }
+}
+
+.control-label {
+  width: 100%;
+  font-size: rem-calc(14);
+  color: rgba(darken($theme-color, 15%), 0.7);
+  text-align: right;
+}
+
+.control-label-icon {
+  color: rgba(darken($theme-color, 15%), 0.25);
+  margin-right: rem-calc(5);
+}
+
+
+// Controls tweaks
+
+input {
+  outline: 0 !important;
+}
+
+
+// Customized selects
+%select-control {
+  @include dropdown-caret(#252525);
+
+  select {
+    @extend .no-outline;
+    padding-right: 1.5em;
+    -webkit-appearance: none !important;
+    box-shadow: none;
+  }
+}
+
+.select-control-default {
+  @extend %select-control;
+
+  select {
+    background: #eee;
+    @include gradient-vertical(#fff, #eee);
+    box-shadow: 0 1px 2px -1px rgba(black, 0.3);
+  }
+}
+
+.select-control-flat {
+  $color: $theme-color;
+
+  @extend %select-control;
+  @include dropdown-caret($color);
+
+  select {
+    @extend .no-outline;
+    display: block;
+    width: 100%;
+    padding: 0.1875rem 1.5em 0.1875rem 0.5rem;
+    background: lighten($theme-color, 55%);
+    font-weight: normal;
+    color: $color;
+    border-radius: 2px;
+    border: none;
+    text-decoration: none;
+  }
+}
+
+// Special styled select-boxes
+.select-simple {
+  // $color: rgba($theme-color, 0.8);
+  @extend .no-outline;
+
+}
+
+.select-simple-inline {
+  display: inline-block;
+}
+
+
+
+// Checkbox (TODO: Remove hacks, clean things out!)
+.checkbox, .checkbox-inline {
+  label {
+    font-size: rem-calc(14);
+    color: rgba(darken($theme-color, 15%), 0.7);
+  }
+}
+
+.checkbox {
+  height: rem-calc(27); // Fix for unknown heisenbug on height calculation
+}
+
+// Input size tweaks
+.input-lg {
+  padding: rem-calc(10) rem-calc(12);
+}
+
+.label-lg, .form-horizontal .label-lg {
+  padding-top: rem-calc(10);
+  font-size: rem-calc(18);
+}
+
+.form-divider {
+  height: 1px;
+  margin: rem-calc(15) 0 rem-calc(20);
+  background: #eee;
+}
+
+// Special form buttons
+.form-buttons {
+  position: relative;
+  padding: rem-calc(16) 0 0;
+  margin: 0;
+  border-top: 2px solid #eee;
+  color: #ddd;
+}
+
+.form-buttons-splitter-text {
+  font-size: rem-calc(12);
+  padding: rem-calc(6) rem-calc(6) rem-calc(6) rem-calc(10);
+  color: #ccc;
+  line-height: 1.42857;
+  vertical-align: middle;
+  font-weight: 300;
+}
+
+.submit-btn {
+  min-width: rem-calc(100);
+}
+
+
+// Special modifiers
+.required {
+  .control-label {
+    // color: #AF2929;
+  }
+}
+
+// Form icons
+.required-icon {
+  color: #AF2929;
+  font-size: 0.75em;
+}
+
+// Special horizontal form tweak
+.form-horizontal .control-label {
+  .required-icon {
+    position: absolute;
+    top: rem-calc(13);
+    right: rem-calc(-2);
+  }
+
+  &.label-lg .required-icon {
+    top: rem-calc(17);
+    right: rem-calc(-4);
+  }
+}
+
+
+// Simple inline form (one field and 2 buttons)
+.form-oneline {
+  @extend .row;
+  margin: 0;
+}
+
+// Special case for inline forms when it has one main field and couple of buttons
+.form-oneline-main {
+  @extend .col-sm-8;
+  padding: 0;
+
+  select, input {
+    height: auto;
+  }
+}
+
+.form-oneline-btn-col {
+  @extend .col-sm-2;
+  padding: 0;
+  padding-left: rem-calc(8);
+}
+
+.form-oneline-btn {
+  min-width: rem-calc(90);
+}
+
+
+
+
+// Validation states
+.hint-validation-error {
+  @include block-arrow-top($error-color);
+
+  display: block;
+  margin-top: rem-calc(3);
+  padding: rem-calc(4) rem-calc(12) rem-calc(6);
+  font-size: rem-calc(11);
+  background: $error-color;
+  // font-style: italic;
+  font-weight: 300;
+  color: white;
+}
+
+.control-label-is-error {
+  color: $error-color;
+}
+
+.form-control-is-error {
+  border-color: $error-color;
+  @include placeholder(rgba(darken($error-color, 25%), 0.3));
+
+  &:focus {
+    box-shadow: none;
+    border-color: darken($error-color, 15%);
+    // border-color: #444;
+    @include placeholder(#ccc);
+  }
+}
+
+.has-error {
+  .control-label {
+    @extend .control-label-is-error;
+  }
+
+  .form-control {
+    @extend .form-control-is-error;
+  }
+}
+

@@ -1,0 +1,14 @@
+// Base overrides
+
+.list-item-block {
+  border: 1px solid $list-item-border-color;
+}
+
+.list-item-heading {
+  font-weight: normal;
+
+  a {
+    color: #428bca;
+    font-weight: normal;
+  }
+}

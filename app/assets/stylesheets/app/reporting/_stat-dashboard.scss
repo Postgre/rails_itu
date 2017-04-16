@@ -1,0 +1,173 @@
+.stat-dashboard {
+  padding: rem-calc(25) rem-calc(35);
+}
+
+.stat-dashboard-header {
+  margin-bottom: rem-calc(20);
+}
+
+.stat-dashboard-heading {
+  font-weight: 300;
+  font-size: rem-calc(26);
+  text-align: center;
+}
+
+.stat-dashboard-note {
+  margin-top: rem-calc(5);
+  color: darken($theme-color-grey, 10%);
+  text-align: center;
+
+  strong {
+    color: darken($theme-color-grey, 20%);
+  }
+}
+
+.stat-dashboard-heading-icon {
+  color: #ccc;
+}
+
+// Entire sections
+
+.stat-dashboard-section {
+  
+}
+
+.stat-dashboard-section-heading {
+
+}
+
+// Stat widget panels
+
+.stat-widget-panel {
+  border-radius: 3px;
+  box-shadow: 0 2px 8px -3px rgba(black, .4);
+}
+
+.stat-widget-panel-top {
+  @extend .clearfix;
+  padding: rem-calc(25);
+  background: $theme-color;
+  color: white;
+  border-radius: 3px 3px 0 0;
+}
+
+.stat-widget-panel-top-heading {
+  font-size: rem-calc(16);
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: rem-calc(50);
+}
+
+.stat-widget-panel-top-count {
+  float: right;
+  font-weight: 500;
+  font-size: rem-calc(26);
+  line-height: rem-calc(50);
+}
+
+$stat-widget-panel-icon-size: rem-calc(140);
+.stat-widget-panel-icon {
+  margin: (-($stat-widget-panel-icon-size/2)) auto 0;
+  width: $stat-widget-panel-icon-size;
+  height: $stat-widget-panel-icon-size;
+  border: rem-calc(7) solid white;
+  border-radius: 50%;
+  font-size: rem-calc(50);
+  background: $theme-color;
+  text-align: center;
+  line-height: rem-calc(125);
+  color: white;
+}
+
+.candidate-stat-widget-panel-icon {
+  background: #CD731C;
+}
+
+.company-stat-widget-panel-icon {
+  background: #3C82C5;
+}
+
+.stat-widget-items {
+  padding: rem-calc(15) rem-calc(25) rem-calc(25);
+  border-radius: 0 0 3px 3px;
+}
+
+.stat-widget-item {
+  font-size: rem-calc(18);
+  font-weight: 300;
+
+  strong {
+    font-weight: 400;
+  }
+}
+
+.stat-widget-item-primary {
+  font-size: rem-calc(22);
+  text-align: center;
+}
+
+.stat-widget-item-divider {
+  height: 1px;
+  margin: rem-calc(15) auto rem-calc(20);
+  width: 40%;
+  background: #eee;
+}
+
+// Single counter block
+.stat-widget-counter-block {
+  @extend .clearfix;
+  margin-bottom: rem-calc(12);
+}
+
+$stat-widget-counter-block-icon-size: rem-calc(30);
+.stat-widget-counter-block-icon {
+  // float: left;
+  margin: 0 auto rem-calc(5);
+
+  .stat-widget-counter-icon {
+    width: $stat-widget-counter-block-icon-size;
+    height: $stat-widget-counter-block-icon-size;
+    line-height: $stat-widget-counter-block-icon-size;
+    margin: 0 auto;
+    font-size: rem-calc(12);
+    border-radius: 50%;
+    // background: mix($theme-color, black, 50%);
+    background: #9EBDB9;
+    color: white;
+    text-align: center;
+  }
+}
+
+.stat-widget-counter-block-main {
+  // margin-left: $stat-widget-counter-block-icon-size + rem-calc(10);
+  text-align: center;
+}
+
+.stat-widget-counter-num {
+  font-size: rem-calc(24);
+  font-weight: 500;
+}
+
+.stat-widget-counter-text {
+  color: darken($theme-color-grey, 15%);
+  font-weight: 300;
+  font-size: rem-calc(14);
+}
+
+
+// Stats as a table
+.stat-table {
+  .stat-text-col {
+    font-size: rem-calc(16);
+    font-weight: 300;
+    color: darken($theme-color-grey, 30%);  
+  }
+
+  .stat-num-col {
+    max-width: rem-calc(120);
+    font-weight: 500;
+    color: black;
+    text-align: right;
+  }
+}
+

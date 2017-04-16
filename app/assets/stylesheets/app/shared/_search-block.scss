@@ -1,0 +1,117 @@
+/* Generic search block styles */
+
+.list-search {
+  &:not(:last-child) {
+    margin-bottom: rem-calc(15);
+
+    &.has-line-after {
+      padding-bottom: rem-calc(15);
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+
+.search-block {
+  $search-block-height: rem-calc(46);
+
+  @extend .clearfix;
+  display: flex;
+  position: relative;
+  // margin-bottom: rem-calc(15);
+
+  // Layout elements
+
+  .search-input-block {
+    position: relative;
+    flex: 1;
+  }
+
+  .search-button-block {
+    flex-shrink: 0;
+  }
+
+
+  // Main elements
+
+  .search-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: rem-calc(40);
+    line-height: $search-block-height;
+    text-align: center;
+    color: #aaa;
+    pointer-events: none;
+  }
+
+  .search-input {
+    @include placeholder(#aaa);
+    @extend .input-lg;
+    @extend .no-outline;
+
+    width: 100%;
+    font-weight: 300;
+    height: $search-block-height;
+    padding: rem-calc(15) rem-calc(35) rem-calc(15) rem-calc(35);
+    font-size: rem-calc(18);
+    border-radius: 2px;
+
+    &:hover, &:focus {
+      // @include placeholder(#ddd);
+      background: white;
+    }
+
+    &:focus {
+      @include placeholder(#ddd);
+    }
+
+    &.has-text {
+      font-weight: normal;
+    }
+  }
+
+  .search-btn {
+    // @extend .btn;
+    // @extend .btn-default;
+    // @extend .btn-lg;
+    margin-left: rem-calc(5);
+    min-width: rem-calc(85);
+    height: $search-block-height;
+    font-size: rem-calc(14);
+  }
+
+  .search-clear-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: rem-calc(35);
+    line-height: $search-block-height;
+    font-size: rem-calc(18);
+    text-align: center;
+    color: #eee;
+    cursor: pointer;
+
+    &:hover, &:active {
+      color: #999;
+    }
+  }
+
+  .search-input-loading-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: rem-calc(40);
+    line-height: $search-block-height;
+    font-size: rem-calc(18);
+    text-align: center;
+    color: #ccc;
+    cursor: pointer;
+  }
+
+  .search-suggest-dropdown, > .search-input-block .dropdown-menu {
+    width: 100%;
+  }
+}

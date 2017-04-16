@@ -1,0 +1,46 @@
+.app-header-inner.navbar.top-nav
+  .navbar-header.logo-navbar-header
+    %a.navbar-brand.header-logo{"ui-sref" => "index"}
+      %i.project-logo-icon
+  %nav
+    .label.label-default
+      ITU Staff Interface
+    .header-user-block.dropdown.pull-right
+      %a.dropdown-toggle.ng-scope{"bs-dropdown" => "", "data-animation" => "am-fade", "data-template" => "staff/common/staff-dropdown.html", 'data-delay' => '5'}
+        .user-block.user-block-sm
+          .user-avatar.user-avatar
+            %img{"ng-src" => "{{accountService.getAccount().avatar_url}}"}/
+          .user-details
+            .user-name
+              {{ [accountService.getAccount().first_name, accountService.getAccount().middle_name, accountService.getAccount().last_name].join(' ') }}
+              %i.fa.fa-chevron-down
+    %a.header-inbox-link.pull-right{data: {'ui-sref' => 'staffinbox'}}
+      %span.badge.count-badge{data: {'ng-show' => 'accountService.getAccount().unread_messages_count', 'ng-bind' => 'accountService.getAccount().unread_messages_count'}}
+      %i.fa.fa-envelope
+.app-sub-header{"sub-header" => ""}
+  %nav.top-nav-l2
+    %div
+      %ul.nav.navbar-nav
+        %li
+          %a{"ui-sref" => "users", "ng-class" => "{ active: $state.includes('users') || $state.includes('candidates') }"}
+            %i.fa.fa-users
+            %span Users
+        %li
+          %a{"ui-sref" => "companies", "ng-class" => "{ active: $state.includes('companies') }"}
+            %i.fa.fa-building
+            %span Companies
+        %li
+          %a{"ui-sref" => "jobs", "ng-class" => "{ active: $state.includes('jobs') }"}
+            %i.fa.fa-sitemap
+            %span Jobs
+        %li
+          %a{"ui-sref" => "skills", "ng-class" => "{ active: $state.includes('skills') }"}
+            %i.fa.fa-cogs
+            %span Skills
+
+  .app-sub-header-breadcrumbs.ng-isolate-scope{"ng-ex-statecrumbs" => "", "root-label" => "Bridge"}
+    %ul.breadcrumb
+      %li.ng-scope{"ng-class" => "{ active: $last }", "ng-repeat" => "breadcrumb in breadcrumbs"}
+        %a.ng-binding.ng-scope{ "ng-if" => "!$last && breadcrumb.url"} Bridge
+      %li.ng-scope.active{"ng-class" => "{ active: $last }", "ng-repeat" => "breadcrumb in breadcrumbs"}
+        %span.ng-binding.ng-scope{"ng-if" => "$last"} My Resume

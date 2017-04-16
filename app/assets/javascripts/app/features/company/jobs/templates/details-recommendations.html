@@ -1,0 +1,20 @@
+<div class="list-blocks candidate-list loading-indicator-container">
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': recommendations.$loading }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <div class="empty-list-block empty-list-block-lg" ng-if="!recommendations.length && !recommendations.$loading">
+    <div class="empty-list-icon"><i class="fa fa-male"></i></div>
+    <div class="empty-list-msg">
+      No recommendations yet
+    </div>
+    <div class="empty-list-note">
+      No recommended candidates are found just yet. Feel free to <a ui-sref="company.jobs.edit({jobId: job.id})" class="link-underline">edit the job</a> and update the skill requirements for new candidates to be suggested.
+    </div>
+  </div>
+
+  <!-- Candidate -->
+  <div class="list-item-block candidate-list-item"
+       ng-repeat="candidate in recommendations" candidate-list-item candidate="candidate" job="job" company="company"></div>
+  <!-- / Candidate -->
+</div>

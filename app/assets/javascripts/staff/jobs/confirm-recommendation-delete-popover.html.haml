@@ -1,0 +1,10 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Please confirm removal
+  .popover-content
+    %button.btn.btn-danger{data: {'ng-click' => 'removeRecommendation(candidate);$hide()'}}
+      %i.fa.fa-trash
+      Remove
+    %span.form-buttons-splitter-text OR
+    %a.btn-link-underline{data: {"ng-click" => "$hide()"}} Cancel

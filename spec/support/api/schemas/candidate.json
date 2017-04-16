@@ -1,0 +1,323 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "about",
+    "is_visible",
+    "city",
+    "name",
+    "country_iso3",
+    "country",
+    "region",
+    "user",
+    "is_favorited",
+    "is_invited",
+    "is_visible_locked",
+    "skill_category_records",
+    "skill_records",
+    "education_records",
+    "employment_records",
+    "percent",
+    "job_match_position",
+    "interview_state"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "interview_state": {
+      "type": ["string", "null"]
+    },
+    "job_match_position": {
+      "type": "integer"
+    },
+    "about": {
+      "type": "string"
+    },
+    "is_visible": {
+      "type": "boolean"
+    },
+    "city": {
+      "type": "string"
+    },
+    "availability": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "country_iso3": {
+      "type": "string"
+    },
+    "country": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "region": {
+      "type": "string"
+    },
+    "is_favorited": {
+      "type": "boolean"
+    },
+    "is_invited": {
+      "type": "boolean"
+    },
+    "is_visible_locked": {
+      "type": "boolean"
+    },
+    "percent": {
+      "type": "integer"
+    },
+    "user": {
+      "type": "object",
+      "required": [
+        "id",
+        "first_name",
+        "middle_name",
+        "last_name",
+        "avatar_url",
+        "user_type"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "avatar_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "user_type": {
+          "type": "string"
+        }
+      }
+    },
+    "education_records": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "school",
+          "city",
+          "start_year",
+          "end_year",
+          "degree",
+          "country",
+          "country_iso3",
+          "region"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "school": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "start_year": {
+            "type": "integer"
+          },
+          "end_year": {
+            "type": "integer"
+          },
+          "degree": {
+            "type": "string"
+          },
+          "country": {
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "country_iso3": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+
+        }
+      }
+    },
+    "employment_records": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "company_name",
+          "city",
+          "start_date",
+          "end_date",
+          "is_current_job",
+          "country",
+          "country_iso3",
+          "region",
+          "description",
+          "job_title"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "company_name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "start_date": {
+            "type": "date"
+          },
+          "end_date": {
+            "type": "date"
+          },
+          "is_current_job": {
+            "type": "boolean"
+          },
+          "country": {
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "country_iso3": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "job_title": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "skill_records": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "skill_category_id",
+          "skill_id",
+          "skill_name",
+          "years_of_experience",
+          "level",
+          "is_featured",
+          "matched",
+          "position"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "skill_category_id": {
+            "type": "integer"
+          },
+          "skill_id": {
+            "type": "integer"
+          },
+          "skill_name": {
+            "type": "string"
+          },
+          "years_of_experience": {
+            "type": "integer"
+          },
+          "level": {
+            "type": "integer"
+          },
+          "is_featured": {
+            "type": "boolean"
+          },
+          "matched": {
+            "type": "boolean"
+          },
+          "position": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "skill_category_records": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "skill_category_name",
+          "skill_category_id",
+          "skill_records",
+          "position"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "skill_category_id": {
+            "type": "integer"
+          },
+          "skill_category_name": {
+            "type": "string"
+          },
+          "skill_records": {
+            "type": "array",
+            "minItems": 0
+          },
+          "position": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

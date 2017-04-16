@@ -1,0 +1,56 @@
+// Responsive off-canvas layout
+
+@import "../responsive";
+
+$sidebar-width: rem-calc(220);
+$sidebar-width-mobile: rem-calc(260);
+
+.offcanvas-sidebar-layout {
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+
+  .sidebar {
+    width: $sidebar-width;
+    // overflow-y: scroll;
+ 
+    @media #{$small-only} {
+      @include transition-all(0.2s);
+      @include translate3d(0, 0, rem-calc(300));
+      visibility: hidden;
+      position: absolute;
+      left: 0;
+      z-index: 90;
+      width: $sidebar-width-mobile;
+      opacity: 0;
+    }
+  }
+
+  .mainbar {
+    @include transition-all(0.2s);
+
+    -webkit-flex: 1;
+    flex: 1;
+    position: relative;
+    z-index: 100;
+    background: white;
+    box-shadow: -1px 0 10px -3px rgba(black, 0.5);
+  }
+
+  // States
+  &.is-sidebar-shown {
+    @media #{$small-only} {
+      overflow-x: hidden !important;
+
+      .sidebar {
+        @include translate3d(0, 0, 0);
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .mainbar {
+        @include translate($sidebar-width-mobile, 0);
+      }
+    }
+  }
+}

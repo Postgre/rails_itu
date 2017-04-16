@@ -1,0 +1,169 @@
+/ Fixed Navbar
+%nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+  .container
+    .navbar-header.page-scroll
+      %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"}
+        %img{:src => asset_path('home/logo.jpg')}/
+        %span.text-uppercase Bridge
+    / Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav.navbar-right
+        / Hidden li included to remove active class from about link when scrolled up past about section
+        %li.page-scroll{'ng-if' => '!currentUser.isAuthenticated'}
+          %a.text-uppercase{:href => "#{Rails.application.config.id_url + '/login?client_id=' + ENV.fetch('ID_TOKEN')}"} Sign In
+        %li.page-scroll{'ng-if' => 'currentUser.isAuthenticated'}
+          %a.text-uppercase{:href => '/app'} Go to App
+        %li.vertical-divider.hidden-xs
+        %li.page-scroll
+          %a.text-uppercase{'ng-click' => 'showZendeskModal()'} Support
+    / /navbar-collapse
+  / /container
+/ /navbar
+
+%section.page-section
+  .container.page-section-container
+    / Content
+    .content-body
+      %header.sign-up-intro
+        %h1.sign-up-intro-heading
+          Welcome to
+          %strong ITU Bridge
+        .sign-up-intro-description
+          Bridge is a great place to find the extraordinary talent to fill your job positions.
+          Many industry leading companies already enjoy working with people from ITU. Now it's your turn!
+        .sign-up-intro-process-description
+          Please use the form below to apply:
+
+      %form.form-horizontal.company-sign-up-form{name: "companySignUpForm", "ng-init" => "isAgreed = false", data: {'ng-submit' => 'newCompanyRegistration(company)'}}
+
+        %section.form-section
+          .form-group.row.form-hint
+            .col-sm-8.col-lg-offset-4
+              Required fields are marked with
+              %i.fa.fa-asterisk.required-icon
+
+          .form-group.row.required{data: {'ng-class' => "{'has-error': errors.name}"}}
+            .col-sm-4
+              %label.control-label.label-lg{:for => "companyName"}
+                Company Name
+                %i.required-icon.fa.fa-asterisk
+            .col-sm-8
+              %input.form-control.input-lg{:name => "companyName", :type => "text", required: true, 'ng-model' => 'company.name'}/
+              %p.help-block{data: {'ng-repeat' => 'field_error in errors.name'}}
+                {{ field_error }}
+              %span.control-hint
+                You will be able to provide more detail about company later
+
+          .form-divider
+
+          .form-group.row.required{data: {'ng-class' => "{'has-error': errors.email}"}}
+            .col-sm-4
+              %label.control-label.label-lg{:for => "email"}
+                Email
+                %i.required-icon.fa.fa-asterisk
+            .col-sm-8
+              %input.form-control.input-lg{name: "email", type: "text", required: true, 'ng-model' => 'company.users_attributes.email', 'ng-disabled' => 'newUser'}/
+              %p.help-block{data: {'ng-repeat' => 'field_error in errors.email'}}
+                {{ field_error }}
+
+          .form-group.row.required{data: {'ng-class' => "{'has-error': errors.first_name}"}}
+            .col-sm-4
+              %label.control-label.label-lg{:for => "userFirstName"}
+                Your First Name
+                %i.required-icon.fa.fa-asterisk
+            .col-sm-8
+              %input.form-control.input-lg{name: "userFirstName", type: "text", required: true, 'ng-model' => 'company.users_attributes.first_name'}/
+              %p.help-block{data: {'ng-repeat' => 'field_error in errors.first_name'}}
+                {{ field_error }}
+
+          .form-group.row.required{data: {'ng-class' => "{'has-error': errors.last_name}"}}
+            .col-sm-4
+              %label.control-label.label-lg{:for => "userLastName"}
+                Your Last Name
+                %i.required-icon.fa.fa-asterisk
+            .col-sm-8
+              %input.form-control.input-lg{name: "userLastName", type: "text", required: true, 'ng-model' => 'company.users_attributes.last_name'}/
+              %p.help-block{data: {'ng-repeat' => 'field_error in errors.last_name'}}
+                {{ field_error }}
+
+          .form-divider
+
+          .form-group.row.required{data: {'ng-class' => "{'has-error': errors.password}"}}
+            .col-sm-4
+              %label.control-label.label-lg{:for => "password"}
+                Set Password
+                %i.required-icon.fa.fa-asterisk
+            .col-sm-8
+              %input.form-control.input-lg{name: "password", type: "password", required: true, 'ng-model' => 'company.users_attributes.password', 'ng-disabled' => 'newUser'}/
+              %p.help-block{data: {'ng-repeat' => 'field_error in errors.password'}}
+                {{ field_error }}
+
+          .form-group.row.required{data: {'ng-class' => "{'has-error': errors.password_confirmation}"}}
+            .col-sm-4
+              %label.control-label.label-lg{:for => "password_confirmation"}
+                Confirm Password
+                %i.required-icon.fa.fa-asterisk
+            .col-sm-8
+              %input.form-control.input-lg{name: "password_confirmation", type: "password", required: true, 'ng-model' => 'company.users_attributes.password_confirmation', 'ng-disabled' => 'newUser'}/
+              %p.help-block{data: {'ng-repeat' => 'field_error in errors.password_confirmation'}}
+                {{ field_error }}
+
+          .form-divider
+
+          .form-group.row
+            .col-sm-4
+              %label.control-label{:for => "phoneNumber"} Phone Number
+            .col-sm-8
+              %input.form-control{name: "phoneNumber", type: "text", 'ng-model' => 'company.phone_number'}/
+
+          .form-divider
+
+          .form-group.row.required
+            .col-sm-4
+              %span.control-label
+                %i.fa.fa-asterisk.required-icon
+            .col-sm-8
+              .checkbox
+                %label
+                  %input{name: "isAgreed", "ng-model" => "isAgreed", type: "checkbox"}/
+                  I have read and agree with ITU
+                  = link_to 'Terms of Service', page_path('terms'), class: 'link-underline'
+                  and
+                  = link_to 'Privacy Policy', page_path('privacy-policy'), class: 'link-underline'
+
+        .form-buttons.row
+          .form-buttons-group
+            .col-sm-8.col-sm-offset-4
+              %button.btn.btn-default.submit-btn.sign-up-join-btn{"ng-class" => "{ disabled: !isAgreed }", type: 'submit'}
+                %strong Join ITU Bridge
+
+/ Contact Wrap
+%section#contact.contactwrap
+  / Copy Wrap
+  .copywrap
+    .container
+      .row
+        .col-lg-5
+          %p &copy; 2014-2015 International Technological University
+        .col-lg-1
+          %img{:src => asset_path('home/footer.png')}
+        .col-lg-6
+          %p.footer-link
+            %a.first{:href => "#"} Home
+            |
+            = link_to 'Terms of Service', page_path('terms')
+            |
+            = link_to 'Privacy policy', page_path('privacy-policy')
+            |
+            %a.btn-support{'ng-click' => 'showZendeskModal()'} Support
+            |
+            %a.login-link{'ng-if' => '!currentUser.isAuthenticated', href: "#{Rails.application.config.id_url + '/login'}"}
+              Sign-In
+            %a.login-link{'ng-if' => 'currentUser.isAuthenticated', href: "/app"}
+              Go to App
+

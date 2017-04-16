@@ -1,0 +1,18 @@
+<div class="content">
+  <div class="options-section">
+    <i class="fa fa-arrow-circle-left"></i> <a ui-sref="candidate.interviews.list({ jobId: job.id, interviewId: interview.id })" class="link-underline">Back to list</a>
+
+    <div class="pull-right" ng-if="showCandidateOptions()">
+      <button ng-if="interview.canBeAccepted()" ng-click="accept()" type="button" class="btn btn-primary btn-sm interview-action-btn uppercase">Accept</button>
+      <button ng-if="interview.canBeRejected()" type="button" class="btn btn-danger btn-sm interview-action-btn uppercase" data-bs-popover data-template="app/features/company/interviews/templates/reject-interview-popover.html">Reject</button>
+
+      <span ng-if="(interview.canBeAccepted() || interview.canBeRejected()) && interview.canBeTimeRejected()" class="btn-divider-text">OR</span>
+      
+      <a ng-if="interview.canBeTimeRejected()" ng-click="rejectTime()" class="link-underline">Suggest better time</a>
+    </div>
+  </div>
+
+  <div class="content-body content-padded">
+    <div interview-overview interview="interview" aspect="candidate"></div>
+  </div>
+</div>

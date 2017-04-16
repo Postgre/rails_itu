@@ -1,0 +1,35 @@
+/* Candidate jobs styles */
+
+.jobs-list {
+
+}
+
+.job-list-item {
+  .list-item-icon-block {
+    width: rem-calc(30);
+  }
+
+  .list-item-footer {
+    padding-left: rem-calc(75);
+  }
+}
+
+.job-list-item-is-filled {
+  border-color: $theme-color-success;
+}
+
+.job-recommended-by {
+  margin-top: rem-calc(8);
+  padding-top: rem-calc(8);
+  border-top: #eee 1px solid;
+  font-size: rem-calc(13);
+  color: rgba($theme-color-inverse, 0.5);
+
+  strong {
+    color: rgba($theme-color-inverse, 0.8);
+  }
+
+  .recommended-icon {
+    color: rgba($theme-color-inverse, 0.8);
+  }
+}

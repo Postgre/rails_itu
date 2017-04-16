@@ -1,0 +1,142 @@
+<form name="_form" class="form-horizontal loading-indicator-container" ng-submit="submit()" novalidate confirm-form-unload="true">
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isFormLoading() || areReferencesLoading() }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <div class="form-group row">
+    <div class="form-hint col-sm-8 col-sm-offset-4">
+      Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+    <div class="col-sm-8 col-sm-offset-4">
+      <div class="form-validation-summary has-bottom-arrow">
+        <div class="validation-summary-main">
+          Some of the data you entered is not valid.
+        </div>
+        <div class="validation-summary-sub">
+          Please review the form, fix the issues and try again.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div form-group class="form-group-lg">
+    <label>University/school</label>
+
+    <input type="text" ng-model="model.school" required mz-model-error>
+    <div field-errors>
+      <div field-error="required">You need to specify the name of the school/university</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>Degree</label>
+
+    <input type="text" ng-model="model.degree" ng-required="model.endYear" mz-model-error>
+    <div field-errors>
+      <div field-error="required">You need to provide your degree</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>Field of Study</label>
+
+    <input type="text" ng-model="model.fieldOfStudy" mz-model-error>
+    <div field-errors></div>
+
+    <p class="control-hint">Optional, specify if applicable</p>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Country</label>
+
+    <div class="select-control-default">
+      <select ui-select2 ng-model="model.countryIso3" required mz-model-error data-placeholder="Select Country">
+        <option value=""></option>
+        <option ng-repeat="country in countries | orderBy: 'name' track by country.id" value="{{ country.id }}">
+          {{ country.name }}
+        </option>
+      </select>
+    </div>
+    <div field-errors>
+      <div field-error="required">You need to provide the country</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>State / province</label>
+
+    <div class="select-control-default">
+      <div class="select-control-default">
+        <select ui-select2 ng-model="model.region" ng-required="regions.length" mz-model-error
+                data-placeholder="Select State/Province" ng-disabled="regions.$loading">
+          <option value=""></option>
+          <option ng-repeat="region in regions | orderBy: 'name' track by region.code" value="{{ region.name }}">
+            {{ region.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div field-errors>
+      <div field-error="required">Please specify the state / province</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>City</label>
+
+    <input type="text" ng-model="model.city" required mz-model-error>
+    <div field-errors>
+      <div field-error="required">Please provide the name of the city</div>
+    </div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Start year</label>
+
+    <div ng-ex-year-select ng-model="model.startYear" max-year="model.endYear" required mz-model-error></div>
+    <div field-errors>
+      <div field-error="required">Please provide the year when your education started</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>End year</label>
+
+    <div ng-ex-year-select ng-model="model.endYear" min-year="model.startYear" mz-model-error></div>
+    <div field-errors></div>
+
+    <p class="control-hint">Optional, only applicable if graduated</p>
+  </div>
+
+  <div class="form-buttons">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-4">
+        <button type="submit" class="btn btn-primary submit-btn"
+                ng-class=" { 'is-loading': isFormLoading() }"
+                ng-disabled="(_form.$invalid && !_form.$submitted) || isFormLoading()">
+          <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+          <span ng-if="!isFormLoading()">
+            <span ng-if="!isEdit">Create</span>
+            <span ng-if="isEdit">Save</span>
+          </span>
+          <span ng-if="isFormLoading()">Saving...</span>
+        </button>
+        <span class="form-buttons-splitter-text">OR</span>
+        <a ng-click="cancelForm()" class="btn btn-link-underline">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

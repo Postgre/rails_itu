@@ -1,0 +1,24 @@
+<div class="content">
+  <div class="options-section">
+    <i class="fa fa-arrow-circle-left"></i> <a ui-sref="candidate.jobs.list" class="link-underline">Back to jobs list</a>
+
+    <div class="pull-right" ng-if="showCandidateOptions()">
+      <button ng-if="canApply()" type="button" class="btn btn-primary btn-sm interview-action-btn uppercase" bs-popover data-template="app/features/candidate/jobs/templates/apply-popover.html" data-auto-close="true" data-placement="bottom-right">Apply to this job</button>
+    </div>
+    <div class="pull-right" ng-if="job.isApplied">
+      <span ng-if="job.isApplicationCreated()" class="text-success">
+        <i class="fa fa-check-circle"></i> You have applied for this job
+      </span>
+      <span ng-if="job.isApplicationAccepted()" class="text-success">
+        <i class="fa fa-check-circle"></i> Your application was successful
+      </span>
+      <span ng-if="job.isApplicationRejected()" class="text-failure">
+        <i class="fa fa-times-circle"></i> Your application was rejected
+      </span>
+    </div>
+  </div>
+
+  <div class="content-body content-padded">
+    <div job-overview job="job" aspect="candidate"></div>
+  </div>
+</div>

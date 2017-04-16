@@ -1,0 +1,25 @@
+.content-padded{'ui-view' => true}
+  .row
+    .col-md-9
+      .job{data: {'job-list-item' => true, 'ng-repeat' => 'job in jobs track by job.id', job: 'job', aspect: 'staff'}}
+      .btn.btn-success{data: {'ng-click' => 'getNextPage()', 'ng-disabled' => 'controlsDisabled','ng-if' => 'nextPageAvailable()'}}
+        Load more
+    .col-md-3
+      .bs-sidebar{data: {'bs-affix' => true}}
+        %form.form
+          .form-group
+            %input.form-control{placeholder: 'search by title/description/skills', data: {'ng-model' => 'search.skills_name_or_title_or_description_cont', 'ng-change' => 'reload()', 'ng-model-options' => '{ debounce: 500 }'}}
+          .form-group
+            %input.form-control{placeholder: 'search by company name', data: {'ng-model' => 'search.company_name_cont', 'ng-change' => 'reload()','ng-model-options' => '{ debounce: 500 }'}}
+          .form-group
+            .select-control-default
+              %select.form-control{placeholder: 'States', data: {'ng-model' => 'search.state_eq', 'ng-change' => 'reload()'}}
+                %option{value: ''} All states
+                %option{data: {'ng-repeat' => 'state in jobStates', 'ng-selected' => 'state.state == search.state_eq'}, value: '{{state.state}}'}
+                  {{state.name}}
+          .form-group
+            .select-control-default
+              %select.form-control{placeholder: 'Interviews', data: {'ng-model' => 'search.with_interviews', 'ng-change' => 'reload()'}}
+                %option{value: ''} With or without interviews
+                %option{value: 'false'} Without interviews
+                %option{value: 'true'} With interviews

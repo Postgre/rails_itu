@@ -1,0 +1,6 @@
+<div class="user-avatar-square">
+  <img ng-if="user.avatar_url" ng-src="{{ user.avatar_url }}" xng-src="/assets/media/benjamin_franklin_avatar.png">
+  <div class="user-avatar-square-placeholder" ng-if="!user.avatar_url">
+    <i class="fa fa-camera avatar-placeholder-icon"></i>
+  </div>
+</div>

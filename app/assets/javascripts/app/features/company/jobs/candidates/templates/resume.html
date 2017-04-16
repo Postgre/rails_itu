@@ -1,0 +1,21 @@
+<div class="content">
+  <div class="options-section">
+    <i class="fa fa-arrow-circle-left"></i>
+    <a ui-sref="company.jobs.details.recommendations({ jobId: job.id })" class="link-underline">Back to list</a>
+
+    <div class="pull-right" ng-if="job.isPublished()">
+      <button type="button" ng-if="!candidate.isInvited" xui-sref="company.job-interview-invite({ jobId: job.id, candidateId: candidate.id })" class="btn btn-default btn-sm" bs-popover data-template="app/features/company/interviews/templates/_interview-form-popover.html" data-auto-close="true" data-placement="bottom-right">Invite to an interview</button>
+
+      <span ng-if="candidate.isInvited"><i class="fa fa-check"></i> This candidate has been invited to an interview</span>
+    </div>
+    <div class="pull-right" ng-if="job.isClosed() || job.isFilled()">
+      <span>
+        <i class="fa fa-ban"></i> Interview cannot be scheduled because the job position has been 
+        <span ng-if="job.isFilled()">filled</span>
+        <span ng-if="job.isClosed()">closed</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="content-padded" candidate-resume candidate="candidate" job="job"></div>
+</div>

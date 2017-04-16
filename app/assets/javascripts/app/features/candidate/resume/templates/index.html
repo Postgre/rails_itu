@@ -1,0 +1,230 @@
+<div class="content-padded">
+  <div class="resume-top-section loading-indicator-container">
+    <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': resumeCtrl.candidate.$loading }">
+      <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+    </div>
+
+    <header class="resume-header">
+      <div class="resume-avatar-block">
+        <div class="resume-avatar">
+          <img ng-if="resumeCtrl.candidate.user.avatarUrl" ng-src="{{ resumeCtrl.candidate.user.avatarUrl }}" alt="{{ [resumeCtrl.candidate.user.firstName, resumeCtrl.candidate.user.middleName, resumeCtrl.candidate.user.lastName].join(' ') }}" />
+          <div ng-if="!resumeCtrl.candidate.user.avatarUrl" class="resume-avatar-placeholder">
+            <i class="fa fa-camera avatar-placeholder-icon"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-summary">
+        <div class="resume-summary-top">
+          <div class="pull-right">
+            <a ui-sref="candidate.resume.edit" class="btn icon-btn" data-tooltip="Edit profile information"><i class="fa fa-pencil"></i></a>
+          </div>
+          <span class="resume-name">{{ resumeCtrl.candidate.name }}</span>
+          <div class="resume-summary-education" ng-if="resumeCtrl.candidate.degree">{{ resumeCtrl.candidate.degree }}</div>
+          <div class="resume-location">
+            <i class="fa fa-map-marker"></i>
+            <span ng-if="resumeCtrl.candidate | fullAddress">{{ resumeCtrl.candidate | fullAddress }}</span>
+            <span ng-if="!(resumeCtrl.candidate | fullAddress)">Address is not specified. Please <a class="link-underline" ui-sref="candidate.resume.edit">edit the profile</a> to provide your location.</span>
+          </div>
+        </div>
+
+        <div class="resume-summary-more">
+          <div class="resume-description" ng-bind-html="resumeCtrl.candidate.about | nl2br"></div>
+
+          <div class="item-properties has-top-border">
+            <div class="row">
+              <div class="item-property item-property-block col-lg-4">
+                <div class="item-property-label uppercase">Availability:</div>
+                <div class="item-property-value">{{ resumeCtrl.candidate.availability | availabilityOption }}</div>
+              </div>
+              <div class="item-property item-property-block col-lg-6">
+                <div class="item-property-label uppercase">Profile visibility:</div>
+                <div class="item-property-value profile-visibility profile-is-visible" ng-if="resumeCtrl.candidate.isVisible">
+                  <i class="fa fa-check"></i> Your profile is visible to companies
+                </div>
+                <div class="item-property-value profile-visibility" ng-if="!resumeCtrl.candidate.isVisible">
+                  <i class="fa fa-eye-slash"></i> Your profile is not visible to companies
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-summary-skills" ng-if="resumeCtrl.skillRecords.any({ isFeatured: true })">
+            <h2 class="resume-summary-skills-heading">Featured skills</h2>
+            <div class="resume-summary-skills-list">
+              <a class="resume-skill resume-summary-skill" ng-repeat="skillRecord in resumeCtrl.skillRecords | filter: { isFeatured: true } | orderBy: 'skillName'">{{ skillRecord.skillName }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Resume section -->
+  <div class="bordered-panel resume-skills-panel">
+    <div class="panel-heading has-options">
+      Skills
+      <div class="panel-heading-buttons pull-right">
+        <a ui-sref="candidate.resume.skills.edit" class="btn btn-xxs btn-primary">
+          <i class="fa fa-pencil"></i> Manage skills
+        </a>
+      </div>
+    </div>
+    <div class="panel-body" ng-class="{ 'loading-indicator-container': resumeCtrl.skillCategoryRecords.$loading }">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': resumeCtrl.skillCategoryRecords.$loading }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="skills skills-display">
+        <div class="empty-list-block" ng-if="!resumeCtrl.skillCategoryRecords.length">
+          <div class="empty-list-icon"><i class="fa fa-file-text"></i></div>
+          <div class="empty-list-msg">
+            No skills are specified yet
+          </div>
+          <div class="empty-list-note">
+            Make sure to specify the skills you possess for your resume to be complete and attractive to the companies.
+          </div>
+          <div class="empty-list-options">
+            <a ui-sref="candidate.resume.skills.edit" class="btn btn-sm btn-default">
+              <i class="fa fa-pencil"></i> Manage skills
+            </a>
+          </div>
+        </div>
+
+        <!-- Skills category -->
+        <div class="skills-section" ng-repeat="skillCategoryRecord in resumeCtrl.skillCategoryRecords | filter: resumeCtrl.hasSkillRecords | orderBy: 'position'">
+          <div class="skills-section-heading">{{ skillCategoryRecord.skillCategoryName }}</div>
+          <div class="skills-section-body">
+            <table class="table skills-table">
+              <tbody>
+                <tr ng-repeat="skillRecord in ::resumeCtrl.skillRecords | filter: { skillCategoryId: skillCategoryRecord.skillCategoryId } | orderBy: 'position'">
+                  <td><div class="skill">{{ skillRecord.skillName }}</div></td>
+                  <td class="col-skill-experience">{{ skillRecord.yearsOfExperience }} years</td>
+                  <td class="col-skill-level">{{ skillRecord.level | skillLevel }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- / Skills category -->
+      </div>
+    </div>
+  </div>
+  <!-- / Resume section -->
+
+  <!-- Resume section -->
+  <div class="bordered-panel">
+    <div class="panel-heading has-options">
+      Employment history
+      <div class="panel-heading-buttons pull-right">
+        <a ui-sref="candidate.resume.employment.list" class="btn btn-xxs btn-primary">
+          <i class="fa fa-pencil"></i> Manage positions
+        </a>
+      </div>
+    </div>
+    <div class="panel-body" ng-class="{ 'loading-indicator-container': resumeCtrl.candidate.employmentRecords.$loading }">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': resumeCtrl.candidate.employmentRecords.$loading }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+      <div class="employment-records">
+        <div class="empty-list-block" ng-if="!resumeCtrl.candidate.employmentRecords.length">
+          <div class="empty-list-icon"><i class="fa fa-briefcase"></i></div>
+          <div class="empty-list-msg">
+            No employment information is provided yet
+          </div>
+          <div class="empty-list-note">
+            You haven't provided any of your past or current jobs. Feel free to add some.
+          </div>
+          <div class="empty-list-options">
+            <a ui-sref="candidate.resume.employment.list" class="btn btn-sm btn-default">
+              <i class="fa fa-pencil"></i> Manage employment positions
+            </a>
+          </div>
+        </div>
+
+        <!-- Employment record -->
+        <div class="resume-record-block" ng-repeat="employmentRecord in resumeCtrl.candidate.employmentRecords | orderBy: ['isCurrentJob', 'startDate']: true">
+          <div class="resume-record-block-aside">
+            {{ employmentRecord.startDate | date: 'MMM yyyy' }} &mdash;
+            <span ng-if="employmentRecord.isCurrentJob">PRESENT</span>
+            <span ng-if="!employmentRecord.isCurrentJob">{{ employmentRecord.endDate | date: 'MMM yyyy' }}</span>
+          </div>
+          <div class="resume-record-block-body">
+            <div class="resume-record-block-heading">
+              {{ employmentRecord.companyName }} ({{ employmentRecord | fullAddress }})
+            </div>
+            <div class="resume-record-block-subheading">
+              {{ employmentRecord.jobTitle }}
+            </div>
+            <div class="resume-record-block-text" ng-bind-html="employmentRecord.description | nl2br"></div>
+          </div>
+        </div>
+        <!-- / Employment record -->
+      </div>
+    </div>
+  </div>
+  <!-- / Resume section -->
+
+  <!-- Resume section -->
+  <div class="bordered-panel">
+    <div class="panel-heading has-options">
+      Education
+      <div class="panel-heading-buttons pull-right">
+        <a ui-sref="candidate.resume.education.list" class="btn btn-xxs btn-primary">
+          <i class="fa fa-pencil"></i> Manage education info
+        </a>
+      </div>
+    </div>
+    <div class="panel-body" ng-class="{ 'loading-indicator-container': resumeCtrl.candidate.educationRecords.$loading }">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': resumeCtrl.candidate.educationRecords.$loading }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="education-records">
+        <div class="empty-list-block" ng-if="!resumeCtrl.candidate.educationRecords.length">
+          <div class="empty-list-icon"><i class="fa fa-graduation-cap"></i></div>
+          <div class="empty-list-msg">
+            No education records provided yet
+          </div>
+          <div class="empty-list-note">
+            You haven't provided any academic records. Feel free to add some.
+          </div>
+          <div class="empty-list-options">
+            <a ui-sref="candidate.resume.education.list" class="btn btn-sm btn-default">
+              <i class="fa fa-pencil"></i> Manage education information
+            </a>
+          </div>
+        </div>
+
+        <!-- Education record -->
+        <div class="resume-record-block" ng-repeat="educationRecord in resumeCtrl.candidate.educationRecords | orderBy: 'endYear':true">
+          <div class="resume-record-block-aside">
+            {{ educationRecord.startYear }} &mdash;
+            <span ng-if="educationRecord.endYear">{{ educationRecord.endYear }}</span>
+            <span ng-if="!educationRecord.endYear">PRESENT</span>
+          </div>
+          <div class="resume-record-block-body">
+            <div class="resume-record-block-heading">
+              {{ educationRecord.school }} ({{ educationRecord | fullAddress }})
+            </div>
+            <div class="resume-record-block-subheading">
+              {{ educationRecord.degree }}
+            </div>
+          </div>
+        </div>
+        <!-- / Education record -->
+
+
+        <!-- Courses -->
+        <div class="course-list course-list-in-block" ng-if="resumeCtrl.visibleCourses.length">
+          <header class="course-list-header">Courses</header>
+          <div course-list-item ng-repeat="course in resumeCtrl.visibleCourses"
+               course="course" readonly="true" ></div>
+        </div>
+        <!-- / Courses -->
+      </div>
+    </div>
+  </div>
+  <!-- / Resume section -->
+
+</div>

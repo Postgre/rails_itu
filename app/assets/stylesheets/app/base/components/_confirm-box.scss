@@ -1,0 +1,104 @@
+// Confirmation dialog (a replacement for native confirm(...) window)
+
+$confirm-box-icon-width: rem-calc(30);
+
+// TWBS .dropdown container tweak
+.confirm-box-inline-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.confirm-box {
+  position: absolute;
+  z-index: 1000;
+  padding: rem-calc(8) rem-calc(10);
+  min-width: rem-calc(220);
+  background: white;
+  color: $theme-color-black;
+  border-radius: 3px;
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, .35);
+}
+
+.confirm-box-right {
+  right: 0;
+  left: auto;
+}
+
+.confirm-box-icon {
+  float: left;
+  width: $confirm-box-icon-width;
+  padding-right: rem-calc(8);
+  font-size: rem-calc(24);
+  line-height: 1;
+  text-align: center;
+}
+
+.confirm-box-main {
+  .confirm-box-icon ~ & {
+    margin-left: $confirm-box-icon-width;
+  }
+}
+
+.confirm-box-message {
+  margin-bottom: rem-calc(10);
+  font-size: rem-calc(13);
+  line-height: 1.2;
+}
+
+.confirm-box-buttons {
+  padding-top: rem-calc(8);
+  border-top: 1px solid #eee;
+}
+
+.confirm-box-confirm-btn,
+.confirm-box-cancel-btn {
+  min-width: rem-calc(70);
+  padding: rem-calc(5) rem-calc(12);
+  font-size: rem-calc(13);
+  font-weight: normal;
+}
+
+.confirm-box-confirm-btn {
+  background: $theme-color-danger;
+  color: white;
+
+  &:focus {
+    background: $theme-color-danger;
+    color: white;
+  }
+
+  &:hover, &:active {
+    background: lighten($theme-color-danger, 5%);
+    color: white;
+  }
+}
+
+.confirm-box-confirm-btn-positive {
+  background: $theme-color-success;
+  color: white;
+
+  &:focus {
+    background: $theme-color-success;
+    color: white;
+  }
+
+  &:hover, &:active {
+    background: lighten($theme-color-success, 5%);
+    color: white;
+  }
+}
+
+.confirm-box-cancel-btn {
+  background: #eee;
+  color: #333;
+
+  &:focus {
+    background: #eee;
+    color: #333;
+  }
+
+  &:hover, &:active {
+    background: lighten(#eee, 2%);
+    color: #333;
+  }
+}

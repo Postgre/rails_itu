@@ -1,0 +1,15 @@
+.content
+  .row
+    .pull-right
+      %a.btn.btn-primary.btn-xs{data: {'bs-popover' => 'true', template: 'staff/users/message-popover.html', placement: 'bottom'}}
+        %i.fa.fa-envelope
+      %a.btn.btn-warning.btn-xs{data: {'ng-click' => 'become(candidate.user)', title: 'login as user', 'bs-tooltip' => true}}
+        %i.fa.fa-key
+  .section{data: {'candidate-resume' => true,
+                  candidate: 'candidate',
+                  aspect: 'staff'}}
+  .basic-panel
+    .panel-heading.has-options
+      Comments
+    .panel-body
+      .section{data: {'comments' => true, commentable: 'candidate', 'commentable-type' => '"candidate"', 'is-staff' => 'true'}}

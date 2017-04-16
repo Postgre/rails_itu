@@ -1,0 +1,45 @@
+/* Common variables */
+
+$base-font-size: 16px;
+$rem-base: $base-font-size;
+
+// Main layout dimensions
+$app-container-width: 90%;
+$app-header-height: 70px;
+$app-main-min-height: 30em;
+$main-ui-container-width: 1020px;
+
+$sidebar-width: 12.5em;
+$sidebar-bg: #8A9CB1;
+// $sidebar-bg: #707B88;
+
+
+// Theme colors
+// $theme-color: #4C7A64;
+$theme-color: #09b39c;
+// $theme-color-inverse: #3a454f;
+$theme-color-inverse: desaturate(lighten(mix($theme-color, black, 10%), 10%), 50%);
+$theme-color-black: #333;
+$theme-color-success: #19B180;
+$theme-color-error: #E4442A;
+$theme-color-danger: #f04124;
+
+// Theme layout colors
+// $body-bg-color: #EBE9DF;
+$body-bg-color: #f3f3f3;
+$body-font-color: #252525;
+// $main-sidebar-bg: #3a454f;
+// $main-sidebar-bg: #419764;
+$main-sidebar-bg: white;
+// $main-content-bg: desaturate(lighten($theme-color, 10%), 10%);
+// $main-content-bg: #F2F7F4;
+$main-content-bg: #fcfcfc;
+
+// Theme element colors
+$link-color: #428bca;
+$positive-color: #19B180;
+$error-color: #f04124;
+
+// Theme fonts
+$theme-font: 'Lato', 'Proxima Nova', 'Helvetica Neue', 'Helvetica', sans-serif;
+$theme-font-secondary: 'Tinos', serif;

@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+
+# Install NodeJS
+if [ -z `type -t "node"` ]; then
+  if [ ! -z `type -t "brew"` ]; then
+    brew install node
+  elif [ ! -z `type -t "apt-get"` ]; then
+    . /etc/*-release
+    if [ "$ID" = "ubuntu" ]; then
+      sudo apt-get update
+      sudo apt-get install -y python-software-properties python g++ make
+      sudo add-apt-repository ppa:chris-lea/node.js
+      sudo apt-get update
+      sudo apt-get install nodejs
+    else
+      if [ ! -f /etc/apt/sources.list.d/wheezy_backports.list ]; then
+        sudo mkdir -p /etc/apt/sources.list.d
+        sudo touch /etc/apt/sources.list.d/wheezy_backports.list
+        sudo echo "/etc/apt/sources.list.d/wheezy_backports.list" >> /etc/apt/sources.list.d/wheezy_backports.list
+        sudo chmod 644 /etc/apt/sources.list.d/wheezy_backports.list
+      fi
+
+      sudo apt-get update
+      sudo apt-get install -y nodejs nodejs-legacy
+    fi
+  else
+    echo "##########################################################################"
+    echo "Some packages needed to be installed in order to run the application:"
+    echo "  nodejs"
+    echo "  npm"
+    echo
+    echo "More information:"
+    echo "https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager"
+  fi
+fi
+
+# Install npm
+if [ -z `type -t "npm"` ]; then
+  curl -L https://npmjs.org/install.sh | sudo sh
+fi
+
+# Set up Ruby dependencies
+bundle install --path .bundle
+
+if [ -z `type -t "foreman"` ]; then
+  gem install foreman
+fi
+
+# Set up configurable environment variables for Foreman
+./bin/dotenv
+
+# Set up development-specific Procfile for Foreman
+if [ ! -f Procfile.development ]; then
+  echo 'web: bundle exec rails server' >> Procfile.development
+fi
+
+# Set up the database
+bundle exec rake db:drop
+bundle exec rake db:create
+bundle exec rake db:schema:load
+bundle exec rake db:seed
+
+echo
+echo
+echo "##########################################################################"
+echo "Done!"
+echo
+echo "Run foreman command to start the application server:"
+echo "  foreman start -f Procfile.development"

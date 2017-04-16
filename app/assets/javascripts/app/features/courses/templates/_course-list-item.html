@@ -1,0 +1,22 @@
+<div class="resume-record-block course-list-item">
+  <div class="resume-record-block-aside">
+    {{ course.semester }}
+  </div>
+
+  <div class="resume-record-block-body">
+    <div class="resume-record-block-options" ng-if="!readonly">
+      <label class="checkbox">
+        <input type="checkbox" ng-model="course.isVisible" ng-change="course.save()">
+        Visible
+      </label>
+    </div>
+
+    <div class="resume-record-block-heading">
+      {{ course.title }}
+    </div>
+    <div class="resume-record-block-subheading">
+       {{ course.department }} <span class="more">| {{ course.professor }}</span>
+    </div>
+    <div class="resume-record-block-text" ng-bind-html="course.description | nl2br"></div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+// List
+.course-list {
+  &.course-list-in-form, .form-group & {
+    padding-top: rem-calc(7);
+  }
+
+  &.course-list-in-block {
+    margin-top: rem-calc(7);
+    padding-top: rem-calc(7);
+    // border-top: 1px solid #eee;
+  }
+
+  .course-list-header {
+    $bg-color: #efefef;
+    @include block-arrow-bottom($bg-color);
+
+    margin-bottom: rem-calc(8);
+    padding: rem-calc(4) rem-calc(8);
+    font-size: rem-calc(14);
+    font-weight: bold;
+    text-align: center;
+    background: $bg-color;
+  }
+}
+
+// List item
+.course-list-item {
+  &.resume-record-block {
+    .resume-record-block-aside {
+      width: rem-calc(120);
+    }
+
+    .resume-record-block-aside ~ .resume-record-block-body {
+      margin-left: rem-calc(135);
+    }
+
+    .resume-record-block-options {
+      position: relative;
+      float: right;
+      margin-left: rem-calc(30);
+
+      .checkbox {
+        padding-top: 0;
+        font-weight: 300;
+        color: rgba($theme-color-inverse, .8);
+      }
+    }
+  }
+}

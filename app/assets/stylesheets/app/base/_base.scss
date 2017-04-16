@@ -1,0 +1,50 @@
+/* Base compilation file */
+
+// Reusable functions and mixins
+@import "functions/ranges";
+@import "functions/units";
+@import "mixins/transforms";
+@import "mixins/transitions";
+@import "mixins/flexbox";
+@import "mixins/block-arrows";
+@import "mixins/dropdown-caret";
+
+// Common body styling and modifiers
+@import "responsive";
+@import "body";
+@import "modifiers";
+
+// Angular helpers
+@import "angular";
+
+// Common layouts
+@import "layouts/offcanvas";
+
+// Common core components
+@import "components/buttons";
+@import "components/links";
+@import "components/dividers";
+@import "components/forms/forms";
+@import "components/display-forms";
+
+// Common custom components
+@import "components/tabs";
+@import "components/panels";
+@import "components/breadcrumbs";
+@import "components/dropdowns";
+@import "components/popovers";
+@import "components/tooltips";
+@import "components/badges";
+@import "components/pagination";
+@import "components/empty-list-placeholder";
+@import "components/item-properties";
+@import "components/list-blocks";
+@import "components/typeahead";
+@import "components/user-block";
+@import "components/data-filters";
+@import "components/modalbox";
+@import "components/modals";
+@import "components/confirm-box";
+@import "components/humanized-msg";
+@import "components/topslide-error-msg";
+@import "components/file-extensions";

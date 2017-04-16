@@ -1,0 +1,60 @@
+/* Generic empty-list placeholder block styles */
+
+// Empty list placeholder
+.empty-list-block {
+  padding: rem-calc(25) rem-calc(20);
+  border: 1px dashed #e5e5e5;
+  text-align: center;
+
+  $empty-list-icon-size: rem-calc(60);
+  .empty-list-icon {
+    width: $empty-list-icon-size;
+    height: $empty-list-icon-size;
+    margin: 0 auto rem-calc(5);
+    font-size: rem-calc(40);
+    line-height: $empty-list-icon-size - rem-calc(5);
+    background: rgba($theme-color-inverse, .2);
+    color: white;
+    border-radius: 5px;
+  }
+
+  .empty-list-msg {
+    margin: 0;
+    font-size: rem-calc(20);
+    color: rgba($theme-color-inverse, 0.5);
+
+    strong {
+      color: rgba($theme-color-inverse, 0.8);
+    }
+  }
+
+  .empty-list-note {
+    margin-top: rem-calc(4);
+    font-size: rem-calc(12);
+    line-height: 1.2;
+    color: rgba($theme-color-inverse, 0.35);
+  }
+
+  .empty-list-options {
+    padding-top: rem-calc(15);
+  }
+
+  .empty-list-divider-text {
+    display: block;
+    margin: rem-calc(5) 0;
+    font-size: rem-calc(13);
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #ddd;
+  }
+
+  .empty-list-arrow-down {
+    color: rgba($theme-color-inverse, 0.2);
+    font-size: rem-calc(30);
+    line-height: 1;
+  }
+
+  &.empty-list-block-lg {
+    padding: rem-calc(50) rem-calc(20);
+  }
+}

@@ -1,0 +1,68 @@
+<div class="company-summary">
+  <div class="company-summary-top">
+    <div class="company-brand-logo-block">
+      <div class="company-brand-logo">
+        <img ng-if="company.logoUrl" ng-src="{{ company.logoUrl }}" alt="{{ company.name }}" />
+        <div ng-if="!company.logoUrl" class="item-image-placeholder company-logo-placeholder">
+          <i class="fa fa-camera image-placeholder-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-summary-top-main">
+      <span class="company-name">{{ company.name }}</span>
+      <div class="company-location" ng-if="company | fullAddress">
+        <i class="fa fa-map-marker"></i> {{ company | fullAddress }}
+      </div>
+
+      <div class="item-properties has-top-border space-below">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-4"
+               ng-if="company.industry && company.industry.name">
+            <div class="item-property-label">Industry:</div>
+            <div class="item-property-value ng-binding">{{ company.industry.name }}</div>
+          </div>
+          <div class="item-property item-property-block col-lg-4" ng-if="company.companySize">
+            <div class="item-property-label">Company size:</div>
+            <div class="item-property-value ng-binding">{{ company.companySize }}</div>
+          </div>
+          <div class="item-property item-property-block col-lg-4" ng-if="!isCandidateViewing()">
+            <div class="item-property-label">Status:</div>
+            <div class="item-property-value ng-binding">
+              <div class="company-status-badge"
+                   ng-class="{
+                     'company-status-is-pending': company.state === 'created' || company.state === 'pending',
+                     'company-status-is-active': company.state === 'accepted',
+                     'company-status-is-rejected': company.state === 'rejected' || company.state === 'banned' }">
+                <div ng-if="company.state === 'created'"><i class="fa fa-pencil"></i> Created</div>
+                <div ng-if="company.state === 'pending'"><i class="fa fa-lock"></i> Pending approval</div>
+                <div ng-if="company.state === 'rejected'"><i class="fa fa-times-circle"></i> Rejected</div>
+                <div ng-if="company.state === 'accepted'"><i class="fa fa-check"></i> Active</div>
+                <div ng-if="company.state === 'banned'"><i class="fa fa-lock"></i> Suspended</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item-property item-property-block col-lg-4" ng-if="company.phoneNumber">
+            <div class="item-property-label">Phone number:</div>
+            <div class="item-property-value ng-binding">{{ company.phoneNumber }}</div>
+          </div>
+
+          <div class="item-property item-property-block col-lg-4" ng-if="company.website">
+            <div class="item-property-label">Website:</div>
+            <div class="item-property-value ng-binding">{{ company.website }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bordered-panel" ng-if="company.aboutUs">
+      <div class="panel-heading">About</div>
+      <div class="panel-body">
+        <p ng-bind-html="company.aboutUs | nl2br" class="break-word"></p>
+      </div>
+    </div>
+
+    <div company-job-list aspect="candidate" company="company" ng-if="isCandidateViewing()"></div>
+  </div>
+</div>

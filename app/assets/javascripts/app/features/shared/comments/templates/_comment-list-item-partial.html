@@ -1,0 +1,37 @@
+<div class="comment-author-block">
+  <div class="user-block-inline">
+    <div class="user-avatar user-avatar-lg">
+      <img ng-src="{{ comment.user.avatarUrl }}" ng-if="comment.user.avatarUrl">
+      <div ng-if="!comment.user.avatarUrl" class="user-avatar-icon"><i class="fa fa-user"></i></div>
+    </div>
+    <div class="user-name">
+      {{ comment.user | fullName }}
+    </div>
+  </div>
+</div>
+
+<div class="comment-time-block">
+  {{ comment.createdAt | date: 'MMM d, y h:mm a' }}
+</div>
+
+<div class="comment-body">
+  <div class="comment-text" ng-bind-html="comment.body | nl2br"></div>
+  <div class="comment-options" ng-if="tree && !readonly">
+    <button type="button" ng-click="toggleReplyFormFor(comment)" class="btn btn-light btn-xs comment-reply-btn">
+      <i class="fa fa-reply"></i> Reply
+    </button>
+  </div>
+</div>
+
+<div class="comment-subcomments" ng-if="tree && (comment.children.length || isReplyFormShownFor(comment))">
+  <div class="subcomments-icon"><i class="fa fa-long-arrow-right"></i></div>
+  <div class="comment-list">
+    <div ng-repeat="comment in comment.children"
+         ng-include="'app/features/shared/comments/templates/_comment-list-item-partial.html'"
+         class="comment-list-item comment-list-item-nested" ng-class="{ 'is-my': isCurrentUserComment(comment) }"></div>
+  </div>
+
+  <div comment-list-form commentable="commentable" commentable-type="{{ commentableType }}" parent-comment="comment"
+       comment-collection="comment.children" current-user="currentUser" on-cancel="hideReplyForm()" on-success="hideReplyForm()"
+       ng-if="isReplyFormShownFor(comment)"></div>
+</div>

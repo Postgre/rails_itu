@@ -1,0 +1,112 @@
+/* Common Jobs styles */
+
+// Job details block
+.job-details-block {
+  padding: rem-calc(15) rem-calc(25);
+  background: $main-content-bg;
+}
+
+.job-overview-details {
+  @extend .clearfix;
+  background: white;
+
+  &.no-top-margin {
+    margin-top: 0;
+  }
+}
+
+// TODO: Deprecate this
+.job-details {
+  @extend .clearfix;
+  padding: rem-calc(15) rem-calc(20);
+  border-radius: 3px;
+  background: white;
+}
+
+.content .content-header.job-details-header {
+  background: white;
+}
+
+// Job details (job summary) elements
+
+.job-details-top {
+  @extend .clearfix;
+}
+
+.job-details-top-main {
+  .job-details-top-left ~ & {
+    margin-left: rem-calc(160);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(20);
+  }
+}
+
+// Ugly tweak to outplay the float issues
+.job-details .company-brand-logo-block {
+  margin: 0;
+}
+
+// TODO: Think about making these elements abstract
+
+.job-heading {
+  margin: 0;
+  font-size: rem-calc(24);
+  line-height: 1.2;
+}
+
+.job-sub-heading {
+  font-size: rem-calc(13);
+  color: rgba($theme-color-black, 0.4);
+
+  strong {
+    font-weight: normal;
+    color: rgba($theme-color-black, 0.75);
+  }
+}
+
+.job-details-divider {
+  clear: both;
+  margin-top: rem-calc(15);
+  margin-bottom: rem-calc(3);
+  height: 0;
+  border-top: 2px solid rgba($theme-color-inverse, 0.2);
+}
+
+.job-details-section {
+  clear: both;
+  padding-top: rem-calc(10);
+
+  &.has-top-border {
+    margin-top: rem-calc(15);
+    border-top: 1px solid rgba($theme-color-inverse, 0.1);
+  }
+}
+
+.job-details-section-heading {
+  margin: 0 0 rem-calc(8);
+  font-size: rem-calc(16);
+  font-weight: bold;
+  color: rgba($theme-color, 0.9);
+}
+
+.job-description {
+  @extend .break-word;
+
+  font-size: rem-calc(13);
+  color: lighten(black, 30%);
+}
+
+.job-required-skills {
+  margin-top: rem-calc(15);
+  padding-top: rem-calc(10);
+  border-top: 1px solid rgba($theme-color-inverse, 0.2);
+}
+
+.recommended-candidates-badge {
+  margin-left: rem-calc(2);
+  padding: rem-calc(2) rem-calc(6);
+  font-size: rem-calc(11);
+  background: $theme-color;
+}

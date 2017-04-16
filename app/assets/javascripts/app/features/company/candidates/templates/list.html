@@ -1,0 +1,17 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Search</strong> for the candidates to fill your positions</h1>
+    </header>
+
+    <ul class="nav nav-tabs nav-tabs-outline nav-tabs-outline-thick">
+      <li><a ui-sref="company.candidates.list.search" ui-sref-opts="{ reload: true }"
+             ng-class="{ 'is-active': $state.includes('company.candidates.list.search') }">Search</a></li>
+      <li><a ui-sref="company.candidates.list.starred"
+             ng-class="{ 'is-active': $state.is('company.candidates.list.starred') }" class="tab"><i class="fa fa-star"></i> Starred</a></li>
+    </ul>
+
+    <div ui-view></div>
+
+  </div>
+</div>

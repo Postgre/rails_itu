@@ -1,0 +1,15 @@
+Dear #{@candidate_name}
+%br/
+Your have been invited to an
+%a{href: "#{url_for(controller: 'app', action: 'index', only_path: false)}#!/candidate/interviews/#{@interview.id}"}
+  interview
+for the #{@job_name} position by #{@company_name}.
+%br
+You may accept or reject invitation, or suggest a different time.
+%br
+Please visit ITU Bridge and follow the link to 'Interviews' for more details and options.
+%br
+Sincerely,
+%br
+ITU Bridge Staff.
+%br/

@@ -1,0 +1,36 @@
+// angularStrap date-time-picker style overrides
+
+.dropdown-menu {
+  &.datepicker, &.timepicker {
+
+    button.btn {
+      background: transparent;
+      color: $theme-color-black;
+      border-color: transparent;
+
+      &:hover, &:focus, &:active {
+        background: rgba($theme-color-grey, .5);
+      }
+
+      &.btn-primary {
+        background: $theme-color;
+        color: white;
+        border-color: transparent;
+      }
+
+      &.btn-today {
+        border-color: rgba($theme-color-inverse, .7);
+        background: #eee;
+      }
+    }
+  }
+
+  &.datepicker {
+    padding: rem-calc(4);
+  }
+
+  &.timepicker {
+    padding-top: rem-calc(4) !important;
+    padding-bottom: rem-calc(4) !important;
+  }
+}

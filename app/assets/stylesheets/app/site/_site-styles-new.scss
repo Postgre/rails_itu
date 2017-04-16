@@ -1,0 +1,109 @@
+// TEMPORARY stylesheet for the new landing and secondary site pages
+
+.navbar .navbar-brand {
+  font-family: 'Gill Sans', sans-serif;
+}
+
+// Page section fix for fixed header
+.navbar-fixed-top ~ .page-section {
+  margin-top: 73px;
+}
+
+.page-section article {
+  font-weight: normal;
+
+  p {
+    margin-bottom: 10px;
+    font-family: Helvetica, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #252525;
+  }
+}
+
+// Some elements that relate to "App" get the hacky font overrides
+.zendesk-ticket-modal {
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+
+  .modal-heading {
+    font-family: "Helvetica Neue", "Helvetica", sans-serif;
+    color: #555;
+  }
+}
+
+// Post-a-job button
+.slider .sl-slider a,
+.site-index-btn {
+  &:hover, &:active {
+    &:not(:disabled) {
+      background: white;
+      color: #2e887c;
+      opacity: .8;
+    }
+  }
+}
+
+.index-sign-up-submit-btn {
+  @extend .site-index-btn;
+
+  display: block;
+  width: 100%;
+  padding: 20px 0;
+  border: 0 none;
+  font-size: 28px;
+  background-color: #1c9787;
+  color: #fff;
+  opacity: 0.8;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sl-slider-wrapper {
+  overflow: hidden;
+}
+
+.sl-slide-horizontal .sl-slide-inner {
+  background: #47575f;
+}
+
+// TWBS grid fixes for inlined form fields
+.row {
+  .form-group-row-col {
+    &:not(:first-child) {
+      padding-left: 8px;
+    }
+    &:not(:last-child) {
+      padding-right: 8px;
+    }
+  }
+}
+
+.checkbox label.index-checkbox-label {
+  color: white;
+
+  input {
+    margin-top: 3px;
+  }
+}
+
+.index-sign-up-form .hint-validation-error {
+  text-align: left;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.slider .sl-slider a,.slider .sl-slider a:hover, .slider .sl-slider a:focus {
+  display: block;
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 34px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 15px 40px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #1c9787;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+}

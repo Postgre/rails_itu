@@ -1,0 +1,38 @@
+<div class="bordered-panel">
+  <div class="panel-heading">
+    Company jobs
+  </div>
+  <div class="panel-body" ng-class="{ 'loading-indicator-container': jobs.$loading }">
+    <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': jobs.$loading }">
+      <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+    </div>
+
+    <ul class="nav nav-tabs nav-tabs-outline nav-tabs-outline-sm nav-tabs-outline-thick">
+      <li><a ng-click="clearScheduleFilter()" ng-class="{ 'is-active': !schedule }">All</a></li>
+      <li><a ng-click="filterBySchedule('full_time')" ng-class="{ 'is-active': schedule === 'full_time' }">Full-time</a></li>
+      <li><a ng-click="filterBySchedule('part_time')" ng-class="{ 'is-active': schedule === 'part_time' }">Part-time</a></li>
+    </ul>
+
+    <div class="list-blocks">
+      <div class="empty-list-block empty-list-block-lg" ng-if="!jobs.length || (schedule && !(jobs | filter:isSchedule).length) && !jobs.$loading">
+        <div class="empty-list-icon"><i class="fa fa-briefcase"></i></div>
+        <div class="empty-list-msg">
+          <span ng-if="!schedule">Company has no available jobs</span>
+          <span ng-if="schedule">Company has no <strong>{{ schedule | jobSchedule | lowercase }}</strong> jobs available</span>
+        </div>
+        <div class="empty-list-note">
+          <span ng-if="!schedule">
+            There are no active jobs published by this company at the moment.
+            Please check out later.
+          </span>
+          <span ng-if="schedule">
+            There are currently no {{ schedule | jobSchedule | lowercase }} jobs at this company.
+            Please check out later.
+          </span>
+        </div>
+      </div>
+
+      <div job-list-item aspect="{{ aspect }}" hide-company-name="true" ng-repeat="job in jobs | filter: isSchedule" job="job"></div>
+    </div>
+  </div>
+</div>

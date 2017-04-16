@@ -1,0 +1,18 @@
+.file-icon {
+  display: inline-block;
+  position: relative;
+  min-width: rem-calc(20);
+
+  .fa {
+    color: #ccc;
+  }
+
+  .label.label-file-extension {
+    position: absolute;
+    top: 1.5em;
+    left: 2px;
+    padding: .2em .3em .1em;
+    height: rem-calc(10);
+    font-size: rem-calc(7);
+  }
+}

@@ -1,0 +1,9 @@
+<div class="row" ng-class="{ 'has-error': hasError() }">
+  <div class="col-sm-3">
+    <label class="control-label" transclude-label>
+      <i class="fa fa-asterisk required-icon" ng-if="_formGroup.required"></i>
+    </label>
+  </div>
+
+  <div class="col-sm-9" transclude-main></div>
+</div>

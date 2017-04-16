@@ -1,0 +1,68 @@
+#!/bin/bash
+
+if [ ! -f .env ]; then
+
+cat > .env <<_EOF_
+# WEB SERVER
+RACK_ENV="development"
+WEB_PORT=3000
+WEB_HOST="localhost"
+
+# SECURITY
+SECRET_KEY_BASE="0186d29d7afb07f755e9ef62c1599c5231344a4dafec9f4b17b467f2bf09a12241938e7b4df4041d729aedb44267e9e62e4e2faae9e4daa71ed7fb9942610371"
+
+# SSO
+ID_TOKEN=81d891aa40ad853cbfad0e1dcdb17d64
+SSO_URL="http://sso.itu-dev.edu"
+SSO_ACCESS_TOKEN="81d891aa40ad853cbfad0e1dcdb17d64" # Application's token
+SSO_SECRET_TOKEN="0789db4333e66ee532caed41ea70f4a9" # Generated with SecureRandom.hex
+SSO_SECRET_SALT="b10b61c1-0ebb-47a3-8966-faf8254d1655" # Generated with SecureRandom.uuid
+
+# DATABASE
+DB_ADAPTER="mysql2"
+DB_POOL=5
+
+DB_DEVELOPMENT_DATABASE="itu-bridge-api_development"
+DB_DEVELOPMENT_HOST="localhost"
+DB_DEVELOPMENT_PASSWORD=""
+DB_DEVELOPMENT_USERNAME=""
+
+DB_TEST_DATABASE="itu-bridge-api_test"
+DB_TEST_HOST="localhost"
+DB_TEST_PASSWORD=""
+DB_TEST_USERNAME=""
+
+# SIDEKIQ
+SIDEKIQ_PIDFILE=tmp/pids/sidekiq.pid
+SIDEKIQ_CONCURRENCY=5
+SIDEKIQ_STAGING_CONCURRENCY=10
+SIDEKIQ_PRODUCTION_CONCURRENCY=50
+
+# REDIS
+REDIS_HOST="localhost"
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_NAMESPACE="app"
+REDIS_PASSWORD=""
+SSO_CLIENT_ID="something"
+
+# CACHE
+CACHE_STORE="redis://${REDIS_HOST}:${REDIS_PORT}/0/cache"
+CACHE_METASTORE="redis://${REDIS_HOST}:${REDIS_PORT}/1/meta"
+CACHE_ENTITYSTORE="redis://${REDIS_HOST}:${REDIS_PORT}/1/entity"
+
+# ZENDESK API
+ZENDESK_URL="https://ituedu.zendesk.com/api/v2"
+ZENDESK_USERNAME="..."
+ZENDESK_PASSWORD="..."
+
+AWS_ACCESS_KEY_ID=''
+AWS_SECRET_ACCESS_KEY=''
+AWS_S3_BUCKET=''
+
+PRODUCTION_EMAIL=OFF
+
+ELASTICSEARCH_URL='http://localhost:9200'
+_EOF_
+
+fi

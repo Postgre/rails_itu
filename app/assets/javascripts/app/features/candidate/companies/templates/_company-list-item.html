@@ -1,0 +1,46 @@
+<div class="list-item-block company-list-item">
+  <div class="list-item-body">
+    <a ui-sref="candidate.companies.details({ companyId: company.id })" class="list-item-left list-item-image-block">
+      <img ng-if="company.logoUrl" ng-src="{{ company.logoUrl }}" alt="{{ company.name }}">
+      <div ng-if="!company.logoUrl" class="item-image-placeholder company-logo-placeholder company-logo-placeholder-small">
+        <i class="fa fa-camera image-placeholder-icon"></i>
+      </div>
+    </a>
+    <div class="list-item-content">
+      <header class="list-item-content-header">
+        <h1 class="list-item-heading">
+          <a ui-sref="candidate.companies.details({ companyId: company.id })" class="link-underline">
+            {{ company.name }}
+          </a>
+        </h1>
+        <div class="list-item-sub-heading" ng-if="company | fullAddress">
+          <i class="fa fa-map-marker"></i> {{ company | fullAddress }}
+        </div>
+      </header>
+
+      <div class="item-properties has-top-border">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-2">
+            <div class="item-property-label">
+              <i class="fa fa-briefcase"></i> Jobs:
+            </div>
+            <div class="item-property-value" ng-if="company.jobsCount">
+              <a ui-sref="candidate.companies.details({ companyId: company.id })" class="link-underline">{{ company.jobsCount }} active jobs</a>
+            </div>
+            <div class="item-property-value is-no-value" ng-if="!company.jobsCount">no active jobs</div>
+          </div>
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">
+              <i class="fa fa-male"></i> Hired:
+            </div>
+            <div class="item-property-value" ng-if="company.hiredCount">
+              <span ng-pluralize count="company.hiredCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+            </div>
+            <div class="item-property-value is-no-value" ng-if="!company.jobsCount">none</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

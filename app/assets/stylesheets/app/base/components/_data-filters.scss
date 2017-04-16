@@ -1,0 +1,146 @@
+/* Items lists filters styles */
+
+// Filters layouts
+// TODO:
+// - data-filters (generic)
+// - top-filters (or data-filters-side)
+// - side-filters (or data-filters-top)
+// 
+
+// Filters helpers
+// TODO:
+// - filter-section-group (?)
+//   - filter-section-label
+// - filter-section
+//   - filter-section-expandable
+// - filter-divider
+// 
+
+// Filters elements
+// Common:
+// - filter-block
+//   - filter-label
+//   - filter-control
+// 
+// Controls:
+// - nav-filter (filter that acts as navigation menu)
+//   - nav-filter-multiselect
+// - tabs-filter (top-filters-only)
+// - date-filter
+// - date-range-filter
+// - input-filter
+// - select-filter
+// - autocomplete-filter
+// - checkbox-filter
+// - radio-filter
+// 
+
+
+
+.items-filter {
+  @include flex(1);
+  font-size: $base-font-size * 0.875;
+  background: $theme-color-grey;
+  border-radius: 3px;
+
+  .filter-section {
+    margin-bottom: 1em;
+
+    &:first-child, &:first-child .filter-section-header {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+
+  .filter-section-header {
+    background: rgba(black, 0.2);
+    font-size: 0.857142857em;
+    padding: 0.6em 1.416666667em 0.45em;
+    margin-bottom: 0.3em;
+    border-bottom: 1px solid rgba(black, 0.1);
+    color: white;
+    text-transform: uppercase;
+  }
+
+  // Generic filter block
+  .filter-block {
+    display: block;
+    padding: 0.3em 1.214285714em;
+
+    &.filter-block-link {
+      color: #555;
+      text-decoration: none;
+
+      &:hover, &:focus, &:active, &.active {
+        background: lighten(#6B6B6B, 7%);
+        color: white;
+      }
+
+      &:active, &.active {
+        background: #6B6B6B;
+      }
+    }
+  }
+
+  // Select-list filter (expanded, links as options)
+  .filter-select-list {
+    @extend .clearfix;
+    @include flex(1);
+    font-size: 0.85em;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    background: #f6f5f2;
+
+    // TODO: Reduce specificity (move to modifier CSS class like .filter-select-link)
+    > li {
+      margin-top: 0;
+
+      > a {
+        display: block;
+        position: relative;
+        padding: 0.6em 1.5em 0.5em;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        color: #666;
+        text-decoration: none;
+
+        &:hover, &:focus {
+          background: lighten(#6B6B6B, 15%);
+          color: rgba(white, 0.9);
+        }
+
+        &:active, &.active {
+          background: #6B6B6B;
+          color: white;
+        }
+
+        &.active {
+          @include nav-link-active-arrow-left-outer-centered(#6B6B6B, 6px);
+        }
+      }
+    }
+  }
+}
+
+.filter-select-link {
+  
+}
+
+.filter-select-link-icon {
+  display: inline-block;
+  width: 1.333333333em;
+}
+
+.filter-divider {
+  border-top: 1px solid rgba(black, 0.2);
+  margin: 0.375em 0;
+}
+
+.items-filter-sidebar {
+
+}

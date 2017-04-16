@@ -1,0 +1,175 @@
+// Company Sign-up process visualization block
+.company-sign-up-progress-block {
+  padding: rem-calc(20) rem-calc(20) rem-calc(25);
+  min-height: rem-calc(150);
+  background: #eee;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+}
+
+.company-sign-up-step-block {
+  position: relative;
+  max-width: rem-calc(590);
+  margin: 0 auto;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px -2px rgba(black, .3);
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(20);
+  }
+
+  .step-header {
+    padding: rem-calc(10) rem-calc(20);
+    background: #999;
+    color: white;
+    border-radius: 3px 3px 0 0;
+    font-weight: 300;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  .step-body {
+    @extend .clearfix;
+    position: relative;
+    min-height: rem-calc(115);
+  }
+
+  .step-left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: rem-calc(140);
+    padding: rem-calc(15) rem-calc(30);
+    background: #ccc;
+    border-radius: 0 0 0 3px;
+  }
+
+  .step-main {
+    margin-left: rem-calc(140);
+    padding: rem-calc(20) rem-calc(50) rem-calc(20) rem-calc(30);
+  }
+
+  .step-title {
+    margin: 0 0 rem-calc(5);
+    font-size: rem-calc(18);
+  }
+
+  .step-description {
+    color: #999;
+    font-size: rem-calc(14);
+
+    strong {
+      color: #555;
+    }
+
+    .company-name {
+      display: block;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: rem-calc(10);
+    }
+  }
+
+  $step-icon-block-size: rem-calc(80);
+
+  .step-icon-block {
+    width: $step-icon-block-size;
+    height: $step-icon-block-size;
+    border-radius: 50%;
+    background: white;
+    text-align: center;
+
+    .step-icon {
+      font-size: rem-calc(32);
+      line-height: $step-icon-block-size + rem-calc(5);
+      color: #999;
+    }
+  }
+
+  .step-complete-checkmark {
+    display: none;
+    position: absolute;
+    top: rem-calc(10);
+    right: rem-calc(15);
+    font-size: rem-calc(24);
+    color: $theme-color-success;
+  }
+
+  // Common modifiers
+
+  &.faded {
+    &::after {
+      content: " ";
+      position: absolute;
+      z-index: 100;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 3px;
+      background: rgba(black, .2);
+    }
+
+    &:hover {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  // State modifiers
+
+  &.is-current {
+    // box-shadow: 0 5px 20px -4px rgba(black, .3);
+    box-shadow: 0 0 0 5px rgba($theme-color-inverse, .1);
+
+    .step-header {
+      background: $theme-color;
+    }
+
+    .step-left {
+      background: mix(#ccc, $theme-color, 80%);
+    }
+  }
+
+  &.is-completed {
+    .step-complete-checkmark {
+      display: block;
+    }
+
+    .step-header {
+      background: darken($theme-color, 10%);
+    }
+
+    .step-left {
+      background: lighten($theme-color-success, 5%);
+    }
+  }
+
+  &.is-rejected {
+    .step-header {
+      background: darken($theme-color-danger, 10%);
+    }
+
+    .step-left {
+      background: lighten($theme-color-danger, 5%);
+    }
+
+    .step-icon {
+      color: darken($theme-color-danger, 10%);
+    }
+  }
+}
+
+.company-sign-up-step-arrow {
+  width: rem-calc(590);
+  margin: rem-calc(-15) auto rem-calc(5);
+  color: #d5d5d5;
+  font-size: rem-calc(30);
+  text-align: center;
+}

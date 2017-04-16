@@ -1,0 +1,15 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Compose message
+  .popover-content
+    %form{name: 'messageForm', data: {'ng-submit' => 'message(user, $hide)'}}
+      .form-group
+        %input.form-control{type: 'text', placeholder: 'Subject', required: true, data: {'ng-model' => 'newMessage.subject'}}
+      .form-group
+        %textarea.form-control{rows: 6, placeholder: 'Message', required: true, data: {'ng-model' => 'newMessage.body'}}
+      %button.btn.btn-primary{type: 'submit', data: {'ng-class' => '{disabled: !messageForm.$valid}'}}
+        %i.fa.fa-send
+        Send
+      %span.form-buttons-splitter-text OR
+      %a.btn-link-underline{data: {'ng-click' => '$hide()'}} Cancel

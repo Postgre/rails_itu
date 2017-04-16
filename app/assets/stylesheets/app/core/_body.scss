@@ -1,0 +1,8 @@
+/* Common html/body styling */
+
+body {
+  background-color: $body-bg-color;
+  // background-image: url(../img/noise-texture.png);
+  background-repeat: repeat;
+  background-attachment: fixed;
+}

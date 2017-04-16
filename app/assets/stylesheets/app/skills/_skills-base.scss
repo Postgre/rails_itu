@@ -1,0 +1,283 @@
+/* Candidate resume skills-related styles */
+
+// TODO:
+// - Move to skills feature CSS folder
+// - Make skill-records a separate stylesheet
+// - Rename to have just more abstract "skills" not "resume-skills"
+// - Create skill-cloud component
+// 
+
+.resume-skills-section, .skills-section {
+  padding-bottom: rem-calc(10);
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(10);
+    border-bottom: 1px solid rgba($theme-color-inverse, 0.2);
+  }
+}
+
+.resume-skills-section-heading, .skills-section-heading {
+  float: left;
+  padding-top: rem-calc(5);
+  width: rem-calc(200);
+  color: rgba($theme-color-inverse, 0.9);
+  font-size: rem-calc(14);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.resume-skills-section-body, .skills-section-body {
+  margin-left: rem-calc(215);
+  padding-bottom: rem-calc(20);
+}
+
+.resume-skills-table, .skills-table {
+  font-size: rem-calc(12);
+  margin-bottom: 0;
+
+  tbody > tr > td {
+    border-top: 1px dotted rgba($theme-color-inverse, 0.2);
+    padding: rem-calc(5) rem-calc(8);
+  }
+
+  tr:first-child td {
+    border-top: none;
+  }
+
+  td {
+    vertical-align: middle;
+    line-height: 3.333333333em;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .resume-skill, .skill {
+    background: $theme-color;
+  }
+
+  .col-skill-level, .col-skill-experience {
+    color: darken($theme-color, 10%);
+  }
+
+  .col-skill-experience {
+    width: rem-calc(100);
+    font-weight: bold;
+
+    select {
+      font-weight: bold;
+    }
+  }
+
+  .col-skill-level {
+    width: rem-calc(120);
+    font-weight: 300;
+  }
+
+  .col-featured {
+    width: rem-calc(80);
+    padding-right: 0;
+    white-space: nowrap;
+  }
+
+  .featured-checkbox {
+    padding-top: rem-calc(3);
+    margin-bottom: 0;
+
+    input[type=checkbox] {
+      margin-right: rem-calc(1);
+    }
+
+    span {
+      color: rgba($theme-color-black, .4);
+      font-weight: 300;
+    }
+
+    &.active {
+      span {
+        color: $theme-color-black;
+        font-weight: normal;
+      }
+    }
+  }
+
+  // Icons, etc
+  .col-skill-options {
+    width: rem-calc(20);
+    text-align: right;
+  }
+}
+
+// Read-only-mode modifiers
+.resume-skills-display, .skills-display {
+  .col-skill-level, .col-skill-experience {
+    line-height: rem-calc(23);
+  }
+}
+
+.resume-skill, .skill {
+  display: inline-block;
+  padding: rem-calc(3) rem-calc(8);
+  background: lighten($theme-color, 3%);
+  font-weight: 300;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+
+  &:hover, &:focus, &:active {
+    color: white;
+    text-decoration: none;
+  }
+
+  &.featured {
+    background: darken($theme-color, 6%);
+  }
+}
+
+// Skills edit-mode
+
+.resume-skill-category-add-block, .skill-category-add-block {
+  @extend .clearfix;
+  margin-bottom: rem-calc(25);
+}
+
+.add-skill-category-btn {
+  width: 100%;
+  padding: rem-calc(10) rem-calc(20);
+  font-size: rem-calc(16);
+}
+
+.skill-search-global {
+  @extend .clearfix;
+  margin-bottom: rem-calc(25);
+}
+
+// New skill category form
+.resume-skill-category-add-form, .skill-category-add-form {
+  padding-bottom: rem-calc(15);
+  border-bottom: 1px solid #eee;
+}
+
+
+// New skill record form
+.skill-record-add-form {
+  padding-top: rem-calc(6);
+  // border-top: 1px dotted rgba($theme-color, 0.3);
+}
+
+
+// Skills overview
+.skills-overview-modal {
+  min-width: $main-ui-container-width;
+  // box-shadow: 0 3px 25px -6px rgba(black, .7);
+  .modal-body {
+    padding: 0;
+  }
+}
+
+.skills-overview {
+  background: white;
+  border-radius: 4px;
+  min-height: rem-calc(400);
+}
+
+.skills-overview-category-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: rem-calc(220);
+  height: 100%;
+  min-height: 100%;
+  padding: rem-calc(20) rem-calc(20);
+  font-size: rem-calc(14);
+  background: #eee;
+  border-radius: 4px 0 0 0;
+
+  .nav > li {
+    > a {
+      padding: rem-calc(6) rem-calc(12);
+      border-radius: 2px;
+      color: #555;
+
+      &:hover {
+        color: black;
+        background: rgba(black, .1);
+      }
+
+      &:active {
+        color: white;
+        background: rgba($theme-color, .7);
+      }
+    }
+
+    &.active > a {
+      color: white;
+      background: $theme-color;
+    }
+  }
+}
+
+.skills-overview-pane {
+  margin-left: rem-calc(220);
+  height: 100%;
+
+  .skills-overview-pane-title {
+    font-size: rem-calc(18);
+    padding: rem-calc(20) rem-calc(30);
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    color: rgba(black, .4);
+
+    strong {
+      color: black;
+    }
+  }
+}
+
+.skills-overview-list {
+  padding: rem-calc(20) rem-calc(30);
+
+  .skill-col {
+
+  }
+
+  .skill {
+    display: inline-block;
+    font-size: rem-calc(14);
+    margin-bottom: rem-calc(10);
+  }
+}
+
+.skill-cloud {
+  @extend .clearfix;
+
+  .skill {
+    float: left;
+    margin: 0 rem-calc(5) rem-calc(5) 0;
+  }
+}
+
+// Skills matching
+.resume-skills-table .skill-is-matched,
+.skill-is-matched {
+  background: darken($theme-color, 15%);
+  font-weight: bold;
+}
+
+.skill-match-job-title {
+  font-weight: 300;
+}
+
+.resume-skills-table .resume-skill.dragdrophover, .dragdrophover {
+  background: #178fe5;
+}
+
+.draggable {
+  cursor: grabbing;
+}

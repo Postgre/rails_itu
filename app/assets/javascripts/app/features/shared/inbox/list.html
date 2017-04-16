@@ -1,0 +1,51 @@
+<section class="main-content">
+  <div class="content">
+    <div class="content-body">
+      <header class="content-title-header">
+        <h1 class="content-heading form-heading">Your <strong>Inbox</strong></h1>
+        <div class="content-sub-heading">
+          It's full list of messages send and received in Bridge system.
+        </div>
+      </header>
+
+      <ul class="list-group" data-ng-show="inbox.conversations.length">
+        <li class="list-group-item" data-ng-repeat="conversation in inbox.conversations">
+          <span data-ng-bind="conversation.lastResponder | fullName"
+                style="min-width: 200px;display: inline-block;"
+                data-ng-class="{'font-bold': !conversation.isRead}"
+                data-ng-click="toggleDisplay(conversation)"></span>
+          <span data-ng-bind="conversation.subject"
+                data-ng-class="{'font-bold': !conversation.isRead}"
+                data-ng-click="toggleDisplay(conversation)"></span>
+          <span class="badge" data-ng-bind="conversation.updatedAt | date:'medium'"></span>
+          <hr data-ng-if="conversation.expanded"/>
+          <ul class="list-group" data-ng-if="conversation.expanded">
+            <li class="list-group-item" data-ng-repeat="receipt in conversation.receipts">
+              <span data-ng-bind="receipt.message.sender | fullName"
+                    style="min-width: 120px;display: inline-block;"
+                    data-ng-class="{'font-bold': !receipt.isRead}"></span>
+              <span class="badge" data-ng-bind="receipt.createdAt | date:'medium'"></span>
+              <hr/>
+              <p class="list-group-item-text" data-ng-bind="receipt.message.body"></p>
+             </li>
+            </ul>
+            <div class="row" data-ng-hide="conversation.reply" data-ng-if="conversation.expanded">
+              <div class="pull-right">
+                <a data-ng-click="conversation.reply = true" class="btn btn-primary"><i class="fa fa-reply"></i></a>
+              </div>
+            </div>
+            <form name="messageForm" data-ng-submit="reply(conversation)" data-ng-if="conversation.reply">
+              <div class="form-group">
+                <textarea class="form-control" required="true" data-ng-model="inbox.newMessage.body" placeholder="Enter your message"></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit" data-ng-class="{disabled: !messageForm.$valid}">
+                <i class="fa fa-send"></i>Send message
+              </button>
+              <span class="form-buttons-splitter-text">OR</span>
+              <a class="btn-link-underline" data-ng-click="conversation.reply = false">Cancel</a>
+            </form>
+          </li>
+        </ul>
+    </div>
+  </div>
+</section>

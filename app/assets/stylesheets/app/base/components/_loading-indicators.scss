@@ -1,0 +1,84 @@
+// Container whose content is loading
+
+.is-loading {
+  // position: relative;
+}
+
+// Generic loading indicator
+.loading-indicator {
+  position: relative;
+}
+
+.loading-indicator-container {
+  position: relative;
+}
+
+// Covering loading indicator (modal)
+$loading-cover-bg-color: rgba(white, 0.9);
+.loading-indicator-cover {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $loading-cover-bg-color;
+}
+
+// Covering indicator animation
+.loading-cover-animate {
+  @include transition-all(.2s, linear);
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    opacity: 0;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    opacity: 1;
+  }
+}
+
+// Loading icon
+// ============
+$loading-icon-size: rem-calc(50);
+
+.loading-icon {
+  width: $loading-icon-size;
+  height: $loading-icon-size;
+  font-size: $loading-icon-size;
+  line-height: $loading-icon-size;
+  color: rgba(black, 0.2);
+}
+
+.loading-indicator {
+  .loading-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+// Icon show-hide animation (default)
+.loading-icon-animate {
+  &.ng-enter,
+  &.ng-leave {
+    @include transition-all(.2s, linear);
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    @include scale(0.7);
+    opacity: 0;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    @include scale(1);
+    opacity: 1;
+  }
+}

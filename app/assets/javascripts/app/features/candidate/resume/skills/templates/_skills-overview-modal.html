@@ -1,0 +1,32 @@
+<div class="modal-dialog modalbox-dialog modal-sm skills-overview-modal">
+  <div class="modal-content">
+    <div class="modal-body">
+
+      <div class="skills-overview">
+        <nav class="skills-overview-category-nav">
+          <ul class="nav nav-pills nav-stacked">
+            <li ng-repeat="skillCategory in skillCategories | orderBy: 'name'"
+                ng-class="{ active: skillCategory.id === currentSkillCategory.id }">
+              <a ng-click="setCurrentSkillCategory(skillCategory)">{{ skillCategory.name }}</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="skills-overview-pane">
+          <h1 class="skills-overview-pane-title"><strong>{{ currentSkillCategory.name }}</strong> skills</h1>
+
+          <div class="skills-overview-list row">
+            <div ng-repeat="skill in skills | filter: { skillCategoryId: currentSkillCategory.id } | orderBy: 'name'"
+                 class="col-lg-4 col-sm-6">
+              <span class="skill">{{ skill.name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" ng-click="$dismissModalbox()">Close</button>
+    </div>
+  </div>
+</div>

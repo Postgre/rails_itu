@@ -1,0 +1,26 @@
+%h4.list-group-item-heading
+  {{comment.title}}
+  .pull-right
+    %small
+      {{ comment.createdAt | date:'medium' }}
+    %a.staff-comment-reply-link{data: {'ng-click' => 'reply.id = comment.id', 'ng-hide' => 'comment.id === reply.id'}}
+      %i.fa.fa-reply
+      reply
+%p.list-group-item-text
+  {{comment.body}}
+
+.staff-comment-user
+  %i.fa.fa-user
+  %span{data: {'ng-if' => 'isStaff'}}
+    {{ comment.user.email }}
+  %span{data: {'ng-if' => '!isStaff'}}
+    {{ comment.user | fullName }}
+
+.row{data: {'ng-if' => 'comment.id === reply.id'}}
+  .col-sm-12
+    %form.form{data: {'ng-submit' => 'sendComment(newComment, comment)', 'ng-include' => '"common/directives/comments-form.html"'}}
+
+.row{data: {'ng-if' => 'comment.children && comment.children.length'}}
+  .col-sm-12
+    .list-group
+      .list-group-item{data: {'ng-repeat' => 'comment in comment.children', 'ng-include' => '"common/directives/comment.html"'}}

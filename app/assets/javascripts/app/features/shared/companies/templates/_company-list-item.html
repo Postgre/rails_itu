@@ -1,0 +1,80 @@
+<div class="list-item-block company-list-item">
+  <div class="list-item-body">
+    <a ui-sref="candidate.companies.details({ companyId: company.id })" class="list-item-left list-item-image-block">
+      <img ng-if="company.logoUrl" ng-src="{{ company.logoUrl }}" alt="{{ company.name }}">
+      <div ng-if="!company.logoUrl" class="item-image-placeholder company-logo-placeholder company-logo-placeholder-small">
+        <i class="fa fa-camera image-placeholder-icon"></i>
+      </div>
+    </a>
+    <div class="list-item-content">
+      <header class="list-item-content-header">
+        <div class="pull-right" ng-if="isStaffViewing()">
+          <span class="label label-success" ng-bind="company.state" data-title="state change {{companies.transitionDate | date:'shortDate' }}" bs-tooltip></span>
+        </div>
+        <h1 class="list-item-heading">
+          <a ui-sref="candidate.companies.details({ companyId: company.id })" class="link-underline" ng-hide="isStaffViewing()">
+            {{ company.name }}
+          </a>
+          <a ui-sref=".detail({id: company.id})" class="link-underline" ng-show="isStaffViewing()">
+            {{ company.name }}
+          </a>
+          <button ng-if="isCandidateViewing()" type="button" ng-click="toggleFavorite(company)"
+                  bs-tooltip title="{{company.isFavorited ? 'Unfollow this company' : 'Follow this company'}}"
+                  class="btn icon-btn favorite-btn pull-right" ng-class="{'is-active': company.isFavorited}">
+            <i class="fa" ng-class="{'fa-star-o': !company.isFavorited, 'fa-star': company.isFavorited}"></i>
+          </button>
+        </h1>
+        <div class="list-item-sub-heading" ng-if="company | fullAddress">
+          <i class="fa fa-map-marker"></i> {{ company | fullAddress }}
+        </div>
+      </header>
+
+      <div class="item-properties has-top-border">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              <i class="fa fa-briefcase"></i> Jobs:
+            </div>
+            <div class="item-property-value" ng-if="company.jobsCount">
+              <a ui-sref="candidate.companies.details({ companyId: company.id })" class="link-underline" ng-hide="isStaffViewing()">{{ company.jobsCount }} active jobs</a>
+              <a ui-sref="jobs({ companyId: company.id })" class="link-underline" ng-show="isStaffViewing()">{{ company.jobsCount }} total jobs</a>
+            </div>
+            <div class="item-property-value is-no-value" ng-if="!company.jobsCount">no active jobs</div>
+          </div>
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              <i class="fa fa-male"></i> Hired:
+            </div>
+            <div class="item-property-value" ng-if="company.hiredCount">
+              <span ng-pluralize count="company.hiredCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+            </div>
+            <div class="item-property-value is-no-value" ng-if="!company.hiredCount">none</div>
+          </div>
+        </div>
+      </div>
+      <div class="item-properties has-top-border" ng-if="isStaffViewing()">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-12">
+            <div class="item-property-label">
+              <i class="fa fa-users"></i> Representatives:
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-repeat="user in company.users">
+          <div class="col-md-2">
+            <div class="user-avatar-square-sm user-avatar-square-inline" user-avatar-square user="user"></div>
+          </div>
+          <div class="col-md-4" ng-bind="user | fullName"></div>
+          <div class="col-md-3" ng-bind="user.email"></div>
+          <div class="col-md-3">
+            <div class="pull-right">
+              <a class="btn btn-warning btn-xs" ng-click="become(user)" title="login as User" bs-tooltip>
+                <i class="fa fa-key"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

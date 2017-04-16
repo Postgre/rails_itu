@@ -1,0 +1,16 @@
+<div class="popover">
+  <div class="arrow"></div>
+  <div class="popover-content">
+    <div class="upload-form">
+      <div class="upload-form-file-select" ng-class="{ 'is-selected': selectedFile }">
+        <div ng-if="!selectedFile" class="link-underline clickable" ng-file-select="onFileSelected($files)" accept="image/*">Choose file</div>
+        <div ng-if="selectedFile">{{ selectedFile.name }}</div>
+      </div>
+      <div class="upload-form-arrow centerize"><i class="fa fa-arrow-down"></i></div>
+      <div class="upload-form-buttons">
+        <button class="btn btn-primary btn-sm" ng-click="uploadFile(this)"><i class="fa fa-upload"></i> Upload</button>
+        <button class="btn btn-light btn-sm" ng-click="cancelLogoUpdate(this)">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

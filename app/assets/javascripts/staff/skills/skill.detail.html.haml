@@ -1,0 +1,28 @@
+.content
+  %header.content-title-header
+    %h1.content-heading.form-heading
+      %strong{data: {'ng-bind' => 'skill.name'}}
+      skill
+      %a.btn.btn-danger{data: {template: 'staff/skills/confirm-delete-popover.html', 'bs-popover' => true, placement: 'bottom'}}
+        %i.fa.fa-trash
+        Delete
+    .content-sub-heading
+      %a.link-underline{'ui-sref' => 'skills'}
+        %i.fa.fa-long-arrow-left
+        Back
+  %section
+    .row
+      .item-property.item-property-block.col-md-4
+        .item-property-label Size of skill records with that skill:
+        .item-property-value{data: {'ng-bind' => 'skill.skillRecordsCount'}}
+      .item-property.item-property-block.col-md-8
+        .item-property-label Possibly contained skills
+        .item-property-value
+          .skill-cloud
+            .skill{data: {'ng-repeat' => 'skill in skill.containedSkills', 'ng-hide' => 'alreadyAdded(skill)'}}
+              {{ skill.name }}
+              %a.btn.btn-small.btn-primary{data: {'ng-click' => 'addSkillRecord(skill)'}}
+                %i.fa.fa-plus
+    .row.item-properties.has-top-border
+      .col-md-12
+        %input.form-control.skill-search-global{'ng-change' => 'addSkillOrRecord(newSkill)', 'ng-model' => 'newSkill', :placeholder => "+ Add skill to all skillables with current skill", :type => "hidden", "ui-select2" => "select2skillOptions"}/

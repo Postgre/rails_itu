@@ -1,0 +1,35 @@
+!!!
+%html{data: {'ng-app' => 'bridge.app'}}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %link{:rel => "shortcut icon", :href => "/favicon.ico?v=1"}/
+    %title ITU Bridge - The App
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'bridge.app'
+    = csrf_meta_tags
+    = render partial: 'layouts/angular_constants'
+
+  %body{'ng-controller' => 'AppCtrl'}
+    .loading-indicator-cover.app-loading-indicator{"ng-cloak" => true}
+      %i.loading-icon.fa.fa-refresh.fa-spin
+    
+    .app-container.app-container-vflex{"ng-cloak" => true}
+      %div{"main-header" => true}
+      %div{"ui-view" => true}
+
+      %footer.app-footer
+        .container.page-section-container.app-footer-container
+          %nav.app-footer-nav
+            %a{href: '/'} Home
+            %a{href: '/app'} Bridge App
+            = link_to 'Terms of Service', page_path('terms')
+            = link_to 'Privacy policy', page_path('privacy-policy')
+            %a{'ng-click' => 'openZendeskTicketModal()'}
+              %i.fa.fa-info-circle
+              Support
+          .app-footer-project-logo
+          .copyrights
+            &copy; 2014-2015 International Technological University
+          = render partial: 'layouts/version'

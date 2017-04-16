@@ -1,0 +1,14 @@
+:plain
+  #{
+    {
+    idUrl: Rails.application.config.id_url,
+    appUrl: Rails.application.config.app_url,
+    apiUrl: Rails.application.config.api_url,
+    countries: Carmen::Country.all.sort_by{|c| c.name}.map{|c| {id: c.alpha_3_code, name: c.name}}.to_json,
+    workTypes: Job::WORK_TYPE.to_json,
+    jobSchedules: Job::SCHEDULE.to_json,
+    interviewStates: Interview.state_machine.states.map{|s| {s.name => s.human_name}}.to_json,
+    interviewEvents: Interview.state_machine.events.map{|e| {e.name => e.human_name}}.to_json,
+    currentUserJson: UserSerializer.new(current_user).to_json
+    }.to_json
+  }

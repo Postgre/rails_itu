@@ -1,0 +1,70 @@
+// User status and icons
+.user-status-is-active {
+  color: $theme-color-success;
+}
+
+.user-status-is-suspended {
+  color: $theme-color-danger;
+}
+
+// User roles
+.user-role-list-item {
+  padding: 0;
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(5);
+    padding-bottom: rem-calc(5);
+    border-bottom: 1px solid #eee;
+  }
+}
+
+$user-avatar-square-size: rem-calc(80);
+.user-list-item-avatar,
+.user-avatar-square {
+  min-width: $user-avatar-square-size;
+  max-width: $user-avatar-square-size;
+  text-align: center;
+
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+}
+
+.user-list-item-avatar-placeholder,
+.user-avatar-square-placeholder {
+  width: $user-avatar-square-size;
+  height: $user-avatar-square-size;
+  line-height: $user-avatar-square-size;
+  font-size: rem-calc(20);
+  border-radius: 3px;
+  background: #eee;
+  color: #ccc;
+}
+
+.user-avatar-square-inline {
+  display: inline-block;
+
+  &:not(:last-child) {
+    margin-right: rem-calc(12);
+
+    &.user-avatar-square-sm {
+      margin-right: rem-calc(10);
+    }
+  }
+}
+
+$user-avatar-square-sm-size: rem-calc(30);
+.user-avatar-square-sm {
+  &.user-avatar-square {
+    max-width: $user-avatar-square-sm-size;
+    min-width: $user-avatar-square-sm-size;
+  }
+
+  .user-avatar-square-placeholder {
+    width: $user-avatar-square-sm-size;
+    height: $user-avatar-square-sm-size;
+    line-height: $user-avatar-square-sm-size;
+    font-size: rem-calc(12);
+  }
+}

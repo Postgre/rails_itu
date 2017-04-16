@@ -1,0 +1,116 @@
+<div class="content-padded">
+  <div class="company-summary-notification is-warning" ng-if="company.isPending()">
+    <i class="fa fa-lock"></i>
+    <strong>Your company application is pending for approval.</strong>
+    <small>Please wait for ITU to approve it or <a href="mailto:bridge@itu.edu">contact us</a> if you have any questions.</small>
+  </div>
+  <div class="company-summary-notification is-warning" ng-if="company.isJustCreated()">
+    <i class="fa fa-pencil"></i>
+    <strong>Your company application needs to be updated with details and logo for approval.</strong>
+    <small>Please update company profile and wait for ITU to approve it or <a href="mailto:bridge@itu.edu">contact us</a> if you have any questions.</small>
+  </div>
+
+  <div class="company-sign-up-progress-block">
+    <div class="company-sign-up-step-block"
+         ng-class="{ 'is-completed': isStepCompleted(1), 'faded': isStepCompleted(1), 'is-current': isStepCurrent(1) }">
+      <header class="step-header">
+        <strong>1.</strong> Apply to ITU Bridge
+      </header>
+      <div class="step-body">
+        <div class="step-complete-checkmark"><i class="fa fa-check"></i></div>
+
+        <div class="step-left">
+          <div class="step-icon-block">
+            <i class="fa fa-desktop step-icon"></i>
+          </div>
+        </div>
+        <div class="step-main">
+          <h2 class="step-title">Thank you for applying!</h2>
+          
+          <div class="step-description">
+            You have applied with company:
+            <strong class="company-name">{{ company.name }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-sign-up-step-block"
+         ng-class="{ 'is-completed': isStepCompleted(2), 'faded': isStepCompleted(2), 'is-current': isStepCurrent(2) }">
+      <header class="step-header">
+        <strong>2.</strong> Provide more details about your company and upload the logo
+      </header>
+      <div class="step-body">
+        <div class="step-complete-checkmark"><i class="fa fa-check"></i></div>
+
+        <div class="step-left">
+          <div class="step-icon-block">
+            <i class="fa fa-pencil step-icon"></i>
+          </div>
+        </div>
+
+        <div class="step-main">
+          <h2 class="step-title">Please provide the details and logo</h2>
+          
+          <div class="step-description">
+            This information will be reviewed by ITU staff when considering your company's application.
+          </div>
+
+          <a ui-sref="company.profile.edit" class="btn btn-primary">Edit details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-sign-up-step-arrow" ng-if="isStepCurrent(2)"><i class="fa fa-arrow-down"></i></div>
+
+    <div class="company-sign-up-step-block"
+         ng-class="{ 'is-completed': isStepCompleted(3), 'faded': isStepCompleted(3), 'is-current': isStepCurrent(3) }">
+      <header class="step-header">
+        <strong>3.</strong> Wait for ITU to approve your application
+      </header>
+      <div class="step-body">
+        <div class="step-complete-checkmark"><i class="fa fa-check"></i></div>
+
+        <div class="step-left">
+          <div class="step-icon-block">
+            <i class="fa fa-gavel step-icon"></i>
+          </div>
+        </div>
+        <div class="step-main">
+          <h2 class="step-title">Wait for approval, please</h2>
+          
+          <div class="step-description">
+            ITU staff will carefully review all the information you provided on previous steps
+            and approve your application if everything is fine.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-sign-up-step-arrow" ng-if="isStepCurrent(3)"><i class="fa fa-arrow-down"></i></div>
+
+    <div class="company-sign-up-step-block" ng-class="{ 'is-current': isStepCurrent(4) }">
+      <header class="step-header">
+        <strong>4.</strong> Welcome to ITU Bridge!
+      </header>
+      <div class="step-body">
+        <div class="step-complete-checkmark"><i class="fa fa-check"></i></div>
+
+        <div class="step-left">
+          <div class="step-icon-block">
+            <i class="fa fa-trophy step-icon"></i>
+          </div>
+        </div>
+        <div class="step-main">
+          <h2 class="step-title">There is no step 4!</h2>
+          
+          <div class="step-description">
+            Upon successful approval, you'll immediately be able to use ITU Bridge to your advantage
+            and start looking for best candidates!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,94 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Manage</strong> your skills</h1>
+      <div class="content-sub-heading">
+        Provide the list of skills you have and specify the level of expertise and years of experience for each
+      </div>
+    </header>
+
+    <div class="row">
+      <div class="col-lg-10">
+        <input type="hidden" placeholder="+ Add skill" ui-select2="select2skillOptions" ng-model="newSkill" ng-change="skillsEditCtrl.addSkillOrRecord(newSkill.id)" class="form-control skill-search-global">
+      </div>
+      <div class="col-lg-2">
+        <button class="btn btn-default btn-block" ng-click="skillsEditCtrl.showSkillsOverview()">Overview all skills</button>
+      </div>
+    </div>
+
+
+    <div class="resume-skills loading-indicator-container">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': skillsEditCtrl.isListLoading() }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="empty-list-block empty-list-block-lg" ng-if="!skillsEditCtrl.skillCategoryRecords.length && !skillsEditCtrl.isListLoading()">
+        <div class="empty-list-icon"><i class="fa fa-file-text"></i></div>
+        <div class="empty-list-msg">
+          No skills are specified yet
+        </div>
+        <div class="empty-list-note">
+          Make sure to specify the skills you possess for your resume to be complete and attractive to the companies. Use the form above to choose skills to add.
+        </div>
+      </div>
+
+      <!-- Skills category -->
+      <div class="resume-skills-section" ng-repeat="skillCategoryRecord in skillsEditCtrl.skillCategoryRecords | orderBy: 'position'">
+        <div class="resume-skills-section-heading draggable"
+             data-ui-draggable="true"
+             drag-channel="categories"
+             ui-on-drop="onDropCategory($event,$data,skillCategoryRecord)"
+             on-drop-success="dropSuccessCategoryHandler($event,$index,skillCategoryRecord)"
+             drop-channel="categories"
+             drag="skillCategoryRecord">
+          {{ ::skillCategoryRecord.skillCategoryName }}
+        </div>
+        <div class="resume-skills-section-body">
+          <table ng-if="skillCategoryRecord.skillRecords" class="table resume-skills-table">
+            <tbody>
+              <tr ng-repeat="skillRecord in skillCategoryRecord.skillRecords | orderBy: 'position' track by skillRecord.id">
+                <td>
+                  <div class="resume-skill draggable"
+                       data-ui-draggable="true"
+                       drag-channel="category{{::skillCategoryRecord.skillCategoryId}}skills"
+                       ui-on-drop="onDropSkill($event,$data,skillRecord)"
+                       on-drop-success="dropSuccessSkillHandler($event,$index,skillRecord)"
+                       drop-channel="category{{::skillCategoryRecord.skillCategoryId}}skills"
+                       drag="skillRecord"
+                       drag-hover-class="dragdrophover">
+                    {{ skillRecord.skillName }}
+                  </div>
+                </td>
+                <td class="col-skill-experience">
+                  <div class="select-control-flat">
+                    <select ng-model="skillRecord.yearsOfExperience" ng-change="skillsEditCtrl.updateSkillRecord(skillRecord)">
+                      <option ng-repeat="n in [] | range:20" ng-pluralize count="$index + 1" when="{'one': '1 year', 'other': '{} years'}" value="{{$index+1}}" ng-selected="($index+1) == skillRecord.yearsOfExperience"></option>
+                    </select>
+                  </div>
+                </td>
+                <td class="col-skill-level">
+                  <div class="select-control-flat">
+                    <select ng-model="skillRecord.level" ng-change="skillsEditCtrl.updateSkillRecord(skillRecord)"
+                            ng-options="level.value as level.name for level in ::skillsEditCtrl.skillLevels"></select>
+                  </div>
+                </td>
+                <td class="col-featured">
+                  <label class="featured-checkbox" bs-tooltip title="Mark as featured" ng-class="{ active: skillRecord.isFeatured }">
+                    <input type="checkbox" ng-model="skillRecord.isFeatured" ng-change="skillsEditCtrl.updateSkillRecord(skillRecord)" />
+                    <span>Featured</span>
+                  </label>
+                </td>
+                <td class="col-skill-options">
+                  <button type="button" ng-click="skillsEditCtrl.removeSkillRecord(skillRecord, skillCategoryRecord)" class="btn icon-btn btn-icon-icon-lg btn-xs"><i class="fa fa-times-circle"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- / Skills category -->
+    </div>
+
+  </div>
+
+</div>

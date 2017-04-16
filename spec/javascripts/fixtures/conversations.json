@@ -1,0 +1,501 @@
+[
+  {
+    "id": 9,
+    "subject": "test",
+    "receipts": [
+      {
+        "id": 18,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-07T09:22:02.000-06:00",
+        "updated_at": "2015-01-07T09:22:02.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 9,
+          "subject": "test",
+          "body": "right away",
+          "created_at": "2015-01-07T09:22:02.000-06:00",
+          "updated_at": "2015-01-07T09:22:02.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 19,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-07T12:00:31.000-06:00",
+        "updated_at": "2015-01-07T12:00:31.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 10,
+          "subject": "test",
+          "body": "I am going to reply.",
+          "created_at": "2015-01-07T12:00:31.000-06:00",
+          "updated_at": "2015-01-07T12:00:31.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 21,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-07T12:01:56.000-06:00",
+        "updated_at": "2015-01-07T12:01:56.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 11,
+          "subject": "test",
+          "body": "And reply again",
+          "created_at": "2015-01-07T12:01:56.000-06:00",
+          "updated_at": "2015-01-07T12:01:56.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 23,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-07T12:02:51.000-06:00",
+        "updated_at": "2015-01-07T12:02:51.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 12,
+          "subject": "test",
+          "body": "And again.",
+          "created_at": "2015-01-07T12:02:51.000-06:00",
+          "updated_at": "2015-01-07T12:02:51.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 25,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-07T12:08:13.000-06:00",
+        "updated_at": "2015-01-07T12:08:13.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 13,
+          "subject": "test",
+          "body": "test",
+          "created_at": "2015-01-07T12:08:13.000-06:00",
+          "updated_at": "2015-01-07T12:08:13.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 27,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-07T12:10:16.000-06:00",
+        "updated_at": "2015-01-07T12:10:16.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 14,
+          "subject": "test",
+          "body": "And once more.",
+          "created_at": "2015-01-07T12:10:16.000-06:00",
+          "updated_at": "2015-01-07T12:10:16.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 29,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T06:32:43.000-06:00",
+        "updated_at": "2015-01-08T06:32:43.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 15,
+          "subject": "test",
+          "body": "I dont sure what to say.",
+          "created_at": "2015-01-08T06:32:43.000-06:00",
+          "updated_at": "2015-01-08T06:32:43.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 31,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T06:51:54.000-06:00",
+        "updated_at": "2015-01-08T06:51:54.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 16,
+          "subject": "test",
+          "body": "Another reply.",
+          "created_at": "2015-01-08T06:51:54.000-06:00",
+          "updated_at": "2015-01-08T06:51:54.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 33,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T06:55:59.000-06:00",
+        "updated_at": "2015-01-08T06:55:59.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 17,
+          "subject": "test",
+          "body": "Little more.",
+          "created_at": "2015-01-08T06:55:59.000-06:00",
+          "updated_at": "2015-01-08T06:55:59.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 35,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T06:57:50.000-06:00",
+        "updated_at": "2015-01-08T06:57:50.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 18,
+          "subject": "test",
+          "body": "and another one",
+          "created_at": "2015-01-08T06:57:50.000-06:00",
+          "updated_at": "2015-01-08T06:57:50.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 37,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:03:17.000-06:00",
+        "updated_at": "2015-01-08T07:03:17.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 19,
+          "subject": "test",
+          "body": "And little more.",
+          "created_at": "2015-01-08T07:03:17.000-06:00",
+          "updated_at": "2015-01-08T07:03:17.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 39,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:07:57.000-06:00",
+        "updated_at": "2015-01-08T07:07:57.000-06:00",
+        "is_read": false,
+        "message": {
+          "id": 20,
+          "subject": "test",
+          "body": "and more",
+          "created_at": "2015-01-08T07:07:57.000-06:00",
+          "updated_at": "2015-01-08T07:07:57.000-06:00",
+          "sender": {
+            "id": 1,
+            "first_name": "Empty",
+            "middle_name": null,
+            "last_name": "Candidate",
+            "avatar_url": null,
+            "user_type": "Candidate"
+          }
+        }
+      },
+      {
+        "id": 42,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:09:05.000-06:00",
+        "updated_at": "2015-01-08T07:09:05.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 21,
+          "subject": "test",
+          "body": "zzz",
+          "created_at": "2015-01-08T07:09:05.000-06:00",
+          "updated_at": "2015-01-08T07:09:05.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 44,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:10:17.000-06:00",
+        "updated_at": "2015-01-08T07:10:17.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 22,
+          "subject": "test",
+          "body": "z",
+          "created_at": "2015-01-08T07:10:17.000-06:00",
+          "updated_at": "2015-01-08T07:10:17.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 46,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:15:32.000-06:00",
+        "updated_at": "2015-01-08T07:15:32.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 23,
+          "subject": "test",
+          "body": "zzz",
+          "created_at": "2015-01-08T07:15:32.000-06:00",
+          "updated_at": "2015-01-08T07:15:32.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 48,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:22:25.000-06:00",
+        "updated_at": "2015-01-08T07:22:25.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 24,
+          "subject": "test",
+          "body": "And I am going to reply here.",
+          "created_at": "2015-01-08T07:22:25.000-06:00",
+          "updated_at": "2015-01-08T07:22:25.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 50,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:24:30.000-06:00",
+        "updated_at": "2015-01-08T07:24:30.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 25,
+          "subject": "test",
+          "body": "test",
+          "created_at": "2015-01-08T07:24:30.000-06:00",
+          "updated_at": "2015-01-08T07:24:30.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 52,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:25:09.000-06:00",
+        "updated_at": "2015-01-08T07:25:09.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 26,
+          "subject": "test",
+          "body": "test",
+          "created_at": "2015-01-08T07:25:09.000-06:00",
+          "updated_at": "2015-01-08T07:25:09.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 54,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:28:42.000-06:00",
+        "updated_at": "2015-01-08T07:28:42.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 27,
+          "subject": "test",
+          "body": "and once again",
+          "created_at": "2015-01-08T07:28:42.000-06:00",
+          "updated_at": "2015-01-08T07:28:42.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 56,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-08T07:30:30.000-06:00",
+        "updated_at": "2015-01-08T07:30:30.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 28,
+          "subject": "test",
+          "body": "gogogo",
+          "created_at": "2015-01-08T07:30:30.000-06:00",
+          "updated_at": "2015-01-08T07:30:30.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      },
+      {
+        "id": 58,
+        "receiver_id": 11,
+        "receiver_type": "User",
+        "created_at": "2015-01-09T06:52:24.000-06:00",
+        "updated_at": "2015-01-09T06:52:24.000-06:00",
+        "is_read": true,
+        "message": {
+          "id": 29,
+          "subject": "test",
+          "body": "zzz",
+          "created_at": "2015-01-09T06:52:24.000-06:00",
+          "updated_at": "2015-01-09T06:52:24.000-06:00",
+          "sender": {
+            "id": 11,
+            "first_name": "Staff",
+            "middle_name": null,
+            "last_name": "Member",
+            "avatar_url": null,
+            "user_type": "Staff"
+          }
+        }
+      }
+    ],
+    "is_read": false,
+    "updated_at": "2015-01-09T06:52:24.000-06:00",
+    "last_responder": {
+      "id": 11,
+      "first_name": "Staff",
+      "middle_name": null,
+      "last_name": "Member",
+      "avatar_url": null,
+      "user_type": "Staff"
+    }
+  }
+]

@@ -1,0 +1,218 @@
+// Navigation item style
+$role-select-nav-item-height: rem-calc(68);
+.role-select-nav-item {
+  max-width: rem-calc(280);
+  height: $role-select-nav-item-height;
+  padding: rem-calc(15) rem-calc(20);
+  font-size: rem-calc(16);
+  border-left: 1px solid rgba(black, 0.1);
+  border-right: 1px solid rgba(black, 0.1);
+  color: white;
+  cursor: pointer;
+
+
+  $nav-item-image-size: $role-select-nav-item-height - rem-calc(40);
+
+  .nav-item-image {
+    width: $nav-item-image-size;
+    margin-top: rem-calc(5);
+    float: left;
+
+    img {
+      max-width: $nav-item-image-size;
+    }
+  }
+
+  .nav-item-image-placeholder {
+  }
+
+  .nav-item-image-icon {
+    width: $nav-item-image-size;
+    height: $nav-item-image-size;
+    color: $theme-color;
+    line-height: $nav-item-image-size;
+    background: rgba(white, .4);
+    text-align: center;
+    font-size: rem-calc(14);
+    border-radius: 2px;
+
+    &.company-logo-item-image-icon {
+      padding: rem-calc(2);
+      overflow: hidden;
+      background: white;
+
+      img {
+        vertical-align: initial;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .nav-item-caret {
+    margin-left: rem-calc(5);
+  }
+
+  .nav-item-label {
+    margin-top: rem-calc(5);
+    margin-left: rem-calc(15);
+    font-size: rem-calc(14);
+    font-weight: bold;
+    // line-height: $role-select-nav-item-height - rem-calc(30);
+    color: rgba(white, .7);
+  }
+
+  .nav-item-label-v-centerize {
+    display: table-cell;
+    vertical-align: middle;
+    height: $nav-item-image-size;
+  }
+
+  .nav-item-image ~ .nav-item-label {
+    margin-left: $nav-item-image-size + rem-calc(10);
+  }
+
+  &:hover, &:active, &.active, .open & {
+    background: rgba(black, .1);
+    border-color: transparent;
+
+    .nav-item-image-icon {
+      background: white;
+    }
+
+    .nav-item-label {
+      color: white;
+    }
+  }
+
+  &.align-right {
+    float: right;
+  }
+}
+
+// Role select menu itself
+.role-select-menu {
+  position: absolute;
+  width: 100%;
+  min-width: rem-calc(300);
+  padding: 0;
+  font-size: rem-calc(16);
+  background: white;
+  box-shadow: 0 4px 15px rgba(black, .3);
+  color: $theme-color-black;
+  border-radius: 0 !important;
+
+  $role-select-menu-item-icon-size: rem-calc(30);
+
+  .role-select-menu-item {
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+
+    a {
+      padding: rem-calc(8) rem-calc(15) rem-calc(8) rem-calc(15);
+
+      &:focus, &:hover, &:active {
+        color: white;
+
+        .menu-item-icon {
+          background: white;
+          color: $theme-color;
+
+          .fa {
+            color: $theme-color;
+          }
+        }
+
+        .menu-item-sub-label {
+          color: rgba(white, .5);
+        }
+      }
+    }
+
+    .menu-item-icon {
+      float: left;
+      width: $role-select-menu-item-icon-size;
+      height: $role-select-menu-item-icon-size;
+      margin-top: rem-calc(4);
+      color: white;
+      line-height: $role-select-menu-item-icon-size;
+      font-size: rem-calc(14);
+      background: #eee;
+      text-align: center;
+      border-radius: 2px;
+
+      &.company-logo-item-icon {
+        overflow: hidden;
+        padding: rem-calc(2);
+
+        img {
+          vertical-align: initial;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+
+    .menu-item-checkmark-icon {
+      display: none;
+      float: right;
+      width: rem-calc(20);
+      color: $theme-color;
+      font-size: rem-calc(16);
+      text-align: right;
+    }
+
+    .menu-item-main {
+      margin-left: $role-select-menu-item-icon-size + rem-calc(15);
+      white-space: normal;
+      margin-right: rem-calc(30);
+    }
+
+    .menu-item-label {
+      margin-bottom: rem-calc(3);
+      font-size: rem-calc(16);
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .menu-item-sub-label {
+      font-size: rem-calc(11);
+      color: #bbb;
+      line-height: 1.3;
+    }
+
+    &.active, &.is-active {
+      a {
+        background: mix($theme-color, black, 80%);
+
+        .menu-item-icon {
+          background: white;
+          color: $theme-color;
+
+          .fa {
+            color: $theme-color;
+          }
+        }
+
+        .menu-item-label {
+          color: white;
+        }
+
+        .menu-item-sub-label {
+          color: rgba(white, .5);
+        }
+
+        .menu-item-checkmark-icon {
+          display: block;
+          color: white;
+
+          .fa {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

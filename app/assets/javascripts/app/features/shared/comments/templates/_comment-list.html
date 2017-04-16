@@ -1,0 +1,17 @@
+  <div class="comment-list">
+    <div class="empty-list-block empty-list-block-lg" ng-if="!commentable.comments.length">
+      <div class="empty-list-icon"><i class="fa fa-comments"></i></div>
+      <div class="empty-list-msg" ng-show="commentable.canBeCommented">No comments yet</div>
+      <div class="empty-list-msg" ng-hide="commentable.canBeCommented">No comments</div>
+      <div class="empty-list-note" ng-show="commentable.canBeCommented">
+        Use the form below to add a comment.
+      </div>
+    </div>
+
+    <div ng-repeat="comment in commentable.comments"
+         ng-include="'app/features/shared/comments/templates/_comment-list-item-partial.html'"
+         class="comment-list-item" ng-class="{ 'is-my': isCurrentUserComment(comment) }"></div>
+  </div>
+
+  <div comment-list-form commentable="commentable" commentable-type="{{ commentableType }}"
+       comment-collection="commentable.comments" current-user="currentUser" ng-show="commentable.canBeCommented"></div>

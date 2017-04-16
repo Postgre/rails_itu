@@ -1,0 +1,175 @@
+/* Modalbox component styles */
+
+$backdrop-opacity: 0.75;
+
+.modalbox-open {
+  overflow: hidden;
+
+  .modalbox {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.modalbox, .modalbox.modal {
+  color: #555;
+  font-size: 16px;
+
+  &.open {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.modalbox-dialog {
+  .modal-content {
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+.modalbox {
+  position: fixed;
+}
+
+.modalbox-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: $backdrop-opacity;
+}
+
+.modalbox-loading-indicator-container {
+  position: absolute;
+}
+
+.modalbox-loading-indicator {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1045;
+  cursor: default;
+  pointer-events: none;
+
+  .modalbox-loading-icon {
+    display: inline-block;
+    position: absolute;
+    // top: 200px; // TODO: fix (now it is fixed to prevent buggy view when list is higher than viewport)
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    width: 6.25em;
+    height: 4em;
+    margin-top: -2em;
+    margin-left: -3.125em;
+
+    .icon {
+      font-size: 4em;
+    }
+  }
+
+
+  &.no-backdrop {
+    width: rem-calc(100);
+    height: rem-calc(100);
+    top: 50%;
+    left: 50%;
+    margin-top: -rem-calc(50);
+    margin-left: -rem-calc(50);
+    background: rgba($theme-color-black, .8);
+    border-radius: 7px;
+  }
+}
+
+.modalbox-container {
+  // position: relative;
+  // min-height: 330px;
+  // margin-bottom: 30px;
+  // padding: 1em;
+  // border: 1px rgba(white, 0.3) solid;
+  // border-radius: 3px;
+
+  > .modalbox, .modalbox-backdrop, .modalbox-loading-indicator {
+    position: absolute;
+  }
+}
+
+// Modalbox use-cases styling (TODO: Move out to somewhere)
+.modalbox-backdrop-error {
+  background-color: #7E1010;
+  opacity: $backdrop-opacity;
+}
+
+
+// Modalbox animations
+.modalbox-backdrop-animate {
+  &.ng-enter,
+  &.ng-leave {
+    @include transition-all(.15s, linear);
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    opacity: 0;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    opacity: $backdrop-opacity;
+  }
+
+  &.ng-leave.ng-leave-active {
+    pointer-events: none;
+  }
+}
+
+.modalbox-loading-indicator-animate {
+  &.ng-enter,
+  &.ng-leave {
+    @include transition-all(.1s, linear);
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    @include scale(0.7, 0.7);
+    opacity: 0;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    @include scale(1, 1);
+    opacity: 1;
+  }
+}
+
+.modalbox-animate {
+  &.ng-enter,
+  &.ng-leave {
+    @include transition-all(.10s);
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    @include scale(0.95, 0.95);
+    opacity: 0;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    @include scale(1, 1);
+    opacity: 1;
+  }
+
+  // &.ng-leave,
+  // &.ng-leave.ng-leave-active {
+  //   @include transition-all(.2s, linear);
+  // }
+}
+

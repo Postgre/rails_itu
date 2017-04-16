@@ -1,0 +1,6 @@
+/* CSS3 Transitions mixins */
+
+@mixin transition-all($duration: 0.2s, $ease-fn: ease-in-out) {
+  -webkit-transition: all $duration $ease-fn;
+  transition: all $duration $ease-fn;
+}

@@ -1,0 +1,277 @@
+/* Custom buttons styles */
+
+// Common btn tweak to avoid outlining
+.btn {
+  @extend .no-outline;
+
+  padding: rem-calc(7) rem-calc(13);
+  font-weight: 300;
+  border-radius: 3px;
+  border: none;
+}
+
+.btn-animate {
+  @include transition-all(0.15s);
+}
+
+// Bootstrap overrides and size tweaks
+.btn-default {
+  background: lighten($theme-color, 4%);
+  color: white;
+
+  &:hover, &:focus, &:active, &.active {
+    background: $theme-color;
+    color: white;
+  }
+
+  &.disabled, &[disabled] {
+    background: desaturate($theme-color, 15%);
+    opacity: 0.3;
+  }
+
+  .is-loading {
+    background: desaturate($theme-color, 15%);
+    opacity: 0.4;
+  }
+}
+
+.btn-primary {
+  background: lighten($theme-color-inverse, 17%);
+  color: white;
+
+  &:hover, &:focus, &:active, &.active {
+    background: lighten($theme-color-inverse, 25%);
+    color: white;
+  }
+
+  &.disabled, &[disabled] {
+    background: desaturate($theme-color-inverse, 15%);
+    opacity: 0.3;
+  }
+
+  &.is-loading {
+    background: desaturate($theme-color-inverse, 15%);
+    opacity: 0.4;
+  }
+}
+
+
+.btn-lg {
+  padding: rem-calc(11) rem-calc(17);
+}
+
+.btn-sm {
+  padding: rem-calc(6) rem-calc(12);
+}
+
+.btn-xs {
+  padding: rem-calc(2) rem-calc(6);
+}
+
+// Additional size modifiers
+.btn-xxs {
+  @extend .btn-xs;
+  font-size: rem-calc(11);
+}
+
+// Light btn style
+.btn-light {
+  background: #eee;
+  color: rgba($theme-color-black, 0.5);
+  font-weight: normal;
+
+  &:hover, &:focus, &.active {
+    background: #ccc;
+    color: $theme-color-black;
+  }
+}
+
+// Outline button modifier
+.btn-outline {
+  // padding-top: rem-calc(6);
+  // padding-bottom: rem-calc(6);
+  border: 1px solid;
+  border-color: rgba($theme-color, 0.8);
+  background: transparent;
+  color: $theme-color;
+  border-color: rgba($theme-color, 0.6);
+  font-weight: 400;
+
+  &:hover, &:focus, &:active, &.active {
+    color: black;
+    border-color: black;
+  }
+
+  &.btn-inverse {
+    font-weight: 300;
+    color: rgba(white, 0.9);
+    border-color: rgba(white, 0.5);
+
+    &:hover, &:focus, &:active, &.active {
+      color: white;
+      border-color: white;
+    }
+  }
+}
+
+.btn-transparent {
+  border-radius: 2px;
+  border: none;
+  background-color: transparent;
+  color: rgba(black, 0.25);
+  box-shadow: none;
+
+  &:hover, &:focus {
+    color: rgba(black, 0.75);
+    background-color: transparent;
+  }
+
+  &:active, &.active {
+    color: black;
+    box-shadow: none;
+    background-color: transparent;
+  }
+}
+
+.btn-loading {
+
+}
+
+// Button styled as ".link-underline"
+.btn-link-underline {
+  @extend .link-underline;
+
+  vertical-align: middle;
+  padding-bottom: rem-calc(2);
+}
+
+// Loading state common stuff
+.btn-loading-icon {
+  display: none;
+  @include transition-all(0.2s, linear);
+  margin-right: rem-calc(3);
+  opacity: 0.6;
+
+  .btn.is-loading & {
+    display: inline-block;
+  }
+}
+
+
+// Icon-only btn
+// TODO: Make different sizes and universal
+.icon-btn {
+  // padding: rem-calc(5) rem-calc(5);
+  width: rem-calc(24);
+  height: rem-calc(24);
+  line-height: rem-calc(24);
+  padding: 0;
+  border-radius: 2px;
+  border: none;
+  background-color: transparent;
+  color: rgba(black, 0.25);
+  box-shadow: none;
+  text-align: center;
+
+  &:hover, &:focus {
+    background: none;
+    color: rgba($theme-color-inverse, 0.75);
+  }
+
+  &:hover {
+    // border: 1px solid rgba($theme-color-inverse, 0.1);
+    // background: rgba($theme-color-inverse, 0.15);
+  }
+
+  &:active, &.active {
+    background: none;
+    // border-color: rgba($theme-color-inverse, 0.3);
+    color: $theme-color-inverse;
+    box-shadow: none;
+  }
+}
+
+.icon-btn-outline {
+  @extend .icon-btn;
+
+  &:hover {
+    border: 1px solid rgba($theme-color-inverse, 0.1);
+  }
+
+  &:active, &.active {
+    border-color: rgba($theme-color-inverse, 0.3);
+  }
+}
+
+.delete-icon-btn {
+  $delete-btn-color: #c92e2c;
+
+  @extend .icon-btn;
+  background: transparent;
+  color: $delete-btn-color;
+
+  &:focus {
+  }
+
+  &:hover {
+    background: $delete-btn-color;
+    color: rgba(white, 0.8);
+  }
+
+  &:active, &.active {
+    background: darken($delete-btn-color, 5%);
+    color: white;
+  }
+}
+
+// Only makes icon larger
+.btn-icon-icon-lg {
+  .fa {
+    font-size: 1.25em;
+  }
+}
+
+// New item button for lists
+.add-item-wide-btn {
+  width: 100%;
+  padding: rem-calc(10) rem-calc(20);
+  font-size: rem-calc(16);
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(15);
+  }
+}
+
+// See-all btn for lists
+.see-all-btn {
+  display: block;
+  font-size: 0.85em;
+  margin-top: 1em;
+  padding: 0.65em 1em;
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(#A7C0B1, 0.7);
+  color: rgba(white, 0.9);
+  text-transform: uppercase;
+
+  &:hover, &:focus, &:active {
+    background-color: #a7c0b1;
+    color: white;
+  }
+}
+
+// Favorite btn (changes color on active)
+.favorite-btn {
+  &.is-active {
+    color: #e9a000;
+  }
+}
+
+// Special space modifiers
+.btn-space-after {
+  margin-right: rem-calc(10);
+}
+
+.btn-space-before {
+  margin-left: rem-calc(10);
+}

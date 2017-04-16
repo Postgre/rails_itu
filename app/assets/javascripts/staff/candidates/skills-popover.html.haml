@@ -1,0 +1,8 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Candidate skills
+    %a.pull-right{"ng-click" => "$hide()"}
+      %i.fa.fa-times
+  .popover-content.skill-cloud
+    .skill{data: {'ng-repeat' => 'skill_record in candidate.skill_records', 'ng-bind' => 'skill_record.skill_name', 'ng-class' => '{featured: skill_record.is_featured}'}}

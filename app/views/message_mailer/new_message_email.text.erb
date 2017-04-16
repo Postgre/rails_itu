@@ -1,0 +1,7 @@
+<%= @sender.full_name %> just send you a new message with subject: <%= @subject %>
+===============================================
+
+<%= @message.body.html_safe? ? @message.body : strip_tags(@message.body) %>
+-----------------------------------------------
+
+Visit <%= app_url(anchor: '!/inbox') %> and go to your inbox for more info.

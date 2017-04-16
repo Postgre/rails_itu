@@ -1,0 +1,75 @@
+<div dropdown ng-if="currentUser.hasMultipleRoles()">
+  <div class="role-select-nav-item" dropdown-toggle>
+    <div class="nav-item-image">
+      <i class="nav-item-image-icon fa fa-graduation-cap" ng-if="isCandidateCurrently()"></i>
+      <i class="nav-item-image-icon fa fa-wrench" ng-if="isStaffCurrently()"></i>
+      <i class="nav-item-image-icon fa fa-wrench" ng-if="isCompanyRepCurrently() && !currentCompany().resourceLogo"></i>
+      <div class="nav-item-image-icon company-logo-item-image-icon" ng-if="isCompanyRepCurrently() && currentCompany().resourceLogo">
+        <img ng-src="{{ currentCompany().resourceLogo }}">
+      </div>
+    </div>
+    <h2 class="nav-item-label">
+      <div class="nav-item-label-v-centerize">
+        <span ng-if="isCandidateCurrently()">Candidate profile</span>
+        <span ng-if="isStaffCurrently()">Staff member</span>
+        <span ng-if="isCompanyRepCurrently()">{{ getCurrentCompanyName() }}</span>
+        <i class="nav-item-caret fa fa-angle-down"></i>
+      </div>
+    </h2>
+  </div>
+
+  <ul class="dropdown-menu role-select-menu">
+    <li class="role-select-menu-item"
+        ng-class="{ 'is-active': isCandidateCurrently() }"
+        ng-if="currentUser.isCandidate()">
+      <a ui-sref="candidate.resume.index">
+        <div class="menu-item-icon"><i class="fa fa-graduation-cap"></i></div>
+        <div class="menu-item-checkmark-icon"><i class="fa fa-check"></i></div>
+        <div class="menu-item-main">
+          <div class="menu-item-label">
+            Candidate profile
+          </div>
+          <div class="menu-item-sub-label">
+            Manage your resume, skills, education and employment information as a candidate.
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li class="role-select-menu-item"
+        ng-class="{ 'is-active': isStaffCurrently() }"
+        ng-if="currentUser.isStaff()">
+      <a ng-click="goToStaffApp()">
+        <div class="menu-item-icon"><i class="fa fa-wrench"></i></div>
+        <div class="menu-item-checkmark-icon"><i class="fa fa-check"></i></div>
+        <div class="menu-item-main">
+          <div class="menu-item-label">
+            Staff member
+          </div>
+          <div class="menu-item-sub-label">
+            As an ITU staff member, you're able to manage Bridge from inside the organization.
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li class="role-select-menu-item"
+        ng-class="{ 'is-active': isCompanyRepCurrently(companyRole.resourceId) }"
+        ng-if="currentUser.isCompanyRep()"
+        ng-repeat="companyRole in userRoles | filter: { name: 'representative' }">
+      <a ui-sref="company.dashboard({ companyId: companyRole.resourceId })">
+        <div class="menu-item-icon company-logo-item-icon" ng-if="companyRole.resourceLogo"><img ng-src="{{ companyRole.resourceLogo }}"></div>
+        <div class="menu-item-icon" ng-if="!companyRole.resourceLogo"><i class="fa fa-building"></i></div>
+        <div class="menu-item-checkmark-icon"><i class="fa fa-check"></i></div>
+        <div class="menu-item-main">
+          <div class="menu-item-label">
+            {{ companyRole.resourceName }}
+          </div>
+          <div class="menu-item-sub-label">
+            Manage company profile as a representative
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

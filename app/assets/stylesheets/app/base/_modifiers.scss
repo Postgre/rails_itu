@@ -1,0 +1,51 @@
+/* Shared common modifiers */
+
+.ellipsis-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.break-word {
+  word-wrap: break-word;
+}
+
+.centerize, .text-centerize {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.v-align-center {
+  @include display-flex;
+  @include align-items(center);
+}
+
+.h-align-center {
+  @include display-flex;
+  @include justify-content(center);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.no-outline {
+  outline: 0 !important;
+  -webkit-appearance: none !important;
+  // -moz-appearance: none !important;
+}
+
+.color-inverse {
+  color: white;
+}
+
+.clickable {
+  cursor: pointer;
+}

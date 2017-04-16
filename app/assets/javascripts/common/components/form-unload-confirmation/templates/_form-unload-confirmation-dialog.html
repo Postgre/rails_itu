@@ -1,0 +1,18 @@
+<div class="modal-dialog modalbox-dialog notification-dialog-modal">
+  <div class="modal-content">
+    <header class="modal-header modal-header-lg">
+      <i class="notification-icon fa fa-exclamation-triangle"></i>
+      <h1 class="modal-heading notification-title">Unsaved form data</h1>
+      <button class="modal-close-btn modal-close-icon" ng-click="$dismissModalbox()"><i class="fa fa-times"></i></button>
+    </header>
+
+    <div class="modal-body notification-text">
+      {{ message }}
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger modal-footer-btn" ng-click="confirm()">OK</button>
+      <button type="button" class="btn btn-light modal-footer-btn" ng-click="$dismissModalbox()">Cancel</button>
+    </div>
+  </div>
+</div>

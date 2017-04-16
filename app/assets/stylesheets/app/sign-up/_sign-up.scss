@@ -1,0 +1,97 @@
+/* Sign-Up UI styles */
+
+.sign-up-join-btn {
+  padding: rem-calc(12) rem-calc(25);
+  font-size: rem-calc(18);
+  font-weight: 300;
+  min-width: rem-calc(140);
+}
+
+.sign-up-intro {
+  margin: 0;
+  padding: rem-calc(20) 0 0;// rem-calc(35);
+  border-radius: 3px 3px 0 0;
+  background: $theme-color;
+  @include gradient-radial(lighten($theme-color, 5%), darken($theme-color, 5%));
+  color: white;
+}
+
+.sign-up-intro-heading {
+  margin: 0 0 rem-calc(10);
+  font-size: rem-calc(30);
+  font-weight: 100;
+  text-align: center;
+
+  strong {
+    font-weight: normal;
+  }
+}
+
+.sign-up-intro-divider {
+  height: 1px;
+  border-top: 1px solid rgba(white, 0.5);
+  margin: rem-calc(15) auto;
+  width: 60%;
+}
+
+.sign-up-intro-description {
+  margin: 0 auto;
+  max-width: rem-calc(600);
+  color: rgba(white, 0.85);
+  font-size: rem-calc(14);
+  text-align: center;
+}
+
+.sign-up-intro-process-description {
+  margin: rem-calc(15) auto 0;
+  padding: rem-calc(10);
+  font-size: rem-calc(20);
+  color: white;
+  text-align: center;
+  background: rgba(black, 0.1);
+}
+
+.sign-up-steps-list {
+  padding: 0;
+  margin: 0 auto;
+  padding: rem-calc(25) rem-calc(35);
+  // max-width: 60%;
+  list-style: none;
+  background: rgba(black, 0.3);
+}
+
+.sign-up-step {
+  @extend .clearfix;
+  margin-bottom: rem-calc(5);  
+}
+
+$sign-up-step-number-size: rem-calc(30);
+.sign-up-step-number {
+  display: inline-block;
+  float: left;
+  width: $sign-up-step-number-size;
+  height: $sign-up-step-number-size;
+  line-height: $sign-up-step-number-size;
+  border-radius: 50%;
+  font-size: rem-calc(16);
+  font-weight: bold;
+  color: $theme-color-black;
+  text-align: center;
+  background: white;
+}
+
+.sign-up-step-text {
+  margin-left: $sign-up-step-number-size + rem-calc(10);
+  padding: rem-calc(3) 0 0;
+  color: rgba(white, 0.9);
+  font-size: rem-calc(14);
+  font-weight: 300; 
+}
+
+.sign-up-step-title {
+  margin: 0;
+  margin-bottom: rem-calc(10);
+  font-size: rem-calc(24);
+  font-weight: 500;
+  color: white;
+}

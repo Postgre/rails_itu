@@ -1,0 +1,142 @@
+<div>
+  <div class="list-item-body">
+    <a ng-if="!isJobContext() && !isStaffViewing()" ui-sref="company.candidates.resume({ candidateId: candidate.id })" class="list-item-left list-item-image-block">
+      <img ng-if="candidate.user.avatarUrl" ng-src="{{ candidate.user.avatarUrl }}">
+      <div ng-if="!candidate.user.avatarUrl" class="item-image-placeholder candidate-avatar-placeholder">
+        <i class="fa fa-camera image-placeholder-icon"></i>
+      </div>
+    </a>
+    <a ng-if="isJobContext() && !isStaffViewing()" ui-sref="company.job-candidate-resume({ jobId: job.id, candidateId: candidate.id })" class="list-item-left list-item-image-block">
+      <img ng-if="candidate.user.avatarUrl" ng-src="{{ candidate.user.avatarUrl }}">
+      <div ng-if="!candidate.user.avatarUrl" class="item-image-placeholder candidate-avatar-placeholder">
+        <i class="fa fa-camera image-placeholder-icon"></i>
+      </div>
+    </a>
+    <a ng-if="isStaffViewing()" ui-sref="candidates.detail({ id: candidate.id })" class="list-item-left list-item-image-block">
+      <img ng-if="candidate.user.avatarUrl" ng-src="{{ candidate.user.avatarUrl }}">
+      <div ng-if="!candidate.user.avatarUrl" class="item-image-placeholder candidate-avatar-placeholder">
+        <i class="fa fa-camera image-placeholder-icon"></i>
+      </div>
+    </a>
+    <div class="list-item-content">
+      <div class="list-item-actions-top" ng-if="isJobContext()">
+        <!-- <button ng-if="!candidate.isFavorite" type="button" ng-click="candidate.favorite({ companyId: $stateParams.companyId })"
+                bs-tooltip title="Star this candidate" class="btn icon-btn favorite-btn">
+          <i class="fa fa-star-o"></i>
+        </button>
+        <button ng-if="candidate.isFavorite" type="button" ng-click="candidate.unfavorite({ companyId: $stateParams.companyId })"
+                bs-tooltip title="Unstar this candidate" class="btn icon-btn favorite-btn is-active">
+          <i class="fa fa-star"></i>
+        </button> -->
+        <button type="button" ng-if="!candidate.isInvited && job.isPublished() && (!application || application.state === 'created')" bs-popover data-template="app/features/company/interviews/templates/_interview-form-popover.html" data-auto-close="true" data-placement="bottom-right" class="btn btn-default btn-xs"><i class="fa fa-comment-o"></i> Invite to an interview</button>
+        <button type="button" ng-if="application.state == 'created'" bs-popover data-template="app/features/company/jobs/templates/_reject-apply-popover.html" data-auto-close="true" data-placement="bottom-right" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Reject application</button>
+
+        <span ng-if="application && !candidate.isInvited">
+          <span ng-if="application.state === 'created'"><i class="fa fa-check"></i> This candidate has applied for job</span>
+          <span ng-if="application.state === 'accepted'" class="text-success"><i class="fa fa-check-circle"></i> This candidate application has been accepted</span>
+          <span ng-if="application.state === 'rejected'" class="text-failure"><i class="fa fa-times-circle"></i> This candidate application has been rejected</span>
+        </span>
+
+        <span ng-if="candidate.isInvited && candidate.invitationState">
+          <span ng-if="candidate.interviewState === 'offered'"><i class="fa fa-check"></i> This candidate has been invited to an interview</span>
+          <span ng-if="candidate.interviewState === 'accepted'" class="text-success"><i class="fa fa-check-circle"></i> This candidate has accepted the interview</span>
+          <span ng-if="candidate.interviewState === 'rejected'" class="text-failure"><i class="fa fa-times-circle"></i> This candidate has rejected the interview</span>
+          <span ng-if="candidate.interviewState === 'time_rejected'" class="text-failure"><i class="fa fa-times-circle"></i> This candidate has rejected the interview time</span>
+          <span ng-if="candidate.interviewState === 'cancelled'"><i class="fa fa-times"></i> The interview with this candidate has been cancelled</span>
+          <span ng-if="candidate.interviewState === 'hired'" class="text-success"><i class="fa fa-check"></i> This candidate has been hired!</span>
+        </span>
+      </div>
+
+      <header class="list-item-content-header">
+        <h1 class="list-item-heading">
+          <a ng-if="!isJobContext() && !isStaffViewing()" ui-sref="company.candidates.resume({ candidateId: candidate.id })" class="link-underline">{{ candidate.name }}</a>
+          <a ng-if="isJobContext() && !isStaffViewing()" ui-sref="company.job-candidate-resume({ jobId: job.id, candidateId: candidate.id })" class="link-underline">{{ candidate.name }}</a>
+          <a ng-if="isStaffViewing()" ui-sref="candidates.detail({ id: candidate.id })" class="link-underline">{{ candidate.name }}</a>
+        </h1>
+        <div class="list-item-sub-heading" ng-show="candidate.city">
+          <i class="fa fa-map-marker"></i> {{ candidate.city }}, {{ candidate.country.name }}
+        </div>
+      </header>
+
+      <div class="list-item-text">
+        {{ candidate.about }}
+      </div>
+      <div class="list-item-properties no-border">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="item-property item-property-inline">
+              <div class="item-property-label">Availability:</div>
+              <div class="item-property-value">{{ candidate.availability | availabilityOption }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-item-properties" ng-if="candidate.skillRecords.any({ isFeatured: true })">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-12">
+            <div class="item-property-label">
+              Featured skills:
+            </div>
+            <div class="item-property-value">
+              <div class="resume-summary-skills">
+                <div class="resume-summary-skills-list">
+                  <a class="resume-skill resume-summary-skill" ng-class="{ 'skill-is-matched': skillRecord.matched }"
+                     ng-repeat="skillRecord in candidate.skillRecords | filter: { isFeatured: true } | orderBy: 'skillName'">
+                     {{ skillRecord.skillName }}
+                   </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-item-properties" ng-if="isJobContext() && candidate.skillRecords.any({ matched: true })">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-12">
+            <div class="item-property-label">
+              Matched skills <strong ng-if="candidate.percent">({{ candidate.percent }}% matched)</strong>:
+            </div>
+            <div class="item-property-value">
+              <div class="resume-summary-skills">
+                <div class="resume-summary-skills-list">
+                  <a class="resume-skill resume-summary-skill skill-is-matched"
+                     ng-repeat="skillRecord in candidate.skillRecords | filter: { matched: true } | orderBy: 'skillName'">
+                     {{ skillRecord.skillName }}
+                   </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-item-properties" ng-if="application">
+        <div class="item-property item-property-inline">
+          <div class="item-property-label">Cover letter:</div>
+          <div class="item-property-value" ng-bind-html="application.coverLetter | nl2br"></div>
+        </div>
+      </div>
+      <div class="list-item-properties" ng-if="application">
+        <div class="item-property item-property-inline">
+          <div class="item-property-label">Resume:</div>
+          <div class="item-property-value">
+            <a ng-href="{{ application.resumeUrl }}" ng-bind="application.resumeFileName" target="_blank">file link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commenting out temporarily, will need this soon, DO NOT REMOVE -->
+  <!-- <div class="list-item-footer" ng-if="candidate.isHired || candidate.pendingInterviews.any()">
+    <div class="list-item-notification" ng-if="candidate.pendingInterviews.any()">
+      <i class="fa fa-clock-o"></i> Interview is set for this candidate:
+      <a href="#" class="link-underline">{{ (candidate.pendingInterviews | orderBy: 'date':true | limitTo: 1)[0].date | date: 'MMM d, y, h:mm a' }}</a>
+    </div>
+    <div class="list-item-notification list-item-notification-success" ng-if="candidate.isHired">
+      <i class="fa fa-check"></i> This candidate already works in your company
+    </div>
+  </div> -->
+</div>

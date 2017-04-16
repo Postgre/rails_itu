@@ -1,0 +1,75 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Manage</strong> your education history</h1>
+      <div class="content-sub-heading">
+        Please provide a list of all your academic records. Make sure to specify the correct degree.
+      </div>
+    </header>
+
+    <a ui-sref="candidate.resume.education.add" class="btn btn-block btn-light add-item-wide-btn">
+      <i class="fa fa-plus"></i> Add education record
+    </a>
+
+    <div class="education-records loading-indicator-container">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': listCtrl.educationRecords.$loading }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="empty-list-block empty-list-block-lg" ng-if="!listCtrl.educationRecords.length">
+        <div class="empty-list-icon"><i class="fa fa-graduation-cap"></i></div>
+        <div class="empty-list-msg">
+          No education records
+        </div>
+        <div class="empty-list-note">
+          You haven't provided any academic records. Feel free to add some using the button above.
+        </div>
+      </div>
+
+      <!-- Education record -->
+      <div class="resume-record-block" ng-repeat="educationRecord in listCtrl.educationRecords | orderBy: 'endYear':true">
+        <div class="resume-record-block-aside">
+          {{ educationRecord.startYear }} &mdash;
+          <span ng-if="educationRecord.endYear">{{ educationRecord.endYear }}</span>
+          <span ng-if="!educationRecord.endYear">PRESENT</span>
+        </div>
+        <div class="resume-record-block-body">
+          <div class="resume-record-block-options" ng-if="!educationRecord.isVerified">
+            <a ui-sref="candidate.resume.education.edit({ educationRecordId: educationRecord.id })" class="link-underline"><i class="fa fa-edit"></i> Edit</a>
+
+            <div dropdown class="confirm-box-inline-dropdown">
+              <button type="button" dropdown-toggle class="btn icon-btn"><i class="fa fa-times-circle"></i></button>
+
+              <div class="dropdown-menu confirm-box confirm-box-right">
+                <div class="confirm-box-icon">
+                  <i class="fa fa-trash-o"></i>
+                </div>
+                <div class="confirm-box-main">
+                  <div class="confirm-box-message">You are going to delete this education record. Are you sure?</div>
+                  <div class="confirm-box-buttons">
+                    <button type="button" class="btn confirm-box-confirm-btn" ng-click="listCtrl.delete(educationRecord)">Yes</button>
+                    <button type="button" class="btn confirm-box-cancel-btn">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="resume-record-block-heading">
+            {{ educationRecord.school }} ({{ educationRecord | fullAddress }})
+          </div>
+          <div class="resume-record-block-subheading">
+            {{ educationRecord.degree }}
+          </div>
+      </div>
+      <!-- / Education record -->
+    </div>
+    <!-- Course -->
+    <div class="course-list course-list-in-block" ng-show='listCtrl.courses.length > 0'>
+        <header class="course-list-header">Courses</header>
+        <div course-list-item ng-repeat="course in listCtrl.courses"
+             course="course" readonly="false"></div>
+        </div>
+    </div>
+    <!-- / Course -->
+  </div>
+</div>

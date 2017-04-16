@@ -1,0 +1,124 @@
+/* Block arrows mixins */
+
+// Generic block arrows
+@mixin block-arrow-top($color: white, $size: 7px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: $size solid white;
+    border-color: transparent transparent $color transparent;
+    top: -2 * $size;
+    left: 1em;
+  }
+}
+
+@mixin block-arrow-bottom($color: white, $size: 7px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: $size solid white;
+    border-color: $color transparent transparent transparent;
+    bottom: -2 * $size;
+    left: 50%;
+    margin-left: -($size / 2);
+  }
+}
+
+@mixin block-arrow-bottom-inner($color: white, $size: 7px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: $size solid white;
+    border-color: transparent transparent $color transparent;
+    bottom: 0;
+    left: 50%;
+    margin-left: -($size / 2);
+  }
+}
+
+// TODO: DRY these things up
+@mixin nav-link-active-arrow-top($color: white) {
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: 9px solid white;
+    border-color: transparent transparent $color transparent;
+    top: -18px;
+    left: 1em;
+    margin-top: 2px;
+  }
+}
+
+@mixin nav-link-active-arrow-right($color: white) {
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: 9px solid white;
+    border-color: transparent $color transparent transparent;
+    top: -18px;
+    right: 0;
+    margin-top: 2px;
+  }
+}
+
+@mixin nav-link-active-arrow-left($color: white, $top: 0) {
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: 9px solid white;
+    border-color: transparent transparent transparent $color;
+    top: $top;
+    left: 0;
+    margin-top: 2px;
+  }
+}
+
+@mixin block-arrow-left-outer($color: white, $size: 9px, $top: 10px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: $size solid white;
+    border-color: transparent $color transparent transparent;
+    top: $top;
+    left: -$size * 2;
+    margin-top: 2px;
+  }
+}
+
+@mixin nav-link-active-arrow-left-outer($color: white, $size: 9px, $top: 10px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: $size solid white;
+    border-color: transparent $color transparent transparent;
+    top: $top;
+    left: -$size * 2;
+    margin-top: 2px;
+  }
+}
+
+@mixin nav-link-active-arrow-left-outer-centered($color: white, $size: 9px) {
+  @include nav-link-active-arrow-left-outer($color, $size, 50%);
+
+  &:after {
+    margin-top: -$size;
+  }
+}

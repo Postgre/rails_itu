@@ -1,0 +1,9 @@
+:javascript
+  angular.module('bridge.staff')
+    .constant('availablityOptions', #{Candidate::AVAILABILITY_OPTIONS.to_json})
+    .constant('userRoles', #{Role.distinct.pluck(:name).to_json})
+    .constant('workTypes', #{Job::WORK_TYPE.to_json})
+    .constant('jobSchedules', #{Job::SCHEDULE.to_json});
+.main-ui-layout
+  %div{data: {'ncy-breadcrumb' => true}}
+  %section.main-content{"ui-view" => "content-view"}

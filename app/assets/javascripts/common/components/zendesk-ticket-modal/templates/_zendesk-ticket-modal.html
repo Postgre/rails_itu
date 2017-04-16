@@ -1,0 +1,91 @@
+<div class="modal-dialog modalbox-dialog modal-dialog-lg zendesk-ticket-modal">
+  <form class="modal-content form-horizontal" name="_form" ng-submit="createZendeskTicket(model)" novalidate>
+
+    <header class="modal-header modal-header-lg">
+      <h1 class="modal-heading"><i class="fa fa-info-circle"></i> Create Support Ticket</h1>
+      <button class="modal-close-btn modal-close-icon" ng-click="$dismissModalbox()"><i class="fa fa-times"></i></button>
+    </header>
+    <div class="modal-body has-cover">
+      <div class="loading-indicator-cover" ng-cloak ng-class="{ 'is-active': isLoading() }">
+        <i class="loading-icon fa fa-refresh fa-spin"></i>
+      </div>
+
+      <fieldset ng-disabled="isLoading()">
+
+        <div class="form-group row">
+          <div class="form-hint col-sm-9 col-sm-offset-3">
+            All fields are required
+          </div>
+        </div>
+
+        <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+          <div class="col-sm-8 col-sm-offset-4">
+            <div class="form-validation-summary has-bottom-arrow">
+              <div class="validation-summary-main">
+                Some of the data you entered is not valid.
+              </div>
+              <div class="validation-summary-sub">
+                Please review the form, fix the issues and try again.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <fieldset ng-if="isAnonymousUser()">
+          <div form-group template-style="compact-label" class="form-group-lg">
+            <label>Your name</label>
+
+            <input type="text" ng-model="model.name" required mz-model-error placeholder="Please introduce yourself">
+            <div field-errors>
+              <div field-error="required">Please provide your name</div>
+            </div>
+          </div>
+
+
+          <div form-group template-style="compact-label" class="form-group-lg">
+            <label>Your email</label>
+
+            <input type="text" ng-model="model.email" required mz-model-error placeholder="Please type in your email for contact">
+            <div field-errors>
+              <div field-error="required">Please provide your email</div>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+        </fieldset>
+
+
+        <div form-group template-style="compact-label" class="form-group-lg">
+          <label>Subject</label>
+
+          <input type="text" ng-model="model.subject" required mz-model-error placeholder="Please provide the subject">
+          <div field-errors>
+            <div field-error="required">Please provide the subject</div>
+          </div>
+        </div>
+
+
+        <div form-group template-style="compact-label">
+          <label>Message</label>
+
+          <textarea rows="6" ng-model="model.body" required mz-model-error placeholder="Please describe your issue"></textarea>
+          <div field-errors>
+            <div field-error="required">Please describe your issue in detail</div>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary submit-btn modal-footer-btn"
+              ng-class=" { 'is-loading': isLoading() }"
+              ng-disabled="(_form.$invalid && !_form.$submitted) || formIsLoading()">
+        <span ng-if="isLoading()"><i class="fa fa-refresh fa-spin btn-loading-icon"></i> Saving...</span>
+        <span ng-if="!isLoading()">Create ticket</span>
+      </button>
+      <button type="button" class="btn btn-default modal-footer-btn" ng-click="$dismissModalbox()">Close</button>
+    </div>
+
+  </form>
+</div>

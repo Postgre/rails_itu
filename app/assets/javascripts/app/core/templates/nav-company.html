@@ -1,0 +1,30 @@
+<ul class="nav navbar-nav">
+  <li ng-if="company.isActive()">
+    <a ui-sref="company.dashboard" ng-class="{ active: $state.includes('company.dashboard') }">
+      <i class="fa fa-th"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+  <li ng-if="company.isActive()">
+    <a ui-sref="company.jobs.list({ state: null })" ng-class="{ active: $state.includes('company.jobs') }" ui-sref-opts="{ reload: true }">
+      <i class="fa fa-sitemap"></i>
+      <span>Jobs</span>
+    </a>
+  </li>
+  <!-- <li ng-if="company.isActive()">
+    <a ui-sref="company.candidates.list.search({ companyId: $stateParams.companyId })" ui-sref-opts="{ reload: true, inherit: false }"
+       ng-class="{ active: $state.includes('company.candidates') }">
+      <i class="fa fa-search"></i>
+      <span>Candidates</span>
+    </a>
+  </li> -->
+  <li ng-if="company.isActive()">
+    <a ui-sref="company.interviews.list" ng-class="{ active: $state.includes('company.interviews') }">
+      <i class="fa fa-comment-o"></i>
+      <span>Interviews</span>
+    </a>
+  </li>
+  <li class="navbar-right">
+    <div role-select-menu></div>
+  </li>
+</ul>

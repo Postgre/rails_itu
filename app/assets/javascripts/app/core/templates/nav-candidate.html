@@ -1,0 +1,29 @@
+<ul class="nav navbar-nav">
+  <li>
+    <a ui-sref="candidate.resume.index" ng-class="{ active: $state.includes('candidate.resume') }">
+      <i class="fa fa-file-o"></i>
+      <span>Resume</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="candidate.companies.list" ui-sref-opts="{ inherit: false, reload: true }" ng-class="{ active: $state.includes('candidate.companies') }">
+      <i class="fa fa-building"></i>
+      <span>Companies</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="candidate.jobs.list" ui-sref-opts="{ inherit: false, reload: true }" ng-class="{ active: $state.includes('candidate.jobs') }">
+      <i class="fa fa-briefcase"></i>
+      <span>Jobs</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="candidate.interviews.list" ng-class="{ active: $state.includes('candidate.interviews') }">
+      <i class="fa fa-comment-o"></i>
+      <span>Interviews</span>
+    </a>
+  </li>
+  <li class="navbar-right">
+    <div role-select-menu></div>
+  </li>
+</ul>

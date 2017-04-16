@@ -1,0 +1,100 @@
+// Forms / Layouts
+
+.main-content-form {
+  .main-content-body {
+    background: white;
+  }
+}
+
+
+// Common layout blocks
+
+.form-header {
+  margin-bottom: rem-calc(15);
+  padding-bottom: rem-calc(15);
+  border-bottom: 2px solid #eee;
+}
+
+.form-heading {
+  font-size: rem-calc(24);
+  color: rgba($theme-color, 0.7);
+}
+
+.form-sub-heading {
+  margin-top: rem-calc(5);
+  font-size: rem-calc(14);
+  color: rgba($theme-color-inverse, 0.5);
+}
+
+
+// Dividers
+
+.form-divider {
+  height: 1px;
+  margin: rem-calc(15) 0 rem-calc(20);
+  background: #eee;
+}
+
+
+// Abstract form sections
+
+.form-section {
+  margin-bottom: rem-calc(20);
+
+  &:not(:first-child) {
+    margin-top: rem-calc(20);
+  }
+}
+
+.form-section-header {
+  margin-bottom: rem-calc(20);
+  padding: rem-calc(10) 0;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+}
+
+.form-section-heading {
+  margin: 0;
+  font-size: rem-calc(22);
+}
+
+.form-section-sub-heading {
+  font-size: rem-calc(14);
+  font-weight: 300;
+  color: rgba($theme-color-black, 0.7);
+}
+
+
+// Simple inline form (one field and 2 buttons)
+
+.form-oneline {
+  @extend .row;
+  margin: 0;
+}
+
+// Special case for inline forms when it has one main field and couple of buttons
+.form-oneline-main {
+  @extend .col-sm-8;
+  padding: 0;
+
+  select, input {
+    height: auto;
+  }
+}
+
+.form-oneline-btn-col {
+  @extend .col-sm-2;
+  padding: 0;
+  padding-left: rem-calc(8);
+}
+
+.form-oneline-btn {
+  min-width: rem-calc(90);
+}
+
+// Form group tweaks
+// Prevent double negative margins
+.form-group > .row {
+  margin-left: 0;
+  margin-right: 0;
+}

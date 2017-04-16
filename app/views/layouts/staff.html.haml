@@ -1,0 +1,20 @@
+!!!
+%html{data: {'ng-app' => 'bridge.staff'}}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %link{:rel => "shortcut icon", :href => "/favicon.ico?v=1"}/
+    %title ITU Bridge - Staff UI
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'bridge.staff'
+    = csrf_meta_tags
+    = render partial: 'layouts/angular_constants'
+
+  %body{'ng-controller' => 'ApplicationController'}
+    .app-container.app-container-vflex{"ng-cloak" => ""}
+      %header.app-header{"main-header" => "", data: {'ui-view' => 'menu-view'}}
+      = yield
+      .row{style: 'padding-top:10px'}
+        .col-sm-2.label.label-primary
+          = render partial: 'layouts/version'

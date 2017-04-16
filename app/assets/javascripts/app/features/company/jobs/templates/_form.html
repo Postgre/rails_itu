@@ -1,0 +1,139 @@
+<form name="_form" class="form-horizontal loading-indicator-container" ng-submit="submit()" novalidate confirm-form-unload="true">
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isFormLoading() || model.$loading }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <div class="form-group row">
+    <div class="form-hint col-sm-8 col-sm-offset-4">
+      Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+    <div class="col-sm-8 col-sm-offset-4">
+      <div class="form-validation-summary has-bottom-arrow">
+        <div class="validation-summary-main">
+          Some of the data you entered is not valid.
+        </div>
+        <div class="validation-summary-sub">
+          Please review the form, fix the issues and try again.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div form-group class="form-group-lg">
+    <label>Job title</label>
+
+    <input type="text" ng-model="model.title" required mz-model-error>
+    <div field-errors>
+      <div field-error="required">Please specify the job title</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label><i class="control-label-icon fa fa-map-marker"></i> Location</label>
+
+    <input type="text" name="location" ng-model="model.location" class="form-control" placeholder="Enter location"
+           ui-typeahead="address.formattedAddress as address.formattedAddress for address in getAddresses($viewValue)"
+           ng-model-options="{ debounce: 300 }" mz-model-error>
+    <div field-errors></div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Work type</label>
+
+    <div class="select-control-default">
+      <select ui-select2 ng-model="model.workType" required mz-model-error data-placeholder="Select work type">
+        <option value=""></option>
+        <option ng-repeat="type in workTypes" value="{{ type.value }}">{{ type.name }}</option>
+      </select>
+    </div>
+    <div field-errors>
+      <div field-error="required">Please specify the type of the work</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>Schedule</label>
+
+    <div class="select-control-default">
+      <select ui-select2 ng-model="model.schedule" required mz-model-error data-placeholder="Select schedule">
+        <option value=""></option>
+        <option ng-repeat="schedule in jobSchedules" value="{{ schedule.value }}">{{ schedule.name }}</option>
+      </select>
+    </div>
+    <div field-errors>
+      <div field-error="required">Please specify the schedule for the job</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>Desired start date</label>
+
+    <input type="text" ng-model="model.startDate" bs-datepicker date-type="iso">
+    <div field-errors></div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div form-group>
+    <label>Description</label>
+
+    <div text-angular ng-model="model.description" required mz-model-error></div>
+    <div field-errors>
+      <div field-error="required">Please provide the job description</div>
+    </div>
+  </div>
+
+  <div form-group>
+    <label>Job visibility</label>
+
+    <div class="select-control-default">
+      <select ng-model="model.isPublic" required mz-model-error data-placeholder="Select job visibility">
+        <option value="false" ng-selected="model.isPublic == false">Invisible for browsing candidates</option>
+        <option value="true" ng-selected="model.isPublic == true">Visible for everyone</option>
+      </select>
+    </div>
+    <div field-errors>
+      <div field-error="required">Please specify the visibility for job offering</div>
+    </div>
+  </div>
+
+  <fieldset class="form-section">
+    <header class="form-section-header">Skill requirements</header>
+    <div skill-records-edit skillable="model"></div>
+  </fieldset>
+
+
+  <div class="form-buttons">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-4">
+
+        <button type="button" ng-click="publish()" class="btn btn-primary submit-btn" ng-if="!isEdit && !isFormLoading()"
+                ng-disabled="(_form.$invalid && !_form.$submitted)">
+          <span>Publish</span>
+        </button>
+
+        <button type="submit" class="btn btn-primary submit-btn"
+                ng-class=" { 'is-loading': isFormLoading() }"
+                ng-disabled="(_form.$invalid && !_form.$submitted) || isFormLoading()">
+          <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+          <span ng-if="!isFormLoading()">
+            <span ng-if="!isEdit">Save as draft</span>
+            <span ng-if="isEdit">Save</span>
+          </span>
+          <span ng-if="isFormLoading()">Saving...</span>
+        </button>
+
+        <span class="form-buttons-splitter-text">OR</span>
+        <a ng-click="cancelForm()" class="btn btn-link-underline">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

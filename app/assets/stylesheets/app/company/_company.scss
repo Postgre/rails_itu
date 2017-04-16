@@ -1,0 +1,228 @@
+/* Company / Dashboard styles */
+
+.dashboard-panel {
+  margin-bottom: rem-calc(20);
+}
+
+// For display pages throughout the system
+.company-details {
+  padding: rem-calc(20) rem-calc(25);
+}
+
+// TODO: Move to _company-summary.scss
+.company-summary {
+  position: relative;
+
+  .company-name {
+    font-size: rem-calc(24);
+    // font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .company-location {
+    font-size: rem-calc(13);
+    color: rgba($theme-color-black, 0.4);
+  }
+}
+
+.company-quote {
+  margin-top: rem-calc(10);
+  padding: rem-calc(10) 0;
+  border-top: 1px solid rgba($theme-color-inverse, 0.1);
+  font-size: rem-calc(16);
+  color: rgba($theme-color, 0.7);
+}
+
+.company-quote-header {
+  font-size: rem-calc(12);
+  font-weight: 300;
+  text-transform: uppercase;
+  color: rgba($theme-color-black, 0.4);
+}
+
+.company-quote-body {
+  position: relative;
+  padding: 0 rem-calc(30);
+}
+
+.company-quote-open, .company-quote-close {
+  position: absolute;
+  width: rem-calc(20);
+  height: rem-calc(20);
+  font-size: rem-calc(18);
+  color: rgba($theme-color-inverse, 0.1);
+}
+
+.company-quote-open {
+  top: 0;
+  left: 0;
+}
+
+.company-quote-close {
+  bottom: 0;
+  right: 0;
+}
+
+.company-quote-text {
+  font-size: rem-calc(22);
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.company-summary {
+  margin-bottom: rem-calc(15);
+}
+
+.company-summary-top-options {
+  float: right;
+}
+
+.company-summary-top {
+  @extend .clearfix;
+  padding: rem-calc(15);
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 0 rgba($theme-color-inverse, 0.2);
+}
+
+.company-summary-top-main {
+  margin-left: rem-calc(170);
+
+  &:not(:last-child) {
+    margin-bottom: rem-calc(20);
+  }
+}
+
+.company-summary-description {
+  margin-bottom: rem-calc(15);
+  padding: rem-calc(10) rem-calc(15);
+  font-size: rem-calc(13);
+  color: rgba($theme-color-black, 0.8);
+  line-height: rem-calc(20);
+
+  h2 {
+    margin: rem-calc(10) 0 rem-calc(10);
+    font-size: rem-calc(20);
+  }
+
+  p {
+    margin-bottom: rem-calc(5);
+  }
+
+  &.company-summary-description-inline {
+    padding: 0;
+    margin: rem-calc(10) 0 0;
+    border-top: 1px solid rgba($theme-color-inverse, 0.1);
+
+    &:not(:last-child) {
+      margin-bottom: rem-calc(15);
+    }
+  }
+}
+
+// Company brand elements
+.company-brand-logo-block {
+  float: left;
+  width: rem-calc(140);
+}
+
+.company-brand-logo {
+  margin-bottom: rem-calc(10);
+  max-width: rem-calc(140);
+  font-size: rem-calc(11);
+  font-weight: 300;
+  line-height: rem-calc(140);
+  // border-radius: 3px;
+  // border: rem-calc(10) solid white;
+  // box-shadow: 0 1px 4px -2px rgba(black, 0.5);
+  color: rgba(black, 0.4);
+  text-align: center;
+  text-transform: uppercase;
+  overflow: hidden;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: rem-calc(120);
+  }
+}
+
+
+// OLD one (to be removed)
+.company-brand-logo-placeholder {
+  width: rem-calc(140);
+  height: rem-calc(140);
+  line-height: rem-calc(140);
+  border-radius: 3px;
+  background-color: #eee;
+}
+
+// New one
+.company-logo-placeholder {
+  width: rem-calc(140);
+  height: rem-calc(140);
+
+  .image-placeholder-icon {
+    line-height: rem-calc(140);
+  }
+
+  $company-logo-size-small: rem-calc(100);
+
+  &.company-logo-placeholder-small {
+    width: $company-logo-size-small;
+    height: $company-logo-size-small;
+
+    .image-placeholder-icon {
+      line-height: $company-logo-size-small;
+    }
+  }
+}
+
+// Summary missing part placeholder
+.company-summary-missing-block {
+  padding: rem-calc(15);
+  background: #eee;
+  color: #999;
+  text-align: center;
+  border-radius: 2px;
+
+  * ~ & {
+    margin-top: rem-calc(10);
+  }
+
+  small {
+    display: block;
+    font-size: rem-calc(12);
+    color: #aaa;
+  }
+}
+
+.company-summary-notification {
+  @include block-arrow-bottom(#eee);
+  margin-bottom: rem-calc(10);
+  padding: rem-calc(10);
+  background: #eee;
+  color: rgba($theme-color-inverse, 0.5);
+  text-align: center;
+  border-radius: 2px;
+
+  small {
+    display: block;
+    font-size: rem-calc(12);
+  }
+
+  &.is-warning {
+    @include block-arrow-bottom(#FFD57B);
+    background: #FFD57B;
+    color: rgba($theme-color-inverse, 0.7);
+  }
+}
+
+// Company reps list
+.company-rep-list {
+  
+}
+
+.company-rep-list-item {
+
+}

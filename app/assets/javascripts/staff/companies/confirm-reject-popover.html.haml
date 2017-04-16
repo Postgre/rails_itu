@@ -1,0 +1,10 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Please confirm
+  .popover-content
+    %button.btn.btn-danger{data: {'ng-click' => 'reject(company)'}}
+      %i.fa.fa-close
+      Reject
+    %span.form-buttons-splitter-text OR
+    %a.btn-link-underline{data: {"ng-click" => "$hide()"}} Cancel

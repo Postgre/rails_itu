@@ -1,0 +1,9 @@
+.list-group
+  .list-group-item{data: {'ng-repeat' => 'comment in commentable.comments', 'ng-include' => '"common/directives/comment.html"'}}
+.row
+  .col-md-6
+  .col-md-6{data: {'ng-if' => 'isStaff'}}
+    %a.staff-comment-reply-link.pull-right{data: {'ng-click' => 'reply.id = comment.id', 'ng-hide' => 'comment.id == reply.id'}}
+      %i.fa.fa-reply
+      comment
+    %form.form{data: {'ng-submit' => 'sendComment(newComment)', 'ng-include' => '"common/directives/comments-form.html"', 'ng-show' => 'comment.id == reply.id'}}

@@ -1,0 +1,14 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Please confirm delete
+  .popover-content
+    If you complete this action, skill will be deleted from
+    %strong{data: {'ng-bind' => 'skill.skillRecordsCount'}}
+    skill records.
+    %br/
+    %button.btn.btn-danger{data: {'ng-click' => 'delete(skill)'}}
+      %i.fa.fa-trash
+      Delete
+    %span.form-buttons-splitter-text OR
+    %a.btn-link-underline{data: {"ng-click" => "$hide()"}} Cancel

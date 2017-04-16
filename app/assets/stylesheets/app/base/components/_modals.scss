@@ -1,0 +1,58 @@
+.modal-dialog {
+  .modal-content {
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+// Modal styling (TODO: Move to modals.scss)
+.modal-header {
+  position: relative;
+  padding: rem-calc(15) rem-calc(20);
+
+  &.modal-header-lg {
+    padding-right: rem-calc(45);
+
+    .modal-heading {
+      font-size: rem-calc(22);
+    }
+
+    .modal-close-btn {
+      font-size: rem-calc(16);
+      line-height: rem-calc(22) * 1.45;
+    }
+  }
+}
+
+.modal-body {
+  padding: rem-calc(15) rem-calc(20);
+}
+
+.modal-footer {
+  padding: rem-calc(15) rem-calc(20);
+}
+
+.modal-heading {
+  margin: 0;
+}
+
+.modal-close-btn {
+  @extend .no-outline;
+  position: absolute;
+  top: rem-calc(10);
+  right: rem-calc(15);
+  border: none;
+  background: none;
+}
+
+.modal-close-icon {
+  color: $theme-color-grey;
+
+  &:hover, &:active {
+    color: $theme-color-inverse;
+  }
+}
+
+.modal-footer-btn {
+  min-width: rem-calc(100);
+}

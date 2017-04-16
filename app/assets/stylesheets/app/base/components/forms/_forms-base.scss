@@ -1,0 +1,281 @@
+// Form / Base
+
+// Form hints (not to be confused with control hints)
+
+.form-hint {
+  // margin-bottom: rem-calc(20);
+  font-size: rem-calc(13);
+  color: #aaa;
+}
+
+.form-hint-inline {
+  font-size: rem-calc(13);
+  color: #aaa;
+}
+
+// Customized form controls look (based on TWBS)
+
+.form-control {
+  padding: rem-calc(6) rem-calc(8);
+  border-color: #d5d5d5;
+  box-shadow: inset 0 2px 0 rgba(black, .04), 0 0 0 0 transparent;
+  -webkit-appearance: none;
+
+  &, .form-group-lg & {
+    border-radius: 1px;
+    line-height: 1.33;
+  }
+
+  @include placeholder(#ccc);
+
+  &:focus {
+    $focus-border-color: #429ACC;
+    border-color: $focus-border-color;
+    box-shadow: inset 0 0 0 0 transparent, 0 0 0 3px rgba($focus-border-color, .2);
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.control-label {
+  font-size: rem-calc(14);
+  color: rgba(darken($theme-color-inverse, 15%), .7);
+  text-align: right;
+}
+
+.control-label-icon {
+  color: rgba(darken($theme-color-inverse, 15%), .25);
+  margin-right: rem-calc(5);
+}
+
+// Required helpers
+.required-icon {
+  color: #AF2929;
+  font-size: 0.75em;
+}
+
+// .form-horizontal responsive tweaks
+.form-horizontal .control-label {
+  @media #{$medium-up} {
+    width: 100%;
+    text-align: right;
+
+    .required-icon {
+      position: absolute;
+      top: rem-calc(13);
+      right: rem-calc(-2);
+    }
+  }
+
+  &.label-lg .required-icon {
+    top: rem-calc(17);
+    right: rem-calc(-4);
+  }
+}
+
+.form-group-lg .control-label .required-icon {
+  top: rem-calc(17);
+  right: rem-calc(-4);
+}
+
+
+// Input control hints (help blocks)
+
+.control-hint, .form-control-hint {
+  display: block;
+  margin: rem-calc(5) 0 rem-calc(5);
+  color: #aaa;
+  font-size: 0.8em;
+  line-height: 1.3;
+}
+
+
+// Controls tweaks
+
+input {
+  outline: 0 !important;
+}
+
+
+// Customized selects
+
+// Mockup (TODO: Move to own partial)
+.select-custom {
+  background: $theme-color;
+  color: rgba(white, 0.8);
+}
+
+%select-control {
+  @include dropdown-caret(#252525);
+
+  select {
+    @extend .no-outline;
+    padding-right: 1.5em;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+
+    box-shadow: none;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+  }
+}
+
+// ?
+.select-control-default {
+  @extend %select-control;
+
+  select {
+    background-color: #eee;
+    @include gradient-vertical(#fff, #eee);
+    box-shadow: 0 1px 2px -1px rgba(black, 0.3);
+  }
+}
+
+@-moz-document url-prefix() {
+  .select-control-default {
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+}
+
+.select-control-flat {
+  $color: $theme-color-black;
+
+  @extend %select-control;
+  @include dropdown-caret($color);
+
+  select {
+    @extend .no-outline;
+    display: block;
+    display: flex;
+    width: 100%;
+    padding: 0.1875rem 1.5em 0.1875rem 0.5rem;
+    background: #eee;
+    font-weight: normal;
+    color: $color;
+    border-radius: 2px;
+    border: none;
+    text-decoration: none;
+  }
+}
+
+.select-control-flat-inverse {
+  $color: $theme-color-black;
+
+  @include dropdown-caret($color);
+
+  background: lighten($theme-color, 55%);
+  color: $color;
+}
+
+// Special styled select-boxes
+.select-simple {
+  // $color: rgba($theme-color, 0.8);
+  @extend .no-outline;
+
+}
+
+.select-simple-inline {
+  display: inline-block;
+}
+
+
+
+// Checkbox (TODO: Remove hacks, clean things out!)
+.checkbox, .checkbox-inline {
+  label {
+    font-size: rem-calc(14);
+    color: rgba(darken($theme-color-black, 15%), 0.7);
+  }
+}
+
+.checkbox {
+  height: rem-calc(27); // Fix for unknown heisenbug on height calculation
+}
+
+
+// Input size tweaks
+
+.input-lg, .form-group-lg .form-control {
+  padding: rem-calc(10) rem-calc(8);
+}
+
+.label-lg,
+.form-horizontal .label-lg,
+.form-group-lg .control-label,
+.form-horizontal .form-group-lg .control-label {
+  padding-top: rem-calc(10);
+  font-size: rem-calc(18);
+}
+
+
+// Form loading modifiers
+
+.form-is-loading {
+  position: relative;
+
+  .fade-on-loading {
+    @include transition-all(0.2s);
+    opacity: 0.5;
+  }
+
+  // Cover the form with invisible layer to prevent accidental clicks, etc
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+
+// HTML5 inputs tweaks
+// Remove Chrome native picker in favor of any pluggable/cross-browser
+
+// ::-webkit-datetime-edit,
+// ::-webkit-datetime-edit-fields-wrapper,
+// ::-webkit-datetime-edit-text,
+// ::-webkit-datetime-edit-month-field,
+// ::-webkit-datetime-edit-day-field,
+// ::-webkit-datetime-edit-year-field,
+// ::-webkit-inner-spin-button,
+// ::-webkit-calendar-picker-indicator {
+//   display: none;
+// }
+
+input {
+  &[type="date"], &[type="month"] {
+    // &::-webkit-input-placeholder {
+    //   visibility: hidden !important;
+    // }
+    // -webkit-appearance: none;
+  }
+}
+
+// Date/time-pickers and selects
+.year-month-select-group {
+  .year-select-control,
+  .month-select-control {
+    display: inline-block;
+  }
+}
+
+.month-select-control {
+  min-width: rem-calc(140);
+  max-width: rem-calc(180);
+}
+
+.year-select-control {
+  min-width: rem-calc(80);
+  max-width: rem-calc(100);
+}
+

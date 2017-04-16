@@ -1,0 +1,65 @@
+/* Content actions/options-related styles */
+
+.item-details-notification {
+  $default-bg-color: lighten($theme-color-inverse, 30%);
+
+  margin: rem-calc(15) rem-calc(25) 0;
+  padding: rem-calc(10) rem-calc(25);
+  font-size: rem-calc(14);
+  font-weight: 300;
+  text-align: center;
+  border-radius: 3px;
+  background: $default-bg-color;
+  @include block-arrow-bottom($default-bg-color);
+
+  color: rgba($theme-color, 0.8);
+
+
+  &.is-processing {
+    $processing-bg-color: lighten($theme-color-inverse, 20%);
+    background: $processing-bg-color;
+    @include block-arrow-bottom($processing-bg-color);
+    color: white;
+  }
+
+  &.is-success {
+    $success-bg-color: #19B180;
+    background: $success-bg-color;
+    @include block-arrow-bottom($success-bg-color);
+    color: white; 
+  }
+}
+
+// Simple reusable in-page notifications
+
+.simple-notification {
+  $default-bg-color: desaturate(mix($theme-color, black, 80%), 20%);
+
+  margin-bottom: rem-calc(10);
+  padding: rem-calc(10) rem-calc(25);
+  font-size: rem-calc(14);
+  font-weight: 300;
+  text-align: center;
+  border-radius: 3px;
+  background: $default-bg-color;
+  color: rgba(white, .9);
+
+  .fa {
+    color: white;
+  }
+
+  a, a.link-underline {
+    color: rgba(white, .9);
+    border-color: rgba(white, .5);
+
+    &:hover, &:focus, &:active {
+      color: white;
+      border-color: white;
+    }
+  }
+
+  &.arrow-after {
+    @include block-arrow-bottom($default-bg-color);
+    margin-bottom: rem-calc(15);
+  }
+}

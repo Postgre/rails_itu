@@ -1,0 +1,29 @@
+.content-padded{'ui-view' => true}
+  .row
+    .col-md-9
+      .table-responsive
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+                %a{data: {'ng-click' => 'setOrder("name")'}}
+                  Name
+                  %i.fa.fa-sort.pull-left{data: {'ng-class' => '{"fa-sort-alpha-asc": (order == "name") &&  !reverse, "fa-sort-alpha-desc": (order == "name") && reverse}'}}
+              %th
+                %a{data: {'ng-click' => 'setOrder("skill_records_count")'}}
+                  Skill records count
+                  %i.fa.fa-sort.pull-left{data: {'ng-class' => '{"fa-sort-alpha-asc": (order == "skill_records_count") &&  !reverse, "fa-sort-alpha-desc": (order == "skill_records_count") && reverse}'}}
+          %tbody
+            %tr{data: {'ng-repeat' => 'skill in skills track by skill.id'}}
+              %td
+                %a{data: {'ui-sref' => '.detail({id: skill.id})', 'ng-bind' => 'skill.name'}}
+              %td{data: {'ng-bind' => 'skill.skill_records_count'}}
+            %tr{data: {'ng-if' => 'nextPageAvailable()'}}
+              %td{colspan: 2}
+                .btn.btn-success{data: {'ng-click' => 'getNextPage()'}}
+                  Load more
+    .col-md-3
+      .bs-sidebar{data: {'bs-affix' => true}}
+        %form.form
+          .form-group
+            %input.form-control{placeholder: 'search by name', data: {'ng-model' => 'search.name_cont', 'ng-change' => 'reload()'}}

@@ -1,0 +1,37 @@
+<!-- Sort order -->
+<div class="filter-group transparent">
+  <header class="filter-group-header filter-group-header-minimal">Sort by</header>
+  <div class="filter-group-content">
+    <div class="filter-select">
+      <select ng-model="listFilter.order">
+        <option value="newest_first">Newest first</option>
+        <option value="oldest_first">Oldest first</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- / Sort order -->
+
+<!-- Filter -->
+<div class="filter-group">
+  <header class="filter-group-header">Visibility options</header>
+
+  <div class="checkbox-filter" ng-class="{ 'is-active': listFilter.isFollowed }">
+    <label>
+      <div class="checkbox-filter-check">
+        <input type="checkbox" ng-model="listFilter.isFollowed">
+      </div>
+      <span class="checkbox-filter-text"><i class="fa fa-star"></i> Followed only</span>
+    </label>
+  </div>
+
+  <div class="checkbox-filter" ng-class="{ 'is-active': listFilter.withJobs }">
+    <label>
+      <div class="checkbox-filter-check">
+        <input type="checkbox" ng-model="listFilter.withJobs">
+      </div>
+      <span class="checkbox-filter-text">With jobs only</span>
+    </label>
+  </div>
+</div>
+<!-- / Filter -->

@@ -1,0 +1,188 @@
+<div class="content-padded">
+  <div class="company-summary">
+    <div class="company-summary-top">
+      <div class="company-brand-logo-block">
+        <div class="company-brand-logo">
+          <img ng-if="company.logoUrl" ng-src="{{ company.logoUrl }}" alt="{{ company.name }}" />
+          <div ng-if="!company.logoUrl" class="item-image-placeholder company-logo-placeholder">
+            <i class="fa fa-camera image-placeholder-icon"></i>
+          </div>
+        </div>
+        <div class="company-logo-upload-block">
+          <div class="upload-btn">
+            <button ng-if="!isFileUploading && !fileUploaded" class="btn btn-block btn-default btn-sm"
+                    bs-popover data-placement="bottom" data-animation="none"
+                    data-template="app/features/company/templates/_logo-upload-popover.html">
+              <i class="fa fa-image"></i> Update logo
+            </button>
+          </div>
+          <div class="upload-info" ng-if="isFileUploading || fileUploaded">
+            <div class="upload-info-label">
+              <span ng-if="isFileUploading"><i class="fa fa-refresh fa-spin"></i> Uploading...</span>
+              <span ng-if="fileUploaded" class="uploaded-label"><i class="fa fa-check"></i> Uploaded</span>
+            </div>
+            <div class="upload-progress" ng-if="isFileUploading">
+              <div class="upload-progress-bar">
+                <div class="upload-progress-bar-current" style="width: {{ uploadProgress }}%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="company-summary-top-main">
+        <div class="company-summary-top-options">
+          <a ui-sref="company.profile.edit" class="btn btn-default icon-btn" bs-tooltip title="Edit company profile information"><i class="fa fa-pencil"></i></a>
+        </div>
+        <span class="company-name">{{ company.name }}</span>
+        <div class="company-location" ng-if="company | fullAddress">
+          <i class="fa fa-map-marker"></i> {{ company | fullAddress }}
+        </div>
+
+        <div class="item-properties has-top-border">
+          <div class="row">
+            <div class="item-property item-property-block col-lg-4"
+                 ng-if="company.industry && company.industry.name">
+              <div class="item-property-label">Industry:</div>
+              <div class="item-property-value ng-binding">{{ company.industry.name }}</div>
+            </div>
+            <div class="item-property item-property-block col-lg-4" ng-if="!company.industry">
+              <div class="company-summary-missing-block">
+                <small>
+                  No business scope is specified.
+                </small>
+              </div>
+            </div>
+            <div class="item-property item-property-block col-lg-4" ng-if="company.companySize">
+              <div class="item-property-label">Company size:</div>
+              <div class="item-property-value ng-binding">{{ company.companySize }}</div>
+            </div>
+            <div class="item-property item-property-block col-lg-4" ng-if="!company.companySize">
+              <div class="company-summary-missing-block">
+                <small>
+                  No company size is specified.
+                </small>
+              </div>
+            </div>
+            <div class="item-property item-property-block col-lg-4">
+              <div class="item-property-label">Status:</div>
+              <div class="item-property-value ng-binding">
+                <div class="company-status-badge"
+                     ng-class="{
+                       'company-status-is-pending': company.isJustCreated() || company.isPending(),
+                       'company-status-is-active': company.isActive(),
+                       'company-status-is-rejected': company.isRejected() || company.isSuspended() }">
+                  <div ng-if="company.isJustCreated()"><i class="fa fa-pencil"></i> Created</div>
+                  <div ng-if="company.isPending()"><i class="fa fa-lock"></i> Pending approval</div>
+                  <div ng-if="company.isRejected()"><i class="fa fa-times-circle"></i> Rejected</div>
+                  <div ng-if="company.isActive()"><i class="fa fa-check"></i> Active</div>
+                  <div ng-if="company.isSuspended()"><i class="fa fa-lock"></i> Suspended</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="item-property item-property-block col-lg-4"
+                 ng-if="company.phoneNumber">
+              <div class="item-property-label">Phone number:</div>
+              <div class="item-property-value ng-binding">{{ company.phoneNumber }}</div>
+            </div>
+            <div class="item-property item-property-block col-lg-4" ng-if="!company.phoneNumber">
+              <div class="company-summary-missing-block">
+                <small>
+                  No phone number is provided.
+                </small>
+              </div>
+            </div>
+
+            <div class="item-property item-property-block col-lg-4" ng-if="company.website">
+              <div class="item-property-label">Website:</div>
+              <div class="item-property-value ng-binding">{{ company.website }}</div>
+            </div>
+            <div class="item-property item-property-block col-lg-4" ng-if="!company.website">
+              <div class="company-summary-missing-block">
+                <small>
+                  No website URL is provided.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="item-properties has-top-border" ng-if="company | fullAddress">
+          <div class="row">
+            <div class="item-property item-property-block col-lg-10">
+              <div class="item-property-label">Address:</div>
+              <div class="item-property-value ng-binding">
+                <i class="fa fa-map-marker"></i>
+                {{ company | fullAddress }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-properties" ng-if="company.users.length">
+          <div class="row">
+            <div class="item-property item-property-block col-lg-12">
+              <div class="item-property-label">Representatives:</div>
+              <div class="item-property-value">
+                <table class="table">
+                  <tr ng-repeat="rep in company.users">
+                    <td>
+                      <div class="user-block-inline">
+                        <div class="user-avatar user-avatar-sm" ng-if="rep.avatarUrl">
+                          <img ng-src="{{ rep.avatarUrl }}">
+                        </div>
+                        <div class="user-name">{{ rep | fullName }}</div>
+                      </div>
+                    </td>
+                    <td>
+                      <span ng-if="!rep.email">-</span>
+                      <a class="link-underline" ng-if="rep.email" href="mailto:{{ rep.email }}">{{ rep.email }}</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bordered-panel">
+          <div class="panel-heading">About</div>
+          <div class="panel-body">
+            <p ng-bind-html="company.aboutUs | nl2br" ng-if="company.aboutUs" class="break-word"></p>
+
+            <div class="company-summary-missing-block" ng-if="!company.aboutUs">
+              No company description yet.
+              <small>
+                Please <a ui-sref="company.profile.edit" class="link-underline">edit</a>
+                the company profile and provide some.
+              </small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard section -->
+  <!--
+  <div class="basic-panel dashboard-panel">
+    <div class="panel-heading has-options">
+      Upcoming interviews
+      <div class="panel-heading-buttons pull-right">
+        <a ui-sref="company.interviews.list" class="btn btn-xxs btn-outline btn-inverse">
+          See all interviews
+        </a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="generic-placeholder">
+        Closest interviews will be here
+      </div>
+    </div>
+  </div>-->
+  <!-- / Dashboard section -->
+</div>

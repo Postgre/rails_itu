@@ -1,0 +1,75 @@
+/* Humanized message styles */
+
+$humanized-msg-bg-color: darken(desaturate($theme-color, 60%), 10%);
+
+// Block
+
+.humanized-msg {
+  @extend .no-outline;
+
+  position: fixed;
+  font-size: rem-calc(30);
+  font-weight: 300;
+  text-align: center;
+  background: rgba($humanized-msg-bg-color, 0.95);
+  color: white;
+}
+
+// Elements
+
+.humanized-msg-icon {
+  opacity: 0.7;
+}
+
+// Modifiers
+// Visual appearance responsively changes (TODO)
+
+.humanized-msg--default {
+  top: 25%;
+  left: 0;
+  right: 0;
+  width: 50%;
+  margin: 0 auto;
+  padding: rem-calc(15) rem-calc(30) rem-calc(18);
+  min-width: rem-calc(500);
+  max-width: rem-calc(800);
+  font-size: rem-calc(36);
+  border-radius: 3px;
+  box-shadow: 0 1px 24px -4px rgba(black, 0.4);
+}
+
+.humanized-msg--top {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.humanized-msg--error {
+  background: rgba($theme-color-error, 0.95);
+}
+
+
+// Animations
+.humanized-msg-animate {
+  @include transition-all(.2s, linear);
+
+  &.ng-enter,
+  &.ng-leave {
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    @include transform(scale(0.95) translate(0, 5px));
+    // @include scale(0.95);
+    // @include translate(0, 10px);
+    opacity: 0;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    @include transform(scale(1) translate(0, 0));
+    // @include scale(1);
+    // @include translate(0, 0);
+    opacity: 1;
+  }
+}

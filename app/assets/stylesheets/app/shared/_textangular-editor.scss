@@ -1,0 +1,55 @@
+// textAngular Rich Text Editor component styling
+
+.ta-scroll-window {
+  min-height: 300px;
+  margin: 0;
+  // margin: rem-calc(10) 0 0;
+
+  [contenteditable], [contenteditable]:focus {
+    @extend .no-outline;
+    outline: none;
+    font-size: rem-calc(14);
+  }
+}
+
+.ta-editor {
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+}
+
+$ta-btn-bg-color: transparent;
+$ta-btn-bg-color-hover: $theme-color;
+
+.ta-toolbar {
+  padding: 0;
+  background: #eee;
+  margin-left: 0;
+
+  .btn-group:first-of-type {
+    margin-left: 0;
+  }
+
+  .btn-group {
+    .btn {
+      border-radius: 0;
+    }
+  }
+
+  .btn {
+    background: $ta-btn-bg-color;
+    font-size: rem-calc(12);
+    min-height: rem-calc(34);
+    min-width: rem-calc(36);
+    color: #333;
+
+    &.active {
+      background: #e5e5e5;
+    }
+
+    &:hover {
+      background: $ta-btn-bg-color-hover;
+      color: white;
+    }
+  }
+}

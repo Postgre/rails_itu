@@ -1,0 +1,7 @@
+Congratulations #{@candidate_name}!
+#{@company_name} has hired you for the #{@job_name} position.
+Please check your interview on ITU Bridge
+= "#{url_for(controller: 'app', action: 'index', only_path: false)}#!/candidate/interviews/#{@interview.id} "
+, or contact the employer directly for additional information.
+Sincerely,
+ITU Bridge Staff.

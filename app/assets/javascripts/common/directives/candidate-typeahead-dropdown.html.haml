@@ -1,0 +1,5 @@
+%ul.typeahead.dropdown-menu{tabindex: '-1', role: 'select', data: {'ng-show' => '$isVisible()'}}
+  %li{data: {'ng-repeat' => 'match in $matches', 'ng-class' => '{active: $index == $activeIndex}'}}
+    %a{role: 'menuitem', tabindex: '-1', data: {'ng-click' => '$select($index, $event)'}}
+      .user-avatar-square-sm.user-avatar-square-inline{'user-avatar-square' => true, :user => 'candidate'}
+      {{ match.label.name }}

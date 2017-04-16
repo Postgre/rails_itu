@@ -1,0 +1,152 @@
+/* Login UI styles */
+
+.login-ui, .register-ui {
+  .login-form, .register-form {
+    padding: 4em;
+
+    .form-group {
+      position: relative;
+      margin-bottom: 2.6em;
+
+      .required-icon {
+        position: absolute;
+        left: -2.2em;
+        top: 1.7em;
+        color: white;
+        font-size: 1.5em;
+        opacity: 0.3;
+      }
+    }
+
+    input {
+      @include transitions-all-ease-out(.2s);
+      padding: 0.3em 0.4em;
+      height: auto;
+      font-size: 3em;
+      border: 2px solid white;
+      background: rgba(255, 255, 255, 0.05);
+      outline: none;
+      box-shadow: none;
+      color: white;
+      @include placeholder(#777);
+      font-weight: 200;
+
+      &:focus {
+        // background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 231, 157, 0.1);
+        @include placeholder(rgba(0, 231, 157, 0.3));
+        border-color: $theme-color-inverse;
+      }
+    }
+
+    &.has-validation-errors {
+      input.ng-invalid.ng-pristine, input.ng-invalid-required {
+        border-color: rgba(255, 77, 77, 1);
+        background: rgba(255, 77, 77, 0.1);
+        @include placeholder(#c75d5d);
+      }
+    }
+  }
+
+  $btn-press-distance: 5px;
+
+  .login-btn, .register-btn {
+    @include transitions-all-ease-out(.1s);
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0.55em 0.4em;
+    font-size: 2.5em;
+    outline: none;
+    border: none;
+    background: $theme-color;
+    color: lighten($theme-color, 50%);
+    box-shadow: none;
+    text-shadow: 0px -1px 0px darken($theme-color, 15%);
+    font-weight: 200;
+    text-transform: uppercase;
+    box-shadow: 0 $btn-press-distance 0 rgba(0, 231, 157, 0.5);
+
+    &:hover, &:focus, &:active {
+      background: lighten($theme-color, 5%);
+      color: white;
+      text-shadow: 0px -1px 0px darken($theme-color, 7%);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 rgba(0, 231, 157, 0.5);
+      @include translate(0, $btn-press-distance);
+    }
+
+    &.btn-state-loading {
+      background: fadeout(lighten($theme-color, 10%), 40%);
+      box-shadow: 0 0 0 rgba(0, 231, 157, 0.5);
+      @include translate(0, $btn-press-distance);
+      text-shadow: none;
+      text-transform: none;
+    }
+
+    &.disabled, &:disabled {
+      background: fadeout(lighten($theme-color, 10%), 20%);
+      box-shadow: 0 $btn-press-distance 0 rgba(0, 231, 157, 0.3);
+      //box-shadow: 0 0 0 rgba(0, 231, 157, 0.5);
+      //.translate(0, $btn-press-distance);
+      text-shadow: none;
+    }
+  }
+
+  .more-options {
+    padding: 0 4em 1em;
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: 200;
+
+    a {
+      color: $theme-color;
+
+      &:focus, &:hover, &:active {
+        color: $theme-color-inverse;
+      }
+    }
+  }
+}
+
+$validation-summary-bg: rgba(214, 69, 69, 1);
+.validation-summary {
+  position: relative;
+  margin-bottom: 2.6em;
+  padding: 1.3em 1.5em;
+  border-radius: 5px;
+  background: $validation-summary-bg;
+  @include gradient-vertical($validation-summary-bg, darken($validation-summary-bg, 5%));
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.4);
+  color: white;
+
+  .validation-errors {
+    font-size: 2em;
+    font-weight: 200;
+
+    &.centerize {
+      text-align: center;
+    }
+  }
+
+  .arrow {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 10px;
+    border-color: transparent;
+    border-style: solid;
+    left: 50%;
+    margin-left: -13px;
+    border-bottom-width: 0;
+    border-top-color: darken($validation-summary-bg, 5%);
+    bottom: -24px;
+    border-width: 12px;
+  }
+}
+
+.registration-success {
+  padding: 4em;
+}

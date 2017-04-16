@@ -1,0 +1,25 @@
+/* Custom breadcrumbs styles */
+
+.main-breadcrumbs {
+  $current-breadcrumb-color: #ccc;
+
+  .breadcrumb {
+    margin: 0;
+    padding: rem-calc(7) rem-calc(15);
+    font-size: rem-calc(13);
+    font-weight: 300;
+    background: transparent;
+
+    > li + li:before {
+      color: rgba($current-breadcrumb-color, 0.5);
+    }
+
+    > .active {
+      color: $current-breadcrumb-color;
+    }
+
+    @media #{$medium-up} {
+      padding: rem-calc(7) rem-calc(20);
+    }
+  }
+}

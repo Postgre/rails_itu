@@ -1,0 +1,36 @@
+<header class="app-header">
+  <div class="app-header-inner navbar top-nav">
+    <div class="navbar-header logo-navbar-header">
+      <a href="/app" ui-sref="index" class="navbar-brand header-logo"><i class="project-logo-icon"></i></a>
+    </div>
+    <nav>
+      <ul class="nav navbar-nav top-nav-main">
+        <li>
+          <a href="/app" ui-sref="index">Home</a>
+        </li>
+        <li>
+          <a xhref="/support" ng-click="openZendeskTicketModal()"><i class="fa fa-info-circle"></i> Support</a>
+        </li>
+      </ul>
+
+      <div class="header-user-block dropdown pull-right">
+        <a class="dropdown-toggle" bs-dropdown data-template="app/core/templates/menu-dropdown.html" data-animation="am-fade" data-delay="5">
+          <div class="user-block user-block-sm">
+            <div class="user-avatar user-avatar" ng-show="accountService.avatarUrl()">
+              <img ng-src="{{ accountService.avatarUrl() }}" />
+            </div>
+            <div class="user-details">
+              <div class="user-name">{{ accountService.name() }} <i class="fa fa-chevron-down"></i></div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <a ui-sref="inbox" class="header-inbox-link pull-right">
+        <span class="badge count-badge" ng-show="accountService.getAccount().unreadMessagesCount" ng-bind="accountService.getAccount().unreadMessagesCount"></span>
+        <i class="fa fa-envelope"></i>
+      </a>
+    </nav>
+
+  </div>
+</header>

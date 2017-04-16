@@ -1,0 +1,14 @@
+// Company status and icons
+
+// TODO: Abstract these from "company" and "user" and make "shared" statuses maybe?
+.company-status-is-pending {
+  color: rgba($theme-color-inverse, 0.5);
+}
+
+.company-status-is-active {
+  color: $theme-color-success;
+}
+
+.company-status-is-rejected, .company-status-is-suspended {
+  color: $theme-color-danger;
+}

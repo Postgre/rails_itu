@@ -1,0 +1,12 @@
+/* Content actions/options-related styles */
+
+.options-section {
+  @extend .clearfix;
+
+  padding: rem-calc(10) rem-calc(35);
+  font-size: rem-calc(14);
+  line-height: rem-calc(30);
+  background: white;
+  color: rgba(black, 0.4);
+  border-bottom: 1px solid rgba(black, 0.1);
+}

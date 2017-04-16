@@ -1,0 +1,43 @@
+sudo: false
+language: ruby
+cache: bundler
+
+services:
+  - elasticsearch
+  - redis-server
+
+rvm:
+  - 2.1.2
+
+# Before we install gems on TravisCI build servers
+before_install:
+#  - sudo apt-get update -qq
+#  - sudo apt-get install -qq freetds-dev
+  - gem install bundler -v 1.10.0
+  - mysql -e "create database itu_bridge_api_test;"
+
+# Before we run our test suite
+before_script:
+  - ./bin/dotenv
+  - cp $TRAVIS_BUILD_DIR/config/database.travis-ci.yml $TRAVIS_BUILD_DIR/config/database.yml
+  - bundle exec rake db:schema:load
+  - bundle exec sidekiq -d -L $TRAVIS_BUILD_DIR/sidekiq.log
+  - sleep 1
+
+script:
+  - bundle exec rspec
+  - bundle exec rake teaspoon
+
+after_failure:
+  - "mysql -e 'show databases;'"
+  - "cat ./config/database.yml"
+  - "echo $RAILS_ENV"
+  - "bundle exec rake --version"
+
+after_success:
+  - "test $TRAVIS_BRANCH == 'develop' && bundle exec cap staging deploy"
+
+notifications:
+  hipchat:
+    rooms:
+      - 750a2db9528261542b5c279d7c1a03@Builds, Deploys, and Notifications

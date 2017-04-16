@@ -1,0 +1,13 @@
+.content-padded{'ui-view' => true}
+  .row
+    .col-md-9
+      .companies{data: {'ng-repeat' => 'company in companies track by company.id', 'company-list-item' => true, company: 'company', aspect: 'staff'}}
+      .btn.btn-success{data: {'ng-click' => 'getNextPage()', 'ng-disabled' => 'controlsDisabled','ng-if' => 'nextPageAvailable()'}}
+        Load more
+    .col-md-3
+      .bs-sidebar{data: {'bs-affix' => true}}
+        %form.form
+          .form-group
+            %input.form-control{placeholder: 'search by name', data: {'ng-model' => 'search.name_cont', 'ng-change' => 'reload()', 'ng-model-options' => '{ debounce: 500 }'}}
+          .form-group
+            %button.btn.btn-default{'bs-select' => true, 'data-animation' => 'am-flip-x', 'data-multiple' => '1', 'ng-model' => 'search.state_in', 'ng-options' => 'state.state as state.name for state in companyStates', type: 'button', 'ng-change' => 'reload()', placeholder: 'States'}

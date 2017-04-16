@@ -1,0 +1,8 @@
+Dear #{@candidate_name}
+Your have been invited to an interview
+= "#{url_for(controller: 'app', action: 'index', only_path: false)}#!/candidate/interviews/#{@interview.id} "
+for the #{@job_name} position by #{@company_name}.
+You may accept or reject invitation, or suggest a different time. Please visit
+ITU Bridge and follow the link to 'Interviews' for more details and options.
+Sincerely,
+ITU Bridge Staff.

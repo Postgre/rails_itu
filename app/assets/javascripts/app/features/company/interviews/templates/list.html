@@ -1,0 +1,31 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Manage</strong> your interviews</h1>
+      <div class="content-sub-heading">
+        Here is the list of interviews you've initiated. Review statuses, candidate time suggestions or cancel interviews.
+      </div>
+    </header>
+
+    <div class="list-blocks interviews-list loading-indicator-container">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': interviews.$loading }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="empty-list-block empty-list-block-lg" ng-if="!interviews.length && !interviews.$loading">
+        <div class="empty-list-icon"><i class="fa fa-comment-o"></i></div>
+        <div class="empty-list-msg">
+          No interviews yet
+        </div>
+        <div class="empty-list-note">
+          Feel free to create new jobs, get recommended candidates for them and invite them to the interviews.
+        </div>
+      </div>
+
+      <!-- Interview -->
+      <div class="list-item-block interview-list-item interview-list-item-is-{{ interview.state }}" interview-list-item ng-repeat="interview in interviews" interview="interview" aspect="company"></div>
+      <!-- / Interview -->
+    </div>
+
+  </div>
+</div>

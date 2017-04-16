@@ -1,0 +1,292 @@
+category_name,skill_name
+Electrical,Circuit Design
+Electrical,Memory Design
+Electrical,Prototype Design
+Electrical,Digital Signaling Processing
+Electrical,FPGA Testing
+Electrical,TS/SCI security clearance
+Electrical,Communication
+Electrical,Team Player
+Electrical,Statistical Analysis
+Business Communication,Communication Skills
+Business Communication,Business Management
+Business Communication,Team Player
+Business Communication,SCRUM
+Management,Training
+Management,Leadership
+Management,Reports
+Management,Public Speaking
+Management,Management Effectiveness
+Management,Career Development
+Management,Coaching
+Management,Interviewing Skills
+Management,Recruiting
+Management,Employee Relations
+Management,Human Resources
+Management,Customer Relationship Management
+Management,Business Planning
+Management,Lean Six Sigma
+Management,Project Management
+Management,Project Implementation
+Management,Business Analysis
+Management,Quality Management
+Management,Budgeting
+Management,Product Life Management
+Management,Team Player
+Software Programming,4th Dimension/4D
+Software Programming,ABAP
+Software Programming,ABC
+Software Programming,ActionScript
+Software Programming,Ada
+Software Programming,Agilent VEE
+Software Programming,Algol
+Software Programming,Alice
+Software Programming,Angelscript
+Software Programming,Apex
+Software Programming,APL
+Software Programming,AppleScript
+Software Programming,Arc
+Software Programming,Arduino
+Software Programming,ASP
+Software Programming,AspectJ
+Software Programming,Assembly
+Software Programming,ATLAS
+Software Programming,Augeas
+Software Programming,AutoHotkey
+Software Programming,AutoIt
+Software Programming,AutoLISP
+Software Programming,Automator
+Software Programming,Avenue
+Software Programming,Awk
+Software Programming,Bash
+Software Programming,(Visual) Basic
+Software Programming,bc
+Software Programming,BCPL
+Software Programming,BETA
+Software Programming,BlitzMax
+Software Programming,Boo
+Software Programming,Bourne Shell
+Software Programming,Bro
+Software Programming,C
+Software Programming,C Shell
+Software Programming,C#
+Software Programming,C++
+Software Programming,C++/CLI
+Software Programming,C-Omega
+Software Programming,Caml
+Software Programming,Ceylon
+Software Programming,CFML
+Software Programming,cg
+Software Programming,Ch
+Software Programming,CHILL
+Software Programming,CIL
+Software Programming,CL (OS/400)
+Software Programming,Clarion
+Software Programming,Clean
+Software Programming,Clipper
+Software Programming,Clojure
+Software Programming,CLU
+Software Programming,COBOL
+Software Programming,Cobra
+Software Programming,CoffeeScript
+Software Programming,ColdFusion
+Software Programming,COMAL
+Software Programming,Common Lisp
+Software Programming,Coq
+Software Programming,cT
+Software Programming,Curl
+Software Programming,D
+Software Programming,Dart
+Software Programming,DCL
+Software Programming,DCPU-16 ASM
+Software Programming,Delphi/Object Pascal
+Software Programming,DiBOL
+Software Programming,Dylan
+Software Programming,E
+Software Programming,eC
+Software Programming,Ecl
+Software Programming,ECMAScript
+Software Programming,EGL
+Software Programming,Eiffel
+Software Programming,Elixir
+Software Programming,Emacs Lisp
+Software Programming,Erlang
+Software Programming,Etoys
+Software Programming,Euphoria
+Software Programming,EXEC
+Software Programming,F#
+Software Programming,Factor
+Software Programming,Falcon
+Software Programming,Fancy
+Software Programming,Fantom
+Software Programming,Felix
+Software Programming,Forth
+Software Programming,Fortran
+Software Programming,Fortress
+Software Programming,(Visual) FoxPro
+Software Programming,Gambas
+Software Programming,GNU Octave
+Software Programming,Go
+Software Programming,Google AppsScript
+Software Programming,Gosu
+Software Programming,Groovy
+Software Programming,Haskell
+Software Programming,haXe
+Software Programming,Heron
+Software Programming,HPL
+Software Programming,HyperTalk
+Software Programming,Icon
+Software Programming,IDL
+Software Programming,Inform
+Software Programming,Informix-4GL
+Software Programming,INTERCAL
+Software Programming,Io
+Software Programming,Ioke
+Software Programming,J
+Software Programming,J#
+Software Programming,JADE
+Software Programming,Java
+Software Programming,Java FX Script
+Software Programming,JavaScript
+Software Programming,JScript
+Software Programming,JScript.NET
+Software Programming,Julia
+Software Programming,Korn Shell
+Software Programming,Kotlin
+Software Programming,LabVIEW
+Software Programming,Ladder Logic
+Software Programming,Lasso
+Software Programming,Limbo
+Software Programming,Lingo
+Software Programming,Lisp
+Software Programming,Logo
+Software Programming,Logtalk
+Software Programming,LotusScript
+Software Programming,LPC
+Software Programming,Lua
+Software Programming,Lustre
+Software Programming,M4
+Software Programming,MAD
+Software Programming,Magic
+Software Programming,Magik
+Software Programming,Malbolge
+Software Programming,MANTIS
+Software Programming,Maple
+Software Programming,Mathematica
+Software Programming,MATLAB
+Software Programming,Max/MSP
+Software Programming,MAXScript
+Software Programming,MEL
+Software Programming,Mercury
+Software Programming,Mirah
+Software Programming,Miva
+Software Programming,ML
+Software Programming,Monkey
+Software Programming,Modula-2
+Software Programming,Modula-3
+Software Programming,MOO
+Software Programming,Moto
+Software Programming,MS-DOS Batch
+Software Programming,MUMPS
+Software Programming,NATURAL
+Software Programming,Nemerle
+Software Programming,Nimrod
+Software Programming,NQC
+Software Programming,NSIS
+Software Programming,Nu
+Software Programming,NXT-G
+Software Programming,Oberon
+Software Programming,Object Rexx
+Software Programming,Objective-C
+Software Programming,Objective-J
+Software Programming,OCaml
+Software Programming,Occam
+Software Programming,ooc
+Software Programming,Opa
+Software Programming,OpenCL
+Software Programming,OpenEdge ABL
+Software Programming,OPL
+Software Programming,Oz
+Software Programming,Paradox
+Software Programming,Parrot
+Software Programming,Pascal
+Software Programming,Perl
+Software Programming,PHP
+Software Programming,Pike
+Software Programming,PILOT
+Software Programming,PL/I
+Software Programming,PL/SQL
+Software Programming,Pliant
+Software Programming,PostScript
+Software Programming,POV-Ray
+Software Programming,PowerBasic
+Software Programming,PowerScript
+Software Programming,PowerShell
+Software Programming,Processing
+Software Programming,Prolog
+Software Programming,Puppet
+Software Programming,Pure Data
+Software Programming,Python
+Software Programming,Q
+Software Programming,R
+Software Programming,Racket
+Software Programming,REALBasic
+Software Programming,REBOL
+Software Programming,Revolution
+Software Programming,REXX
+Software Programming,RPG (OS/400)
+Software Programming,Ruby
+Software Programming,Rust
+Software Programming,S
+Software Programming,S-PLUS
+Software Programming,SAS
+Software Programming,Sather
+Software Programming,Scala
+Software Programming,Scheme
+Software Programming,Scilab
+Software Programming,Scratch
+Software Programming,sed
+Software Programming,Seed7
+Software Programming,Self
+Software Programming,Shell
+Software Programming,SIGNAL
+Software Programming,Simula
+Software Programming,Simulink
+Software Programming,Slate
+Software Programming,Smalltalk
+Software Programming,Smarty
+Software Programming,SPARK
+Software Programming,SPSS
+Software Programming,SQR
+Software Programming,Squeak
+Software Programming,Squirrel
+Software Programming,Standard ML
+Software Programming,Suneido
+Software Programming,SuperCollider
+Software Programming,TACL
+Software Programming,Tcl
+Software Programming,Tex
+Software Programming,thinBasic
+Software Programming,TOM
+Software Programming,Transact-SQL
+Software Programming,Turing
+Software Programming,TypeScript
+Software Programming,Vala/Genie
+Software Programming,VBScript
+Software Programming,Verilog
+Software Programming,VHDL
+Software Programming,VimL
+Software Programming,Visual Basic .NET
+Software Programming,WebDNA
+Software Programming,Whitespace
+Software Programming,X10
+Software Programming,xBase
+Software Programming,XBase++
+Software Programming,Xen
+Software Programming,XPL
+Software Programming,XSLT
+Software Programming,XQuery
+Software Programming,yacc
+Software Programming,Yorick
+Software Programming,Z shell
+Other,

@@ -1,0 +1,421 @@
+/* Website index styles */
+
+// TODO:
+// - Have a completely separate folder for website (different pipeline, another CSS file)
+// - Move generic styles to separate stylesheets
+// - Put very generic reusable blocks (like page-section) into base folder components
+
+
+// GENERIC STUFF
+// =============
+
+// Page structure
+.page-section {
+  padding-bottom: rem-calc(20);
+}
+
+// TWBS .container tweak
+.page-section-container {
+  // max-width: $main-ui-container-width;
+  padding-top: rem-calc(25);
+  padding-bottom: rem-calc(25);
+}
+
+.page-section-header {
+  padding-top: rem-calc(24);
+  padding-bottom: rem-calc(24);
+}
+
+.page-section-heading {
+  margin: 0;
+  font-size: rem-calc(32);
+  font-weight: 300;
+  color: #252525;
+
+  &.page-section-heading-center {
+    text-align: center;
+  }
+}
+
+.page-section-sub-heading {
+  margin: 0;
+  font-size: rem-calc(32);
+  font-weight: 300;
+
+  &.page-section-sub-heading-center {
+    text-align: center;
+  }
+}
+
+// Very generic block
+.icon-description-block {
+  margin-bottom: rem-calc(20);
+
+  .block-icon {
+    width: rem-calc(70);
+    height: rem-calc(70);
+    margin: 0 auto;
+    border-radius: rem-calc(40);
+    font-size: rem-calc(30);
+    line-height: rem-calc(70);
+    background: $theme-color;
+    color: white;
+    text-align: center;
+  }
+
+  .block-body {
+    h2 {
+      font-size: rem-calc(20);
+      font-weight: 300;
+      text-align: center;
+    }
+
+    p {
+      font-size: rem-calc(13);
+      line-height: rem-calc(21);
+      color: #7F8C8D;
+      text-align: center;
+    }
+  }
+}
+
+// Site-specific modifiers
+.page-section-light-teal {
+  background: desaturate(lighten($theme-color, 45%), 50%);
+}
+
+.page-section-teal {
+  background: $theme-color;
+}
+
+.page-section-dark-teal {
+  background: desaturate(darken($theme-color, 5%), 50%);
+}
+
+
+// Site-specific stuff
+.site-header {
+  background: white;
+  background: $theme-color;
+  box-shadow: 0 1px 3px -2px rgba(black, 0.4);
+  z-index: 10;
+
+  &.site-header-special {
+    // background: transparent;
+    background: rgba(lighten($theme-color, 15%), 0.6);
+    box-shadow: none;
+  }
+}
+
+.site-header-container {
+  @extend .clearfix;
+  @extend .container;
+  // width: $main-ui-container-width;
+  padding: 0;
+}
+
+.site-logo {
+  display: block;
+  width: rem-calc(175);
+  height: rem-calc(30);
+  background: image-url('itu-bridge-logo.svg') top left no-repeat;
+}
+
+.site-logo-inverse {
+  background: image-url('itu-bridge-logo-inverse.svg') top left no-repeat;
+}
+
+.index-top-page-section {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  // background: $theme-color;
+  // @include gradient-radial(lighten($theme-color, 10%), darken($theme-color, 18%));
+  background: $theme-color-inverse;
+  
+  $lowborder-color: lighten($theme-color, 5%);
+  border-bottom: 8px solid $lowborder-color;
+  @include block-arrow-bottom-inner($lowborder-color, rem-calc(20));
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &:after {
+    z-index: 2;
+  }
+
+  &:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: image-url('media/golden-gate-photo-teal-over.jpg');
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+
+// Site nav
+.site-top-nav {
+  > li > a {
+    font-size: rem-calc(14);
+    padding: rem-calc(25) rem-calc(20);
+    line-height: rem-calc(20);
+    font-weight: 300;
+    color: rgba($theme-color-black, 0.8);
+
+    &:hover, &:focus, &:active, &.active {
+      color: black;
+      background: rgba($theme-color-inverse, 0.05);
+    }
+
+    &.active {
+      background: rgba($theme-color-inverse, 0.15);
+    }
+  }
+}
+
+.site-top-nav-inverse {
+  > li > a {
+    color: rgba(white, 0.8);
+
+    &:hover, &:focus, &:active, &.active {
+      color: white;
+    }
+  }
+}
+
+// Site buttons
+
+.site-top-nav-buttons {
+  padding: rem-calc(17) 0 rem-calc(17) rem-calc(15);
+  color: rgba(white, 0.25);
+}
+
+.sign-up-btn, .sign-in-btn {
+  min-width: rem-calc(100);
+}
+
+// Site intro block
+.site-intro {
+  @extend .clearfix;
+  margin-top: rem-calc(20);
+  margin-bottom: rem-calc(20);
+  padding-top: rem-calc(30);
+  padding-bottom: rem-calc(30);
+  border-radius: 4px;
+  // background: rgba(black, 0.3);
+  color: white;
+  @include gradient-vertical(rgba(black, 0.35), rgba(black, 0.1));
+}
+
+.site-intro-l, .site-intro-r {
+  position: relative;
+  float: left;
+  width: 50%;
+  height: rem-calc(350);
+}
+
+.site-intro-l {
+  background: rgba(black, 0.15);
+  padding: rem-calc(20);
+}
+
+.site-intro-r {
+  overflow: hidden;
+  text-align: right;
+
+  img {
+    margin: 0 auto;
+    max-height: 100%;
+  }
+}
+
+.site-intro-text {
+  font-size: rem-calc(40);
+  font-weight: 100;
+  color: white;
+
+  strong {
+    font-weight: 300;
+  }
+
+  p {
+    margin: 0 0 rem-calc(10);
+    font-size: rem-calc(34);
+  }
+}
+
+.intro-sign-up-btn {
+  display: block;
+  max-width: rem-calc(300);
+  margin: rem-calc(15) auto;
+  padding: rem-calc(18);
+  font-size: rem-calc(24);
+  border-width: 2px;
+  background: $theme-color;
+  box-shadow: 0 1px 10px -2px rgba(black, 0.3);
+  color: white;
+  text-shadow: 0 -1px 0 rgba(black, 0.2);
+  // position: absolute;
+  // bottom: rem-calc(20);
+  
+  &:hover, &:focus, &:active {
+    text-shadow: none;
+    color: black;
+    background: white;
+  }
+}
+
+.intro-text {
+  text-align: center;
+  font-weight: 300;
+}
+
+.intro-text-divider {
+  margin: rem-calc(30) auto rem-calc(20);
+  width: rem-calc(200);
+  height: 1px;
+  border-top: 1px solid rgba(white, 0.4);
+}
+
+// Slight restyling
+.intro-text-top {
+  font-size: rem-calc(28);
+}
+
+$intro-brand-logo-scale: 4;
+
+.intro-text-brand {
+  margin: rem-calc(15) auto;
+  width: rem-calc(128) * $intro-brand-logo-scale;
+  height: rem-calc(30) * $intro-brand-logo-scale;
+  background: image-url('itu-bridge-logo-short-inverse.svg') center center no-repeat;
+  background-size: cover;
+}
+
+.intro-text-desc {
+  font-size: rem-calc(22);
+}
+
+.intro-text-links {
+  margin-bottom: rem-calc(30);
+  padding: 0 rem-calc(30);
+  font-size: rem-calc(30);
+
+  a {
+    font-weight: normal;
+    color: lighten($theme-color, 40%);
+    border-color: rgba(white, 0.5);
+
+    &:hover, &:focus, &:active {
+      color: white;
+      background-color: rgba(white, 0.15);
+      border-color: rgba(white, 0.8);
+    }
+  }
+}
+
+.related-brands {
+}
+
+.related-brand-item {
+  text-align: center;
+}
+
+.related-brand-logo {
+  max-width: rem-calc(100);
+  opacity: 0.5;
+
+  img {
+    max-width: 100%;
+  }
+
+  &:hover, &:focus, &:active {
+    opacity: 1;
+  }  
+}
+
+.reasons-list {
+  margin: rem-calc(20) 0;
+}
+
+// Site footer
+.site-footer {
+  // min-height: rem-calc(200);
+  padding: rem-calc(40);
+  background: $theme-color-black;
+  color: white;
+}
+
+.site-footer-container {
+  padding-top: 0;
+}
+
+.site-footer-project-logo {
+  display: block;
+  width: rem-calc(120);
+  height: rem-calc(28);
+  margin: 0 auto rem-calc(30);
+  background: image-url('itu-bridge-logo-short-inverse.svg') top left no-repeat;
+  background-size: cover;
+  opacity: .3;
+}
+
+.site-footer-nav {
+  margin-bottom: rem-calc(30);
+  font-size: rem-calc(16);
+  font-weight: 300;
+  text-align: center;
+
+  .site-footer-nav-divider {
+    display: inline;
+    margin-right: rem-calc(15);
+    color: rgba(white, .4);
+  }
+
+  a {
+    display: inline-block;
+    padding-bottom: rem-calc(2);
+    color: rgba(white, .6);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+
+    &:not(:last-child) {
+      margin-right: rem-calc(15);
+    }
+
+    &:hover, &:focus, &:active {
+      color: white;
+      border-bottom: 1px solid #aaa;
+    }
+
+    &.active {
+      color: mix($theme-color, white, 50%);
+    }
+  }
+}
+
+.copyrights {
+  font-size: rem-calc(14);
+  font-weight: 300;
+  text-align: center;
+}
+
+
+// Company Sign-up form tweaks
+.company-sign-up-form {
+  padding: rem-calc(20);
+  background: white;
+
+  .form-hint {
+    color: #999;
+  }
+}

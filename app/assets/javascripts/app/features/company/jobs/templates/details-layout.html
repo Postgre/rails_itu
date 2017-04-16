@@ -1,0 +1,55 @@
+<div class="content">
+  <div class="options-section">
+    <i class="fa fa-arrow-circle-left"></i> <a ui-sref="company.jobs.list" class="link-underline">Back to jobs</a>
+  </div>
+
+  <header class="content-header job-details-header">
+    <div class="pull-right">
+      <button type="button" ng-if="job.canBePublished()" ng-click="publish()" class="btn btn-outline btn-xs"><i class="fa fa-eye"></i> Publish</button>
+
+      <a ng-if="job.isDraft() || job.isPublished()" ui-sref="company.jobs.edit({ jobId: job.id })" class="btn icon-btn" bs-tooltip title="Edit this position"><i class="fa fa-pencil"></i></a>
+      <button type="button" ng-if="job.canBeClosed()" ng-click="close()" class="btn icon-btn btn-xs" bs-tooltip title="Close position"><i class="fa fa-archive"></i></button>
+    </div>
+
+    <h1 class="job-heading">
+      {{ job.title }}
+      <span class="job-status job-status-is-{{ job.state }}">
+        <i class="fa fa-check" ng-if="job.isFilled()"></i>
+        <i class="fa fa-archive" ng-if="job.isClosed()"></i>
+        {{ job.state | jobStatus }}
+      </span>
+    </h1>
+    <div class="job-sub-heading" ng-if="company.name">at <strong>{{ company.name }}</strong></div>
+  </header>
+
+  <div class="content-body no-top-padding content-padded">
+
+    <ul class="nav nav-tabs nav-tabs-outline nav-tabs-outline-thick">
+      <li><a ui-sref="company.jobs.details.overview" ng-class="{ 'is-active': $state.is('company.jobs.details.overview') }">Overview</a></li>
+      <li ng-if="!job.isDraft()">
+        <a ui-sref="company.jobs.details.recommendations" ng-class="{ 'is-active': $state.includes('company.jobs.details.recommendations') }">
+          Recommended candidates
+          <span class="badge recommended-candidates-badge" ng-if="job.recommendedCandidatesCount">{{ job.recommendedCandidatesCount }}</span>
+        </a>
+      </li>
+      <li ng-if="!job.isDraft()">
+        <a ui-sref="company.jobs.details.applies" ng-class="{ 'is-active': $state.includes('company.jobs.details.applies') }">
+          Applied candidates
+          <span class="badge recommended-candidates-badge" ng-if="job.appliedCandidatesCount">{{ job.appliedCandidatesCount }}</span>
+        </a>
+      </li>
+      <li ng-if="!job.isDraft()"><a ui-sref="company.jobs.details.interviews" ng-class="{ 'is-active': $state.includes('company.jobs.details.interviews') }">Interviews</a></li>
+
+      <li ng-if="job.isDraft()">
+        <a class="tab disabled" ng-class="{ 'is-active': $state.is('company.jobs.details.recommendations') }"
+           bs-tooltip title="Will be available after publishing">Recommended candidates</a>
+      </li>
+      <li ng-if="job.isDraft()">
+        <a class="tab disabled" ng-class="{ 'is-active': $state.includes('company.jobs.details.interviews') }"
+           bs-tooltip title="Will be available after publishing">Interviews</a>
+      </li>
+    </ul>
+
+    <div ui-view></div>
+  </div>
+</div>

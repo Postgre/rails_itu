@@ -1,0 +1,11 @@
+New company application is here:
+%br/
+= @company.name
+%br/
+%br/
+Submitted by #{@company.users.first.email}
+%br/
+Please review it on
+%a{href: @url}
+  = @url
+%br/

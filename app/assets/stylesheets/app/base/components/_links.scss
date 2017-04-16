@@ -1,0 +1,46 @@
+/* Custom links styles */
+
+a {
+  @extend .no-outline;
+}
+
+.link-underline {
+  // display: inline-block;
+  display: inline;
+  margin-bottom: rem-calc(-2);
+  padding-left: 0;
+  padding-right: 0;
+  // padding-top: rem-calc(2);
+  // padding-bottom: rem-calc(2);
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  border-color: #ddd;
+  // vertical-align: middle;
+  font-weight: 300;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover, &:focus, &:active {
+    color: $link-color;
+    border-color: $link-color;
+    box-shadow: none;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: black;
+    border-color: black;
+  }
+}
+
+.link-underline-inverse {
+  color: white;
+  border-color: rgba(white, 0.3);
+
+  &:hover, &:focus, &:active {
+    color: white;
+    border-color: white;
+  }
+}

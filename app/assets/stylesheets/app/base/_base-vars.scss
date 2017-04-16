@@ -1,0 +1,41 @@
+/* Base variables */
+
+// Redifineable/overridable in project-specific _vars.scss files
+
+// Base units
+// ==========
+$base-font-size: 16px;
+$rem-base: $base-font-size;
+
+
+// Base colors
+// ===========
+
+// Default theme colors
+$theme-color: #09b39c;
+$theme-color-inverse: #3a454f;
+$theme-color-grey: #ccc;
+$theme-color-darkgrey: #999;
+$theme-color-black: #333;
+$theme-color-danger: #db1616;
+$theme-color-error: #E53A48;
+$theme-color-warning: #db1616;
+$theme-color-success: #00c47f;
+
+
+// Default element colors
+$link-color: #428bca;
+$positive-color: #19B180;
+$error-color: #E53A48;
+
+
+// Default button colors
+$btn-primary-color: $theme-color;
+$btn-secondary-color: lighten($btn-primary-color, 10%);
+
+
+// Theme fonts
+// ===========
+
+$theme-font: 'Lato', 'Proxima Nova', 'Helvetica Neue', 'Helvetica', sans-serif;
+$theme-font-secondary: 'Tinos', serif;

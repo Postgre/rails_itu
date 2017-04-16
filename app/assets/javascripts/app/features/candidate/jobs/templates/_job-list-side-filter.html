@@ -1,0 +1,51 @@
+<!-- Sort order -->
+<div class="filter-group transparent">
+  <header class="filter-group-header filter-group-header-minimal">Sort by</header>
+  <div class="filter-group-content">
+    <div class="filter-select">
+      <select ng-model="listFilter.order">
+        <option value="unmatched_skill_count">Matching skills</option>
+        <option value="last_state_change_at">Date published</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- / Sort order -->
+
+<!-- Filter -->
+<div class="filter-group">
+  <header class="filter-group-header">Schedule</header>
+  <div class="filter-group-content">
+    <nav class="nav-filter">
+      <a ui-sref="{ schedule: null, page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': !listFilter.schedule }">
+        Any
+      </a>
+      <a ui-sref="{ schedule: '0', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.schedule === '0' }">
+        Full-time
+      </a>
+      <a ui-sref="{ schedule: '1', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.schedule === '1' }">
+        Part-time
+      </a>
+    </nav>
+  </div>
+</div>
+<!-- / Filter -->
+
+<!-- Filter (facet) -->
+<div class="filter-group" ng-if="filterFacets.data.skillName.terms">
+  <header class="filter-group-header">Skills</header>
+  <div class="filter-group-content">
+    <nav class="nav-filter">
+      <a ng-repeat="facetTerm in filterFacets.data.skillName.terms" ui-sref="{ skillName: facetTerm.term, page: null }"
+         class="nav-filter-link skill-nav-filter-link has-counter"
+         ng-class="{ 'is-active': listFilter.skillName === facetTerm.term, 'is-zero-count': !facetTerm.count }">
+        <span class="nav-filter-link-count-badge pull-right">{{ facetTerm.count }}</span>
+        {{ facetTerm.term }}
+      </a>
+    </nav>
+  </div>
+</div>
+<!-- / Filter (facet) -->

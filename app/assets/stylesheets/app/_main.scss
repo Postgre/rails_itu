@@ -1,0 +1,106 @@
+/* App styles hub file */
+
+// Normalize / TWBS (Bootstrap)
+// @import "../../lib/bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
+
+// Make sure bootstrap is included before custom styles
+@import "bootstrap-sass-official";
+
+// Variables init
+@import "base/base-vars";
+@import "vars";
+
+// Base
+// ====
+@import "base/base";
+
+// Shared
+// ======
+@import "shared/animations";
+@import "shared/misc";
+@import "shared/spinners";
+@import "shared/buttons";
+@import "shared/breadcrumbs";
+@import "shared/list-group";
+@import "shared/list-blocks";
+@import "shared/search-block";
+@import "shared/options-section";
+@import "shared/item-details-notifications";
+@import "shared/datepicker";
+@import "shared/date-time-picker";
+@import "shared/textangular-editor";
+@import "shared/angular-motion";
+@import "shared/select2";
+@import "shared/list-filters";
+@import "shared/notification-dialog";
+@import "shared/comments";
+@import "shared/file-icons";
+
+// Core
+// ====
+@import "core/body";
+@import "core/layouts";
+@import "core/nav";
+@import "core/header";
+@import "core/footer";
+@import "core/main-content";
+@import "core/role-select-block";
+// @import "core/sidebar";
+// @import "core/footer";
+
+
+// ***
+
+// ===========
+// Modules
+// ===========
+
+// # Splash
+@import "shared/splash";
+
+// # Sign-up
+@import "sign-up/sign-up";
+
+// # Authentication
+@import "login/login";
+
+// # Account management
+@import "account/account";
+
+// # Shared app-specific features
+@import "interviews/interviews-list";
+@import "interviews/interview-details";
+@import "jobs/job";
+@import "jobs/job-status";
+@import "jobs/jobs-list";
+@import "skills/skills-base";
+@import "resume/resume";
+@import "resume/resume-records";
+@import "resume/resume-education-courses";
+@import "users/users";
+@import "companies/companies";
+@import "candidates/candidates";
+@import "staff/staff";
+
+// # Candidate
+
+// # Company
+@import "company/company";
+@import "company/company-sign-up-progress";
+@import "company/candidates-list";
+@import "company/company-logo-uploader";
+
+// # Staff / Reporting
+@import "reporting/stat-dashboard";
+
+// # Zendesk ticket
+@import "shared/zendesk";
+
+@import "bootstrap-additions";
+
+
+// TEMP Theme tweaks
+// @import "theme-1";
+// @import "theme-2";
+// @import "theme-3";
+// @import "theme-4";

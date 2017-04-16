@@ -1,0 +1,12 @@
+<div class="simple-notification" ng-if="job.isPublished() && job.recommendedCandidatesCount">
+  <i class="fa fa-bell"></i> You have
+  <span ng-pluralize count="job.recommendedCandidatesCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+  recommended for this job. Make sure to
+  <strong>
+    <a ui-sref="company.jobs.details.recommendations({ jobId: job.id })" class="link-underline">
+      check out the recommendations
+    </a>
+  </strong>
+</div>
+
+<div job-overview company="company" job="job" hide-header="true"></div>

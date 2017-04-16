@@ -1,0 +1,137 @@
+// Company Logo uploader UI element
+.company-logo-upload-block {
+
+  .upload-btn {
+    .popover {
+      z-index: 10;
+      padding: 0;
+      border: 0;
+      border-radius: 3px;
+
+      .popover-layer {
+        background: transparent;
+        position: fixed;
+        z-index: 0;
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+
+      .arrow {
+        border-width: 7px;
+
+
+        &:after {
+          content: none;
+        }
+      }
+
+      &.bottom .arrow {
+        top: -14px;
+        margin-left: -7px;
+        border-bottom-color: #ccc;
+      }
+
+      .popover-content {
+        z-index: 10;
+        border-top: 3px solid #ccc;
+        border-radius: 3px 3px 0 0;
+      }
+    }
+
+
+  }
+
+  .upload-form {
+    min-width: rem-calc(200);
+  }
+
+  .upload-form-file-select {
+    overflow: hidden;
+    max-width: rem-calc(200);
+    padding: rem-calc(5) rem-calc(12);
+    font-size: rem-calc(14);
+    border: 1px solid #eee;
+    border-radius: 3px;
+    text-align: center;
+    text-overflow: ellipsis;
+
+    &.is-selected {
+      color: black;
+    }
+  }
+
+  .upload-form-arrow {
+    margin-top: rem-calc(5);
+    font-size: rem-calc(13);
+    color: #ddd;
+  }
+
+  .upload-form-buttons {
+    margin-top: rem-calc(5);
+    text-align: center;
+
+    button {
+      width: rem-calc(80);
+    }
+  }
+
+  .upload-info {
+
+  }
+
+  .upload-info-label {
+    color: #ccc;
+    text-align: center;
+    font-size: rem-calc(14);
+
+    .uploaded-label {
+      color: $theme-color-success;
+    }
+  }
+
+  .upload-progress {
+    margin-top: rem-calc(5);
+  }
+
+  .upload-progress-bar {
+    height: rem-calc(7);
+    border-radius: 2px;
+    background: #eee;
+    overflow: hidden;
+
+    .upload-progress-bar-current {
+      width: 0;
+      height: rem-calc(7);
+      background: $theme-color-success;
+    }
+  }
+
+
+}
+
+// In-form logo upload block
+$company-logo-in-form-image-size: rem-calc(100);
+
+.company-logo-in-form {
+  display: inline-block;
+  padding: rem-calc(5);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1px 7px -2px rgba(black, 0.4);
+
+  img {
+    max-height: $company-logo-in-form-image-size;
+    border-radius: 1px;
+  }
+}
+
+.company-logo-upload-in-form {
+  .option-buttons .btn {
+    margin-top: rem-calc(5);
+    width: $company-logo-in-form-image-size;
+    font-weight: 300;
+  }
+}
+

@@ -1,0 +1,11 @@
+.content
+  .content-padded
+    .empty-list-block.empty-list-block-lg{data: {'ng-if' => '!recommendations.length'}}
+      .empty-list-icon
+        %i.fa.fa-male
+      .empty-list-msg
+        No recommendations yet
+      .empty-list-note
+        No recommended candidates are found just yet.
+    .list-item-block.candidate-list-item{data: {'ng-repeat' => 'candidate in recommendations', 'candidate-list-item' => true, candidate: 'candidate', job: 'job', company: 'company', aspect: 'staff'}}
+

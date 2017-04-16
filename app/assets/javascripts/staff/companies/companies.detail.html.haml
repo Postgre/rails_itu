@@ -1,0 +1,41 @@
+.content
+  .row{data: {'ng-show' => 'company.state == "pending"'}}
+    .col-md-6
+      %a.btn.btn-block.btn-success.add-item-wide-btn{'ng-click' => 'accept(company)', 'ng-show' => 'company.state == "pending"'}
+        %i.fa.fa-check
+        Accept
+    .col-md-6
+      %a.btn.btn-block.btn-danger.add-item-wide-btn{'ng-show' => 'company.state == "pending"', template: 'staff/companies/confirm-reject-popover.html', 'bs-popover' => true, placement: 'bottom'}
+        %i.fa.fa-close
+        Reject
+  .row{data: {'ng-show' => 'company.state == "accepted" || company.state == "banned"'}}
+    .col-md-3.col-md-offset-9
+      %a.btn.btn-block.btn-danger.add-item-wide-btn{'ng-click' => 'ban(company)', 'ng-show' => 'company.state == "accepted"'}
+        %i.fa.fa-ban
+        Suspend
+      %a.btn.btn-block.btn-success.add-item-wide-btn{'ng-click' => 'unban(company)', 'ng-show' => 'company.state == "banned"'}
+        %i.fa.fa-ban
+        Unsuspend
+  .section{data: {'company-summary' => true, company: 'company'}}
+  .basic-panel
+    .panel-heading.has-options
+      Company Representatives
+      -#.panel-heading-buttons.pull-right
+      -#  %a.btn.btn-xxs.btn-outline.btn-inverse{"ui-sref" => ".reps"}
+      -#    %i.fa.fa-pencil
+      -#    Manage Reps
+    .panel-body
+      .row{data: {'ng-repeat' => 'user in company.users'}}
+        .col-md-6
+          {{user.firstName}} {{user.middleName}} {{user.lastName}}
+        .col-md-3
+          %a{data: {'ng-bind' => 'user.email', 'ng-href' => 'mailto:{{user.email}}'}, target: '_blank'}
+        .col-md-3
+          .pull-right
+            %a.btn.btn-warning.btn-xs{data: {'ng-click' => 'become(user)', title: 'login as user', 'bs-tooltip' => true}}
+              %i.fa.fa-key
+  .basic-panel
+    .panel-heading.has-options
+      Comments
+    .panel-body
+      .section{data: {'comments' => true, commentable: 'company', 'commentable-type' => '"company"', 'is-staff' => 'true'}}

@@ -1,0 +1,206 @@
+/ Fixed Navbar
+%nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+  .container
+    .navbar-header.page-scroll
+      %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/#page-top"}
+        %img{:src => asset_path('home/logo.jpg')}/
+        %span.text-uppercase Bridge
+    / Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav.navbar-right
+        / Hidden li included to remove active class from about link when scrolled up past about section
+        %li.page-scroll{'ng-if' => '!currentUser.isAuthenticated'}
+          %a.text-uppercase{:href => "#{Rails.application.config.id_url + '/login?client_id=' + ENV.fetch('ID_TOKEN')}"} Sign In
+        %li.page-scroll{'ng-if' => 'currentUser.isAuthenticated'}
+          %a.text-uppercase{:href => '/app'} Go to App
+        %li.vertical-divider.hidden-xs
+        %li.page-scroll
+          %a.text-uppercase{'ng-click' => 'showZendeskModal()'} Support
+    / /navbar-collapse
+  / /container
+/ /navbar
+/ Intro Wrap
+%section#intro.introwrap
+  .slider
+    #slider.sl-slider-wrapper
+      .sl-slider
+        .sl-slide{"data-orientation" => "horizontal", "data-slice1-rotation" => "-25", "data-slice1-scale" => "2", "data-slice2-rotation" => "-25", "data-slice2-scale" => "2"}
+          .sl-slide-inner
+            .bg-img.bg-img-1
+              %h2
+                Find the best candidates with
+                %br/
+                the right skills for your company.
+              %h4
+                Bridge instantly matches you with
+                %strong available
+                industry-ready
+                %strong professionals
+                = succeed "with" do
+                  %br/
+                verified credentials from
+                %strong International Technological University.
+              %a{'ng-click' => 'scrollTo("sign-up-heading")'}
+                Post a job
+              %h3 Companies that have hired our ITU candidates
+              .logos.hidden-xs.visible-md.visible-lg
+                %div
+                  %span.google-logo
+                  %span.ibm-logo
+                  %span.hp-logo
+                  %span.visa-logo
+                  %span.oracle-logo
+                  %span.ebay-logo
+                %div
+                  %span.cisco-logo
+                  %span.wellsfargo-logo
+                  %span.apple-logo
+                  %span.netapp-logo
+                  %span.microsoft-logo
+                  %span.vmware-logo
+      / /sl-slider
+    / /slider-wrapper
+  / /container
+/ /introwrap
+/ About Wrap
+%section#about.aboutwrap
+  .container.text-center
+    %h2 Why hire through Bridge?
+    %hr
+      .row
+        .col-lg-3
+          %img{:src => asset_path('home/jobs.png')}/
+          %h4.text-uppercase Post Jobs
+          %p Post jobs easily using Bridge’s simple interface. Quickly list the requirements you need by clicking from our complete list of skill sets.
+        .col-lg-3
+          %img{:src => asset_path('home/matching.png')}/
+          %h4.text-uppercase Matching
+          %p Bridge does the searching for you! As soon as you submit your job post you will instantly get a list of available candidates that match your requirements.
+        .col-lg-3
+          %img{:src => asset_path('home/verification.png')}/
+          %h4.text-uppercase Verification
+          %p Candidate’s academic credentials and courswork are verified by ITU to bring you up-to-date and accurate candidate profiles.
+        .col-lg-3
+          %img{:src => asset_path('home/manage.png')}/
+          %h4.text-uppercase Manage
+          %p Manage the status of your job postings, invite candidates for interviews, and communicate within your dashboard.
+      / /row
+      %br
+        %br
+  / /container
+  .spacer
+    .container.text-center
+      .row
+        .col-sm-5.col-sm-offset-1
+          %h2#sign-up-heading Start finding canditates now
+          %hr.signup-divider
+
+            %form#signup.index-sign-up-form{role: "form", name: "companySignUpForm", "ng-init" => "isAgreed = false", autocomplete: 'off', novalidate: 'true', data: {'ng-submit' => 'newCompanyRegistration(company)'}}
+              .form-group
+                %input.form-control{:placeholder => "Company Name", :type => "text", 'ng-model' => 'company.name'}/
+                .hint-validation-error{data: {'ng-if' => 'errors.name'}}
+                  %div{data: {'ng-repeat' => 'field_error in errors.name'}}
+                    Company name {{ field_error }}
+              .form-group
+                %input.form-control{:placeholder => "Email", :type => "text",'ng-model' => 'company.users_attributes.email'}/
+                .hint-validation-error{data: {'ng-if' => 'errors.email'}}
+                  %div{data: {'ng-repeat' => 'field_error in errors.email'}}
+                    Email {{ field_error }}
+              .form-group.row
+                .col-sm-6.form-group-row-col
+                  %input.form-control{:placeholder => "First Name", :type => "text", 'ng-model' => 'company.users_attributes.first_name'}/
+                  .hint-validation-error{data: {'ng-if' => 'errors.first_name'}}
+                    %div{data: {'ng-repeat' => 'field_error in errors.first_name'}}
+                      First name {{ field_error }}
+                .col-sm-6.form-group-row-col
+                  %input.form-control{:placeholder => "Last Name", :type => "text", 'ng-model' => 'company.users_attributes.last_name'}/
+                  .hint-validation-error{data: {'ng-if' => 'errors.last_name'}}
+                    %div{data: {'ng-repeat' => 'field_error in errors.last_name'}}
+                      Last name {{ field_error }}
+              .form-group.row
+                .col-sm-6.form-group-row-col
+                  %input.form-control{:placeholder => "Password", :type => "password", 'ng-model' => 'company.users_attributes.password'}/
+                  .hint-validation-error{data: {'ng-if' => 'errors.password'}}
+                    %div{data: {'ng-repeat' => 'field_error in errors.password'}}
+                      Password {{ field_error }}
+                .col-sm-6.form-group-row-col
+                  %input.form-control{:placeholder => "Password Confirmation", :type => "password", 'ng-model' => 'company.users_attributes.password_confirmation'}/
+                  .hint-validation-error{data: {'ng-if' => 'errors.password_confirmation'}}
+                    %div{data: {'ng-repeat' => 'field_error in errors.password_confirmation'}}
+                      Confirmation {{ field_error }}
+              .form-group
+                %input.form-control{:placeholder => "Phone Number", :type => "text", 'ng-model' => 'company.phone_number'}/
+                .hint-validation-error{data: {'ng-if' => 'errors.phone_number'}}
+                  %div{data: {'ng-repeat' => 'field_error in errors.phone_number'}}
+                    Phone number {{ field_error }}
+              .form-group
+                .checkbox.js-terms-checkbox
+                  %label.index-checkbox-label
+                    %input#isAgreed{ "ng-model" => "isAgreed", type: "checkbox"}/
+                    I have read and agree with ITU
+                    = link_to 'Terms of Service', page_path('terms')
+                    and
+                    = link_to 'Privacy Policy', page_path('privacy-policy')
+              %button.btn-submit-company.index-sign-up-submit-btn{type: 'submit', "ng-click" => 'submitOrHighlightCheckbox(isAgreed, $event)'} Join Bridge
+    / /container
+  / /spacer
+/ /aboutwrap
+/ Services Wrap
+%section#services.serviceswrap
+  .container
+    .row.text-left
+      .col-md-6
+        .testimonial-info
+          %span.testimonial-title About ITU Bridge
+          %br
+            %span.testimonial-content Bridge is backed by ITU, a trusted and respected graduate university with over 20 years of accomplished history.
+      .col-md-6
+        .testimonial-info
+          %img{:align => "left", :src => asset_path('home/jane.png')}
+            %span.testimonial-title.around_text Nishitha Deepti - Tech Wired Solutions
+            %br
+              %span.testimonial-content.italic.around_text “In my experience, Bridge's services have been a quick and responsive way to work with candidates.”
+      / .col-md-4
+      /   .testimonial-info
+      /     %span.testimonial-title Get Bridge for your university
+      /     %br
+      /       %span.testimonial-content Want your university graduates and alumni to connect with employers?
+      /       %form.form-inline
+      /         %input.form-control{:placeholder => "Your email", :type => "text"}/
+      /         %button.btn.btn-theme Submit
+    / /row
+    %br
+  / /container
+/ /serviceswrap
+/ Contact Wrap
+%section#contact.contactwrap
+  / Copy Wrap
+  .copywrap
+    .container
+      .row
+        .col-lg-5
+          %p &copy; 2014-2015 International Technological University
+        .col-lg-1
+          %img{:src => asset_path('home/footer.png')}
+        .col-lg-6
+          %p.footer-link
+            %a.first{:href => "#"} Home
+            |
+            = link_to 'Terms of Service', page_path('terms')
+            |
+            = link_to 'Privacy policy', page_path('privacy-policy')
+            |
+            %a.btn-support{'ng-click' => 'showZendeskModal()'} Support
+            |
+            %a.login-link{'ng-if' => '!currentUser.isAuthenticated', href: "#{Rails.application.config.id_url + '/login'}"}
+              Sign-In
+            %a.login-link{'ng-if' => 'currentUser.isAuthenticated', href: "/app"}
+              Go to App
+      .row
+        .col-sm-12
+          = render partial: 'layouts/version'

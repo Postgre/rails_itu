@@ -1,0 +1,73 @@
+/* Generic resume block "records" (employment history, education history) styles */
+
+// Abstract resume "block" record (for employment and education)
+.resume-record-block {
+  padding-bottom: rem-calc(10);
+
+  &:not(:first-child) {
+    padding-top: rem-calc(10);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba($theme-color-inverse, 0.2);
+  }
+}
+
+.resume-record-block-aside {
+  float: left;
+  width: rem-calc(200);
+  color: $theme-color-inverse;
+  font-size: rem-calc(13);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: rem-calc(23);
+}
+
+.resume-record-block-body {
+  position: relative;
+
+  .resume-record-block-aside ~ & {
+    margin-left: rem-calc(215);
+  }
+}
+
+.resume-record-block-heading {
+  font-weight: bold;
+}
+
+.resume-record-block-subheading {
+  font-size: rem-calc(12);
+
+  .more {
+    color: rgba($theme-color-inverse, .5);
+  }
+}
+
+.resume-record-block-text {
+  @extend .break-word;
+
+  padding-right: rem-calc(15);
+  font-size: rem-calc(13);
+  color: $theme-color-inverse;
+  line-height: 1.5;
+
+  ul {
+    padding-left: rem-calc(16);
+
+    li {
+      margin-bottom: rem-calc(4);
+    }
+  }
+
+  &:not(:first-child) {
+    margin-top: rem-calc(8);
+  }
+}
+
+.resume-record-block-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: rem-calc(14);
+}
+

@@ -1,0 +1,123 @@
+<div class="interview-overview">
+  <div class="simple-notification arrow-after" ng-if="interview.job.isClosed()">
+    <i class="fa fa-archive"></i>
+    <strong>The job position associated with this interview has been closed</strong>
+  </div>
+
+  <div class="interview-overview-details">
+    <header>
+      <strong>Interview details</strong>
+    </header>
+
+    <div class="item-properties">
+      <div class="row">
+        <div class="item-property item-property-block col-lg-4">
+          <div class="item-property-label">
+            Suggested Time:
+          </div>
+          <div class="item-property-value">
+            <span class="text-date">{{ interview.date | date }}</span> at <span class="text-time">{{ interview.date | date: 'shortTime' }}</span>
+          </div>
+        </div>
+        <div class="item-property item-property-block col-lg-4">
+          <div class="item-property-label">
+            Suggested Location:
+          </div>
+          <div class="item-property-value">
+            {{ interview.location }}
+          </div>
+        </div>
+        <div class="item-property item-property-block col-lg-4">
+          <div class="item-property-label">
+            Status:
+          </div>
+          <div class="item-property-value">
+            <span class="interview-status interview-status-is-{{ interview.state }}">
+              <i class="fa fa-check" ng-if="interview.isAccepted()"></i>
+              {{ interview.state | interviewStatus }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <ul class="nav nav-tabs nav-tabs-outline nav-tabs-outline-thick interview-overview-nav-tabs">
+      <li>
+        <a ui-sref="." ng-class="{ 'is-active': isOverviewTab() }">Overview</a>
+      </li>
+      <li>
+        <a ui-sref=".comments" ng-class="{ 'is-active': isCommentsTab() }">
+          Comments
+          <span class="badge nav-tabs-badge" ng-if="interview.comments.length">{{ interview.comments.length }}</span>
+        </a>
+      </li>
+    </ul>
+
+    <div ng-if="isOverviewTab()">
+      <div class="interview-location-map" ng-if="interview.latitude" ng-cloak>
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options">
+          <ui-gmap-marker idKey="1" coords="marker.coords"></ui-gmap-marker>
+        </ui-gmap-google-map>
+      </div>
+
+      <div class="item-properties" ng-if="isJobContext() && isCompanyViewing()">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Job:
+            </div>
+            <div class="item-property-value">
+              {{ interview.job.title | date }}
+            </div>
+          </div>
+          <div class="item-property item-property-block col-lg-4">
+            <div class="item-property-label">
+              Candidate relevance:
+            </div>
+            <div class="item-property-value" ng-if="interview.candidate.percent">
+              <strong>{{ interview.candidate.percent }}%</strong> required job skills match
+            </div>
+            <div class="item-property-value is-no-value" ng-if="!interview.candidate.percent">unknown</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div comment-list-for="interview" commentable-type="interview" ng-if="isCommentsTab()"></div>
+  </div>
+
+  <div ng-if="isOverviewTab()">
+    <div class="bordered-panel" ng-if="interview.details">
+      <div class="panel-heading">Additional information</div>
+      <div class="panel-body break-word" ng-bind-html="interview.details | nl2br"></div>
+    </div>
+
+
+    <div ng-if="isCompanyViewing()">
+      <div class="bordered-panel">
+        <div class="panel-heading">Candidate resume</div>
+        <div class="panel-body">
+          <div candidate-resume candidate="interview.candidate"></div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="isCandidateViewing()">
+      <div class="bordered-panel">
+        <div class="panel-heading">Job details</div>
+        <div class="panel-body">
+          <div job-overview job="interview.job" company="interview.company"></div>
+        </div>
+      </div>
+
+      <div class="bordered-panel">
+        <div class="panel-heading">Company information</div>
+        <div class="panel-body">
+          <div company-summary company="interview.company"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

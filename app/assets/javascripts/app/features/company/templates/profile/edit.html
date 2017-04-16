@@ -1,0 +1,230 @@
+<div class="content">
+  <div class="content-body">
+
+    <div class="company-summary-notification is-warning" ng-if="model.isJustCreated()">
+      <i class="fa fa-pencil"></i>
+      <strong>This company application needs to be updated with details and logo for approval.</strong>
+      <small>Please update company profile and wait for ITU to approve it or <a href="mailto:bridge@itu.edu">contact us</a> if you have any questions.</small>
+    </div>
+
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Edit</strong> company information</h1>
+      <div class="content-sub-heading">
+        Provide basic company information and description for candidates to have a glue on industry.
+        Make sure to <strong>upload the logo</strong>.
+      </div>
+    </header>
+
+    <form name="_form" class="form-horizontal loading-indicator-container"
+          ng-submit="_form.$valid && model.logoUrl && updateProfile()" novalidate confirm-form-unload="true">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isFormLoading() || areReferencesLoading() }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-hint col-sm-8 col-sm-offset-4">
+          Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+        </div>
+      </div>
+
+      <div form-group class="form-group-lg">
+        <label>Company name</label>
+
+        <input type="text" ng-model="model.name" required mz-model-error>
+        <div field-errors>
+          <div field-error="required">You have to specify the company name</div>
+        </div>
+      </div>
+
+      <div class="form-group row required" ng-class="{ 'has-error': isLogoMissingError() }">
+        <div class="col-sm-4">
+          <label class="control-label">Logo <i class="fa fa-asterisk required-icon"></i></label>
+        </div>
+        <div class="col-sm-8">
+          <div ng-if="model.logoUrl && !isFileUploading" class="company-logo-in-form">
+            <img ng-src="{{ model.logoUrl }}" alt="{{ model.name }}" />
+          </div>
+
+          <div class="company-logo-upload-block company-logo-upload-in-form">
+            <div class="upload-info" ng-if="isFileUploading">
+              <div class="upload-info-label" ng-if="isFileUploading">
+                <span><i class="fa fa-refresh fa-spin"></i> Uploading...</span>
+              </div>
+              <div class="upload-progress">
+                <div class="upload-progress-bar">
+                  <div class="upload-progress-bar-current" style="width: {{ uploadProgress }}%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="option-buttons upload-btn" ng-if="!isFileUploading">
+              <button type="button" class="btn btn-default btn-xs"
+                      bs-popover data-placement="bottom" data-animation="none"
+                      data-template="app/features/company/templates/_logo-upload-popover.html">
+                      <span ng-if="!model.logoUrl"><i class="fa fa-image"></i> Upload</span>
+                      <span ng-if="model.logoUrl"><i class="fa fa-image"></i> Change</span>
+              </button>
+
+              <button type="button" ng-if="model.logoUrl" ng-click="clearLogo()" class="btn btn-light btn-xs">Clear</button>
+            </div>
+          </div>
+
+          <div class="hint-validation-error" ng-if="!model.logoUrl && _form.$submitted">
+            Please upload the logo for the company
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-divider"></div>
+
+      <div form-group>
+        <label>Industry</label>
+
+        <select ui-select2 ng-model="model.industryId" required mz-model-error data-placeholder="Select Industry">
+          <option value=""></option>
+          <option ng-repeat="industry in industries | orderBy: 'name' track by industry.id" value="{{ industry.id }}">
+            {{ industry.name }}
+          </option>
+        </select>
+        <div field-errors>
+          <div field-error="required">Please choose the industry of the company</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>Company size</label>
+
+        <input type="text" ng-model="model.companySize" mz-model-error>
+        <div field-errors></div>
+      </div>
+
+
+      <div form-group>
+        <label>About us</label>
+
+        <textarea rows="6" ng-model="model.aboutUs" required mz-model-error></textarea>
+        <div field-errors>
+          <div field-error="required">Please provide short description of your company</div>
+        </div>
+      </div>
+
+
+      <div class="form-divider"></div>
+
+      <div form-group>
+        <label>Country</label>
+
+        <div class="select-control-default">
+          <select ui-select2 ng-model="model.countryIso3" required mz-model-error data-placeholder="Select Country">
+            <option value=""></option>
+            <option ng-repeat="country in countries | orderBy: 'name' track by country.id" value="{{ country.id }}">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+        <div field-errors>
+          <div field-error="required">You need to provide the company's country</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>State / province</label>
+
+        <div class="select-control-default">
+          <div class="select-control-default">
+            <select ui-select2 ng-model="model.region" ng-required="regions.length" mz-model-error
+                    data-placeholder="Select State/Province" ng-disabled="regions.$loading">
+              <option value=""></option>
+              <option ng-repeat="region in regions | orderBy: 'name' track by region.code" value="{{ region.name }}">
+                {{ region.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div field-errors>
+          <div field-error="required">Please specify the company state / province</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>City</label>
+
+        <input type="text" ng-model="model.city" required mz-model-error>
+        <div field-errors>
+          <div field-error="required">You need to provide the company's city</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>Street address</label>
+
+        <input type="text" ng-model="model.streetAddress" required mz-model-error>
+        <div field-errors>
+          <div field-error="required">Please provide the company address</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>Street address</label>
+
+        <input type="text" ng-model="model.streetAddress2" mz-model-error>
+        <div field-errors></div>
+      </div>
+
+
+      <div form-group>
+        <label>Postal code</label>
+
+        <input type="text" ng-model="model.postalCode" required mz-model-error>
+        <div field-errors>
+          <div field-error="required">Please provide the company postal code</div>
+        </div>
+      </div>
+
+
+      <div class="form-divider"></div>
+
+      <div form-group>
+        <label>Phone number</label>
+
+        <input type="text" ng-model="model.phoneNumber" required mz-model-error>
+        <div field-errors>
+          <div field-error="required">Please provide your contact phone number</div>
+        </div>
+      </div>
+
+
+      <div form-group>
+        <label>Company website</label>
+
+        <input type="text" ng-model="model.website" mz-model-error placeholder="company.com">
+        <div field-errors></div>
+      </div>
+
+
+      <div class="form-buttons row">
+        <div class="col-sm-8 col-sm-offset-4">
+          <button type="submit" class="btn btn-primary submit-btn"
+                  ng-class=" { 'is-loading': isFormLoading() }"
+                  ng-disabled="(_form.$invalid && !_form.$dirty) || isFormLoading()">
+            <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+            <span ng-if="!isFormLoading()">
+              <span ng-if="model.isJustCreated()">Submit application</span>
+              <span ng-if="!model.isJustCreated()">Save</span>
+            </span>
+            <span ng-if="isFormLoading()">Saving...</span>
+          </button>
+          <span class="form-buttons-splitter-text">OR</span>
+          <a ng-click="cancelForm()" class="btn btn-link-underline">Cancel</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

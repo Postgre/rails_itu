@@ -1,0 +1,11 @@
+.content
+  .content-padded
+    .empty-list-block.empty-list-block-lg{data: {'ng-if' => '!applications.length'}}
+      .empty-list-icon
+        %i.fa.fa-male
+      .empty-list-msg
+        No applications yet
+      .empty-list-note
+        No applications from candidates are found just yet.
+    .list-item-block.candidate-list-item{data: {'ng-repeat' => 'application in applications', 'candidate-list-item' => true, candidate: 'application.candidate', job: 'job', company: 'company', application: 'application', aspect: 'staff'}}
+

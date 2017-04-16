@@ -1,0 +1,63 @@
+.content-padded
+  .row
+    .col-md-9
+      .list-item-block{data: {'ng-repeat' => 'user in users'}}
+        .list-item-body
+          .list-item-left
+            %div{'user-avatar-square' => true, :user => 'user'}
+          .list-item-content
+            .row
+              .col-md-10
+                %header.list-item-content-header
+                  %h1.list-item-heading
+                    %a.link-underline{data: {'ng-bind' => 'user | fullName', 'ng-click' => 'goToState(user)'}}
+              .col-md-2
+                %a.btn.btn-primary.btn-xs{data: {'bs-popover' => 'true', template: 'staff/users/message-popover.html', placement: 'bottom'}}
+                  %i.fa.fa-envelope
+                %a.btn.btn-warning.btn-xs{data: {'ng-click' => 'become(user)', title: 'login as user', 'bs-tooltip' => true}}
+                  %i.fa.fa-key
+            .item-properties
+              .item-property.item-property-block
+                .item-property-label Email:
+                .item-property-value{data: {'ng-bind' => 'user.email'}}
+              .item-property.item-property-block.space-after
+                .item-property-label Roles:
+                .item-property-value
+                  .user-role-list-item{data: {'ng-repeat' => 'role in user.roles'}}
+                    %a.link-underline{data: {'ng-bind' => 'role.resource_name', 'ui-sref' => 'companies.detail({id: role.resource_id})', 'ng-if' => 'role.name == "representative"'}}
+                    %span.label.label-primary{data: {'ng-bind' => 'role.name', 'bs-tooltip' => '{title: role.resource_name}'}}
+              .item-property.item-property-block{data: {'ng-if' => 'user.last_sign_in_at'}}
+                .item-property-label Last sign in at:
+                .item-property-value{data: {'ng-bind' => 'user.last_sign_in_at | date:"medium"'}}
+      .btn.btn-success{data: {'ng-click' => 'getNextPage()', 'ng-if' => 'nextPageAvailable()'}}
+        Load more
+    .col-md-3
+      .bs-sidebar{data: {'bs-affix' => true}}
+        %form.form
+          .form-group
+            %input.form-control{placeholder: 'search by email', data: {'ng-model' => 'search.email_cont', 'ng-change' => 'reload()','ng-model-options' => '{ debounce: 300 }'}}
+          .form-group
+            %input.form-control{placeholder: 'search by first/last name', data: {'ng-model' => 'search.first_name_or_last_name_or_fullname_cont', 'ng-change' => 'reload()','ng-model-options' => '{ debounce: 300 }'}}
+          .form-group
+            %button.btn.btn-default{'bs-select' => true, 'data-animation' => 'am-flip-x', 'ng-model' => 'search.roles', 'ng-options' => 'role as role for role in userRoles', type: 'button', 'ng-change' => 'reload()', placeholder: 'Role'}
+          .form-group
+            %input.form-control{placeholder: 'search by EMS ID', data: {'ng-model' => 'search.ems_id_eq', 'ng-model-options' => '{ debounce: 300 }', 'ng-change' => 'reload()'}}
+          .form-group
+            .select-control-default
+              %select.form-control{placeholder: 'Availability', data: {'ng-model' => 'search.candidate_availability_eq', 'ng-change' => 'reload()'}}
+                %option{value: ''} Any availability
+                %option{value: '2'} Available Full Time
+                %option{value: '1'} Available Part Time
+                %option{value: '0'} Not Available
+          .form-group
+            .select-control-default
+              %select.form-control{placeholder: 'Visibility', data: {'ng-model' => 'search.candidate_is_visible_eq', 'ng-change' => 'reload()'}}
+                %option{value: ''} Any visibility
+                %option{value: 'true'} Visible
+                %option{value: 'false'} Hidden
+          .form-group
+            .select-control-default
+              %select.form-control{placeholder: 'Profile complete', data: {'ng-model' => 'search.candidate_is_profile_complete_eq', 'ng-change' => 'reload()'}}
+                %option{value: ''} Any completeness
+                %option{value: 'true'} Complete
+                %option{value: 'false'} Incomplete

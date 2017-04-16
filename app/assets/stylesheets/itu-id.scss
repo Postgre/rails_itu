@@ -1,0 +1,222 @@
+// ITU ID styles
+
+// To be split into pieces when more components are needed.
+
+// # Some imports
+// ==============
+
+@import "../lib/bootstrap-sass/vendor/assets/stylesheets/bootstrap/normalize";
+@import "../lib/bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins";
+@import "../lib/bootstrap-sass/vendor/assets/stylesheets/bootstrap/variables";
+@import "../lib/bootstrap-sass/vendor/assets/stylesheets/bootstrap/buttons";
+@import "../lib/bootstrap-sass/vendor/assets/stylesheets/bootstrap/forms";
+@import "app/base/base-vars";
+@import "app/base/functions/units";
+
+
+// # Variables
+// ===========
+
+// $theme-color: #4676CA;
+$theme-color: #0D89CF;
+$main-bg-color: desaturate(darken($theme-color, 25%), 20%);
+$link-color: desaturate($theme-color, 20%);
+$error-color: desaturate(#E4442A, 10%);
+
+
+// # Common stuff
+// ==============
+
+html, body {
+  height: 100%;
+}
+
+body {
+  // height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: $main-bg-color url(../img/classy-fabric-texture.png);
+}
+
+a {
+  color: $link-color;
+
+  &:hover, &:focus, &:active {
+    color: darken($link-color, 15%);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  // background: $main-bg-color url(../img/classy-fabric-texture.png);
+}
+
+.content-container, .header-content-container {
+  flex: 1;
+  width: rem-calc(450);
+  margin: 0 auto;
+}
+
+.copyrights {
+  margin: rem-calc(20);
+  font-size: rem-calc(13);
+  text-align: center;
+  color: white;
+  font-weight: 100;
+}
+
+
+// # Header and logo
+// =================
+
+.page-header {
+  position: relative;
+  height: rem-calc(70);
+  // margin-bottom: rem-calc(20);
+  padding: 0;
+  background: $theme-color;
+  box-shadow: 0 2px 10px -5px rgba(black, .4);
+  box-sizing: border-box;
+}
+
+.project-logo {
+  display: block;
+  padding: rem-calc(20);
+  padding-left: 0;
+  height: rem-calc(70);
+  color: white;
+  text-decoration: none;
+
+  &:hover, &:focus, &:active {
+    color: white;
+    opacity: .8;
+  }
+
+  .project-logo-img {
+    display: block;
+    width: rem-calc(175);
+    height: rem-calc(30);
+    background: url(../img/itu-id-logo-inverse.svg) top left no-repeat;
+  }
+}
+
+
+// # Some other elements
+// =====================
+
+.project-short-desc {
+  margin: rem-calc(30) 0;
+  padding: 0 rem-calc(45);
+  color: rgba(white, .8);
+  font-size: rem-calc(18);
+  font-weight: 200;
+  line-height: 1.48;
+  border-left: 2px solid rgba(white, .4);
+  // text-align: center;
+
+  strong {
+    font-weight: 500;
+    color: white;
+  }
+}
+
+
+// # Login form
+// ============
+
+input {
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  outline: 0;
+}
+
+.login-form {
+  position: relative;
+  width: rem-calc(450);
+  margin: 0 auto;
+  border-radius: 3px;
+  background: white;
+  box-shadow: 0 2px 15px -2px rgba(black, .3);
+}
+
+.login-form-header {
+  padding: rem-calc(25) rem-calc(45);
+  // border-bottom: 1px solid #ddd;
+  font-size: rem-calc(24);
+  border-radius: 3px 3px 0 0;
+  background: #eee;
+  color: #999;
+  text-shadow: 0 1px 0 white;
+  box-shadow: inset 0 -10px 50px -10px rgba(black, .15);
+  text-align: center;
+}
+
+.login-form-section {
+  padding: rem-calc(40) rem-calc(45);
+}
+
+.login-form-input {
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: none;
+  padding: rem-calc(10);
+  border-color: #ddd;
+  line-height: 1.7;
+}
+
+.login-form-divider {
+  width: rem-calc(90);
+  height: 1px;
+  margin: rem-calc(20) auto;
+  background: #ddd;
+}
+
+.login-form-forgot-password-link {
+  text-align: center;
+  font-size: rem-calc(14);
+  font-weight: 300;
+}
+
+.login-form-buttons {
+}
+
+.login-btn {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  font-weight: 300;
+  line-height: 1.7;
+  background: $theme-color;
+  color: white;
+
+  &:focus {
+    color: white;
+  }
+
+  &:hover, &:active {
+    background: darken($theme-color, 5%);
+    color: white;
+  }
+}
+
+// Login error
+.login-form-error {
+  padding: rem-calc(20) rem-calc(45);
+  font-weight: 300;
+  background: $error-color;
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,17 @@
+/* Dropdown caret mixin */
+
+@mixin dropdown-caret($color: white, $height: 4px, $top: 50%) {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    border: $height solid transparent;
+    border-color: $color transparent transparent transparent;
+    top: $top;
+    margin-top: -$height / 2;
+    right: $height * 2;
+    pointer-events: none;
+  }
+}

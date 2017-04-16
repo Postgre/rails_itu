@@ -1,0 +1,59 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Manage</strong> your job positions</h1>
+      <div class="content-sub-heading">
+        Here is the list of company's working positions. Add new positions, edit or delete existing, see suggested candidates and manage the applicants.
+      </div>
+    </header>
+
+    <a ui-sref="company.jobs.add" class="btn btn-block btn-light add-item-wide-btn">
+      <i class="fa fa-plus"></i> Add new job
+    </a>
+
+    <div class="list-with-sidebar has-cover list-loading-container">
+
+      <!-- List main -->
+      <div class="list-main list-blocks jobs-list loading-indicator-container">
+        <div class="list-loading-container">
+          <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': jobs.$loading }">
+            <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+          </div>
+
+          <div class="empty-list-block empty-list-block-lg" ng-if="!jobs.length && !jobs.$loading">
+            <div class="empty-list-icon"><i class="fa fa-sitemap"></i></div>
+            <div class="empty-list-msg">
+              No jobs have been added yet
+            </div>
+            <div class="empty-list-note">
+              Feel free to <a ui-sref="company.jobs.add" class="link-underline">add new job</a> to get recommended candidates for it.
+            </div>
+          </div>
+
+          <div class="empty-list-block empty-list-block-lg" ng-if="jobs.length && !jobs.$loading && listFilter.state && !anyJobsInState(listFilter.state)">
+            <div class="empty-list-icon"><i class="fa fa-sitemap"></i></div>
+            <div class="empty-list-msg">
+              No <strong>{{ listFilter.state }}</strong> jobs are found
+            </div>
+            <div class="empty-list-note">
+              Feel free to <a ui-sref="company.jobs.add" class="link-underline">add new job</a>
+              or review the list of <a ui-sref="company.jobs.list({ state: null })" class="link-underline">all jobs</a>.
+            </div>
+          </div>
+
+          <div job-list-item ng-repeat="job in jobs" job="job" aspect="company"></div>
+        </div>
+
+        <div class="pagination" pagination ng-if="showPagination()" ng-model="pagination.currentPage"
+             total-items="pagination.totalItems" items-per-page="pagination.itemsPerPage" boundary-links="true"
+             direction-links="false" rotate="false"></div>
+      </div>
+      <!-- / List main -->
+
+      <!-- List side-filter -->
+      <div ui-view="side-filter" class="list-sidebar list-filters list-filter-side"></div>
+      <!-- / List side-filter -->
+    </div>
+
+  </div>
+</div>

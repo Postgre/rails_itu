@@ -1,0 +1,9 @@
+<div ng-messages="{{ ngMessagesRef }}" ng-messages-include="{{ defaultErrorMessagesUrl }}"
+     class="hint-validation-error" ng-if="showErrors()">
+  <div ng-repeat="errorMessage in errorMessages" ng-message="{{ errorMessage.type }}">
+    {{ errorMessage.message }} 
+  </div>
+  <div ng-message="modelError">
+    <div ng-repeat="msg in getModelErrors()">{{ msg }}</div>
+  </div>
+</div>

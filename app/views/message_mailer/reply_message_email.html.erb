@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @sender.full_name %> just send you a new reply on subject: <%= @subject %></h1>
+    <blockquote>
+      <p>
+        <%= raw @message.body %>
+      </p>
+    </blockquote>
+    <p>
+      Visit <%= link_to app_url(anchor: '!/inbox'), app_url(anchor: '!/inbox') %> and go to your inbox for more info.
+    </p>
+  </body>
+</html>

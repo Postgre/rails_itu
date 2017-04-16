@@ -1,0 +1,10 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Favorited by
+  .popover-content
+    .row
+      .col-md-6{data: {'ng-repeat' => 'candidate in job.favoritedCandidates'}}
+        %a{data: {'ui-sref' => 'candidates.detail({id: candidate.id})'}}
+          .user-avatar-square-sm.user-avatar-square-inline{'user-avatar-square' => true, :user => 'candidate'}
+          {{ candidate.name }}

@@ -1,0 +1,54 @@
+/* Company / Candidates Search styles */
+
+.candidate-list-item {
+  &.is-interview-set {
+    border-color: lighten($theme-color-inverse, 40%);
+    box-shadow: 0 2px 0 0 lighten($theme-color-inverse, 40%);
+
+    .list-item-footer {
+      background: rgba($theme-color-inverse, 0.1);
+    }
+  }
+
+  &.is-hired {
+    border-color: $positive-color;
+    box-shadow: 0 2px 0 0 $positive-color;
+
+    .list-item-footer {
+      background: rgba($positive-color, 0.1);
+    }
+  }
+}
+
+.candidates-search {
+  margin-bottom: rem-calc(15);
+  padding: rem-calc(15);
+  background: rgba($theme-color-inverse, 0.07);
+  border-radius: 3px;
+}
+
+.search-msg-block {
+  padding: rem-calc(20) rem-calc(30);
+  color: #ddd;
+  text-align: center;
+
+  .msg-block-icon {
+    font-size: rem-calc(26);
+  }
+
+  .msg-block-msg {
+    color: #aaa;
+    font-size: rem-calc(22);
+    font-weight: bold;
+  }
+
+  .msg-block-sub-msg {
+    font-size: rem-calc(16);
+    color: #bbb;
+    font-weight: 300;
+  }
+}
+
+.skill-nav-filter-link {
+  
+}

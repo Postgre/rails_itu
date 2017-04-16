@@ -1,0 +1,82 @@
+<div class="job-overview-details" ng-class="{ 'no-top-margin': isCandidateViewing() }">
+  <div class="job-details-top">
+    <div class="job-details-top-main">
+      <header ng-if="!hideHeader">
+        <h1 class="job-heading" ng-hide="isStaffViewing()">{{ job.title }}</h1>
+        <div class="content-sub-heading" ng-if="isCandidateViewing()">
+          at <a ui-sref="candidate.companies.details({ companyId: job.company.id })">{{ job.company.name }}</a> &mdash;
+          <i class="fa fa-map-marker"></i> {{ job.company | fullAddress }}
+        </div>
+      </header>
+
+      <div class="item-properties" ng-class="{ 'has-top-border': !hideHeader }">
+        <div class="row" ng-if="job.location">
+          <div class="item-property item-property-block col-lg-6">
+            <div class="item-property-label">Work location:</div>
+            <div class="item-property-value">{{ job.location }}</div>
+          </div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options" ng-if="job.latitude" ng-cloak>
+              <ui-gmap-marker idKey="1" coords="marker.coords"></ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
+        </div>
+        <div class="row">
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">Work type:</div>
+            <div class="item-property-value">{{ job.workType | workType }}</div>
+          </div>
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">Schedule:</div>
+            <div class="item-property-value">{{ job.schedule | jobSchedule }}</div>
+          </div>
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">Job posted:</div>
+            <div class="item-property-value" ng-if="job.publishedAt">{{ job.publishedAt | date }}</div>
+            <div class="item-property-value is-no-value" ng-if="!job.publishedAt">Unknown</div>
+          </div>
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">Desired start date:</div>
+            <div class="item-property-value" ng-if="job.startDate">{{ job.startDate | date }}</div>
+            <div class="item-property-value is-no-value" ng-if="!job.startDate">-</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="minimal-panel" ng-if="job.description">
+        <div class="panel-heading">Job description</div>
+        <div class="panel-body">
+          <p class="job-description" ng-bind-html="job.description | nl2br"></p>
+        </div>
+      </div>
+
+      <div class="minimal-panel" ng-if="job.skillRecords.length">
+        <div class="panel-heading">Required skills</div>
+        <div class="panel-body">
+
+        <div class="skills skills-display">
+          <!-- Skills category -->
+          <div class="skills-section" ng-repeat="skillCategoryRecord in job.skillCategoryRecords | orderBy: 'position'">
+            <div class="skills-section-heading">{{ skillCategoryRecord.skillCategoryName }}</div>
+            <div class="skills-section-body">
+              <table class="table skills-table">
+                <tbody>
+                  <tr ng-repeat="skillRecord in job.skillRecords | filter: { skillCategoryId: skillCategoryRecord.skillCategoryId } | orderBy: 'position'">
+                    <td><div class="skill">{{ skillRecord.skillName }}</div></td>
+                    <!--<td class="col-skill-experience">{{ skillRecord.yearsOfExperience }} years</td>-->
+                    <!--<td class="col-skill-level">{{ skillRecord.level | skillLevel }}</td>-->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- / Skills category -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

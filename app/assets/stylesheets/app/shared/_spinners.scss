@@ -1,0 +1,80 @@
+.has-cover {
+  position: relative;
+}
+
+// Covering loading/spinner panes
+.loading-indicator-cover {
+  @include align-items(center);
+  @include justify-content(center);
+  @include flex-direction(column);
+  position: absolute;
+  z-index: 990;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  background: white;
+  text-align: center;
+
+  &.is-active {
+    // display: flex;
+    display: block;
+  }
+
+  &.align-top {
+    @include justify-content(flex-start);
+
+    .loading-icon {
+      margin-top: rem-calc(40);
+    }
+  }
+
+  &.semi-transparent {
+    background: rgba(white, .6);
+  }
+
+  .loading-icon {
+    margin: 1.5em auto 0;
+    font-size: 2.5em;
+    color: rgba(black, 0.15);
+
+    &.loading-icon-soft {
+      color: lighten($theme-color-black, 50%);
+    }
+  }
+
+  &[ng-cloak], &.ng-cloak {
+    display: flex !important;
+  }
+}
+
+// Global app loading screen
+.app-loading-indicator {
+  position: fixed;
+  z-index: 990;
+
+  .loading-icon {
+    font-size: 4em;
+    color: rgba(black, .9);
+  }
+}
+
+.index-loading-container {
+  position: relative;
+  min-height: rem-calc(300);
+
+  .loading-indicator-cover {
+    background-color: transparent;
+  }
+
+  .loading-icon {
+  }
+}
+
+.list-loading-container,
+.loading-indicator-container {
+  @extend .has-cover;
+  min-height: rem-calc(180);
+}
+

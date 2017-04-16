@@ -1,0 +1,70 @@
+// Site footer
+.app-footer {
+  margin-top: rem-calc(35);
+  padding: rem-calc(30) 0;
+  border-top: rem-calc(10) solid rgba(black, .1);
+  background: #488B83;
+  color: white;
+
+  .copyrights {
+    font-size: rem-calc(12);
+    font-weight: 300;
+    text-align: center;
+  }
+}
+
+.app-version {
+  display: block;
+  padding: rem-calc(8) rem-calc(15);
+  font-size: rem-calc(11);
+  color: rgba(white, .6);
+  text-align: center;
+}
+
+.app-footer-container {
+  padding-top: 0;
+}
+
+.app-footer-project-logo {
+  display: block;
+  width: rem-calc(120);
+  height: rem-calc(28);
+  margin: 0 auto rem-calc(20);
+  background: image-url('itu-bridge-logo-short-inverse.svg') top left no-repeat;
+  background-size: cover;
+  opacity: .3;
+}
+
+.app-footer-nav {
+  margin-bottom: rem-calc(20);
+  font-size: rem-calc(14);
+  font-weight: 300;
+  text-align: center;
+
+  .app-footer-nav-divider {
+    display: inline;
+    margin-right: rem-calc(15);
+    color: rgba(white, .4);
+  }
+
+  a {
+    display: inline-block;
+    padding-bottom: rem-calc(2);
+    color: rgba(white, .6);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+
+    &:not(:last-child) {
+      margin-right: rem-calc(15);
+    }
+
+    &:hover, &:focus, &:active {
+      color: white;
+      border-bottom: 1px solid rgba(white, .5);
+    }
+
+    &.active {
+      color: mix($theme-color, white, 50%);
+    }
+  }
+}

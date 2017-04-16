@@ -1,0 +1,167 @@
+<div class="list-item-block job-list-item job-list-item-is-{{ job.state }}">
+  <div class="list-item-body">
+    <div class="list-item-left list-item-icon-block">
+      <div class="job-status-icon job-status-icon-is-{{ job.state }}">
+        <i class="fa fa-briefcase" ng-if="job.isDraft() || job.isPublished()"></i>
+        <i class="fa fa-check" ng-if="job.isFilled()"></i>
+        <i class="fa fa-archive" ng-if="job.isClosed()"></i>
+      </div>
+    </div>
+    <div class="list-item-content">
+      <div class="list-item-actions-top" ng-if="isCompanyViewing()">
+        <a ui-sref="company.jobs.details.overview({ jobId: job.id })" bs-tooltip title="View job details" class="btn icon-btn"><i class="fa fa-eye"></i></a>
+        <a ng-if="(job.isDraft() || job.isPublished()) && !readonly" ui-sref="company.jobs.edit({ jobId: job.id })" bs-tooltip title="Edit" class="btn icon-btn"><i class="fa fa-pencil"></i></a>
+      </div>
+
+      <div class="list-item-actions-top" ng-if="isCandidateViewing()">
+        <span ng-if="!job.isPublished()" class="job-status job-status-is-{{ job.state }}">
+          <i class="fa fa-check" ng-if="job.isFilled()"></i>
+          <i class="fa fa-archive" ng-if="job.isClosed()"></i>
+          {{ job.state | jobStatus }}
+        </span>
+
+        <button ng-if="!job.isApplied" type="button" ng-click="toggleFavoriteAsCandidate(job)"
+                bs-tooltip title="{{job.isFavorited ? 'Unstar this job' : 'Star this job'}}"
+                class="btn icon-btn favorite-btn" ng-class="{'is-active': job.isFavorited}">
+          <i class="fa" ng-class="{'fa-star-o': !job.isFavorited, 'fa-star': job.isFavorited}"></i>
+        </button>
+      </div>
+
+      <header class="list-item-content-header">
+        <h1 class="list-item-heading">
+          <a ng-if="isCompanyViewing()" ui-sref="company.jobs.details.overview({ jobId: job.id })" class="link-underline">{{ job.title }}</a>
+          <a ng-if="isCandidateViewing()" ui-sref="candidate.jobs.details({ jobId: job.id })" class="link-underline">{{ job.title }}</a>
+          <a ng-if="isStaffViewing()" ui-sref=".detail({id: job.id})" class="link-underline">{{ job.title }}</a>
+        </h1>
+        <div class="list-item-sub-heading" ng-if="(isCandidateViewing() || isStaffViewing())">
+          <span ng-if="!hideCompanyName">
+            at
+            <a ui-sref="candidate.companies.details({ companyId: job.company.id })" ng-if="isCandidateViewing()">{{ job.company.name }}</a>
+            <a ui-sref="companies.detail({ id: job.company.id })" ng-if="isStaffViewing()">{{ job.company.name }}</a>
+          </span>
+          <div><i class="fa fa-map-marker"></i> {{ job.company | fullAddress }}</div>
+        </div>
+      </header>
+
+      <div class="item-properties">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">Schedule:</div>
+            <div class="item-property-value">{{ job.schedule | jobSchedule }}</div>
+          </div>
+          <div class="item-property item-property-block col-lg-8" ng-if="job.skillRecords.length">
+            <div class="item-property-label">
+              Required skills:
+            </div>
+            <div class="item-property-value">
+              <div class="resume-summary-skills">
+                <div class="skill-cloud resume-summary-skills-list">
+                  <a ng-if="!skillFilterLinks" class="skill" ng-class="{ 'skill-is-matched': skillRecord.matched && isCandidateViewing() }"
+                     ng-repeat="skillRecord in job.skillRecords">
+                     {{ skillRecord.skillName }}
+                  </a>
+                  <a ng-if="skillFilterLinks && isCandidateViewing()" class="skill" ng-class="{ 'skill-is-matched': skillRecord.matched }"
+                     ng-repeat="skillRecord in job.skillRecords" ui-sref="{ skillName: skillRecord.skillName }">
+                     {{ skillRecord.skillName }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-properties has-top-border" ng-if="isCompanyViewing() || isStaffViewing()">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">
+              Status:
+            </div>
+            <div class="item-property-value">
+              <span class="job-status job-status-is-{{ job.state }}">
+                <i class="fa fa-check" ng-if="job.isFilled()"></i>
+                <i class="fa fa-archive" ng-if="job.isClosed()"></i>
+                {{ job.state | jobStatus }}
+                <i class="fa fa-eye" ng-if="!job.isPublic" bs-tooltip data-title="Private job"></i>
+              </span>
+              <div class="small">
+                <span ng-show="job.isPublished" ng-bind="job.publishedDaysAgo"></span> ago
+              </div>
+            </div>
+          </div>
+         <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">
+              Applications:
+            </div>
+            <div class="item-property-value is-no-value" ng-hide="job.appliedCandidatesCount">
+              none
+            </div>
+             <div class="item-property-value is-no-value" ng-if="job.appliedCandidatesCount && isCompanyViewing()">
+               <a ui-sref="company.jobs.details.applies({ jobId: job.id })" class="link-underline">
+                 <span ng-pluralize count="job.appliedCandidatesCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+               </a>
+             </div>
+             <div class="item-property-value is-no-value" ng-if="job.appliedCandidatesCount && isStaffViewing()">
+               <a ui-sref=".detail.applications({ id: job.id })" class="link-underline">
+                 <span ng-pluralize count="job.appliedCandidatesCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+               </a>
+             </div>
+          </div>
+          <div class="item-property item-property-block col-lg-3" ng-if="job.isPublished()">
+            <div class="item-property-label">
+              Recommendations:
+            </div>
+            <div class="item-property-value is-no-value" ng-if="!job.recommendedCandidatesCount">
+              none
+            </div>
+            <div class="item-property-value is-no-value" ng-if="job.recommendedCandidatesCount && isCompanyViewing()">
+              <a ui-sref="company.jobs.details.recommendations({ jobId: job.id })" class="link-underline">
+                <span ng-pluralize count="job.recommendedCandidatesCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+              </a>
+            </div>
+            <div class="item-property-value is-no-value" ng-if="job.recommendedCandidatesCount && isStaffViewing()">
+              <a ui-sref=".detail.recommended({ id: job.id })" class="link-underline">
+                <span ng-pluralize count="job.recommendedCandidatesCount" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+              </a>
+            </div>
+          </div>
+          <div class="item-property item-property-block col-lg-3" ng-if="needToShowFavorited()">
+            <div class="item-property-label">
+              Favorited by:
+            </div>
+            <div class="item-property-value is-no-value">
+              <a class="link-underline" data-bs-popover data-template="staff/jobs/favorited-popover.html" data-placement="bottom" data-auto-close="1">
+                <span ng-pluralize count="favoritedCount()" when="{ '1': '1 candidate', 'other': '{} candidates' }"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-properties" ng-if="isCandidateViewing() && job.jobApplication.resumeUrl">
+        <div class="row">
+          <div class="item-property item-property-block col-lg-9">
+            <div class="item-property-label">Cover Letter:</div>
+            <div class="item-property-value" ng-bind-html="job.jobApplication.coverLetter | nl2br"></div>
+          </div>
+          <div class="item-property item-property-block col-lg-3">
+            <div class="item-property-label">Resume:</div>
+            <div class="item-property-value">
+              <span class="file-icon">
+                <span class="label label-file-extension pdf">pdf</span>
+                <i class="fa fa-file"></i>
+              </span>
+              <a ng-href="{{ job.jobApplication.resumeUrl }}" target="_blank" class="file-link link-underline">
+                {{ job.jobApplication.resumeFileName }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="recommendedBy" class="job-recommended-by">
+        <i class="fa fa-thumbs-o-up"></i> Recommended by <strong>{{ recommendedBy | fullName }}</strong>
+      </div>
+    </div>
+  </div>
+</div>

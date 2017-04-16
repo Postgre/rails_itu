@@ -1,0 +1,113 @@
+/* Layout-related styles */
+
+.app-container {
+  @include display-flex;
+  @include flex-direction(column);
+  margin: auto;
+  min-height: 100vh; // Holy Grail!
+
+  .main-ui-layout {
+    @include flex(1);
+  }
+  .container {
+    max-width: rem-calc(1020);
+  }
+}
+
+
+// Generic sidebar layout
+.sidebar-layout {
+  @include display-flex;
+
+  > .main-content, > [ui-view] > .main-content {
+    @include flex(1);
+    // height: 100%;
+  }
+
+  > .sidebar, > [ui-view] > .sidebar {
+
+  }
+}
+
+// Specific layouts
+.main-ui-layout {
+  margin: rem-calc(30) auto 0;
+  max-width: $main-ui-container-width;
+
+  > .main-content, > [ui-view] > .main-content {
+  }
+
+  > .sidebar, > [ui-view] > .sidebar {
+    width: $sidebar-width;
+    background: $main-sidebar-bg;
+    // color: white;
+    border-top-left-radius: 3px;
+    border-right: 3px solid $theme-color;
+    overflow: hidden;
+  }
+}
+
+// Responsive tweaks
+
+@media (max-width: $screen-md-min) {
+  .main-ui-layout {
+    min-width: 100%;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .main-ui-layout {
+    min-width: rem-calc(880);
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  .main-ui-layout {
+    min-width: $main-ui-container-width;
+  }
+}
+
+[ui-view] {
+  position: relative;
+}
+
+// Default 'content' page layout
+.content {
+  .content-header {
+    padding: rem-calc(10) rem-calc(35) rem-calc(11);
+    background: transparent;
+  }
+
+  .content-title-header {
+    margin-bottom: rem-calc(15);
+    padding-bottom: rem-calc(15);
+    border-bottom: 2px solid #eee;
+  }
+
+  .content-heading {
+    margin: 0;
+    font-size: rem-calc(24);
+    color: rgba(darken($theme-color-inverse, 15%), 0.7);
+    font-weight: 300;
+  }
+
+  .content-sub-heading {
+    margin-top: rem-calc(5);
+    font-size: rem-calc(14);
+    color: rgba($theme-color-inverse, 0.5);
+  }
+
+  .content-body {
+    padding: rem-calc(25) rem-calc(35);
+    background: white;
+
+    &.no-top-padding {
+      padding-top: 0;
+    }
+  }
+}
+
+.content-padded {
+  padding: rem-calc(25) rem-calc(35);
+}
+

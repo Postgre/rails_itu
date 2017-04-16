@@ -1,0 +1,204 @@
+<div class="candidates-search">
+  <form class="search-block" ng-submit="updateSearchQuery()" novalidate>
+    <div class="search-input-block">
+      <div class="search-icon" ng-if="!suggestionsLoading"><i class="fa fa-search"></i></div>
+      <div class="search-input-loading-icon" ng-if="suggestionsLoading"><i class="fa fa-refresh fa-spin"></i></div>
+
+      <input type="text" class="form-control input-lg search-input" ng-model="search.query" placeholder="Search" auto-focus
+             ui-typeahead="searchQuery for searchQuery in suggestSearch($viewValue)"
+             xtypeahead-layout-template-url="app/features/company/candidates/templates/_candidate-search-query-suggestions.html"
+             xtypeahead-template-url="app/features/company/candidates/templates/_candidate-search-query-suggestion.html"
+             typeahead-on-select="onSuggestionSelected($item, $model, $label)"
+             typeahead-loading="suggestionsLoading">
+      <div class="search-clear-btn" ng-click="clearSearch()" bs-tooltip title="Clear search" xng-if="search.query"><i class="fa fa-times"></i></div>
+    </div>
+    <div class="search-button-block">
+      <button type="submit" class="btn btn-primary btn-lg search-btn">Search</button>
+    </div>
+  </form>
+</div>
+
+<div class="list-with-sidebar has-cover list-loading-container">
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isListLoading() }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <!-- List main -->
+  <div class="list-main list-blocks candidates-list">
+    <div class="search-msg-block" ng-if="!listFilter.query && !isListLoading() && !candidates.length && !nothingIsFound()">
+      <div class="msg-block-icon"><i class="fa fa-arrow-up"></i></div>
+      <div class="msg-block-msg">Search for candidates</div>
+      <div class="msg-block-sub-msg">Use the search field above. Start typing to see suggestions.</div>
+    </div>
+
+    <div class="search-msg-block" ng-if="nothingIsFound()">
+      <div class="msg-block-msg">No candidates were found</div>
+      <div class="msg-block-sub-msg">Try searching by different skill</div>
+    </div>
+
+    <!-- TODO: Search in progress block! -->
+
+    <!-- Candidate -->
+    <div ng-repeat="candidate in candidates | orderBy: 'name'"
+         class="list-item-block candidate-list-item" ng-class="{ 'is-hired': candidate.isHired, 'is-interview-set': candidate.pendingInterviews.any() }">
+      <div class="list-item-body">
+        <a ui-sref="company.candidates.resume({ candidateId: candidate.id })" class="list-item-left list-item-image-block">
+          <img ng-if="candidate.user.avatarUrl" ng-src="{{ candidate.user.avatarUrl }}">
+          <div ng-if="!candidate.user.avatarUrl" class="item-image-placeholder candidate-avatar-placeholder">
+            <i class="fa fa-camera image-placeholder-icon"></i>
+          </div>
+        </a>
+        <div class="list-item-content">
+          <div class="list-item-actions-top">
+            <button ng-if="!candidate.isFavorite" type="button" ng-click="candidate.favorite({ companyId: $stateParams.companyId })"
+                    bs-tooltip title="Star this candidate" class="btn icon-btn favorite-btn">
+              <i class="fa fa-star-o"></i>
+            </button>
+            <button ng-if="candidate.isFavorite" type="button" ng-click="candidate.unfavorite({ companyId: $stateParams.companyId })"
+                    bs-tooltip title="Unstar this candidate" class="btn icon-btn favorite-btn is-active">
+              <i class="fa fa-star"></i>
+            </button>
+            <a ui-sref="company.candidates.resume({ candidateId: candidate.id })" class="btn btn-outline btn-xs"><i class="fa fa-eye"></i> See resume</a>
+          </div>
+
+          <header class="list-item-content-header">
+            <h1 class="list-item-heading">
+              <a ui-sref="company.candidates.resume({ candidateId: candidate.id })" class="link-underline">{{ candidate.name }}</a>
+            </h1>
+            <div class="list-item-sub-heading">
+              <i class="fa fa-map-marker"></i> {{ candidate.city }}, {{ candidate.country.name }}
+            </div>
+          </header>
+
+          <div class="list-item-text">
+            {{ candidate.about }}
+          </div>
+          <div class="list-item-properties no-border">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="item-property item-property-inline">
+                  <div class="item-property-label">Availability:</div>
+                  <div class="item-property-value">{{ candidate.availability | availabilityOption }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item-properties" ng-if="candidate.skillRecords.any({ isFeatured: true })">
+            <div class="row">
+              <div class="item-property item-property-block col-lg-12">
+                <div class="item-property-label">
+                  Featured skills:
+                </div>
+                <div class="item-property-value">
+                  <div class="resume-summary-skills">
+                    <div class="resume-summary-skills-list">
+                      <a class="resume-skill resume-summary-skill"
+                         ng-repeat="skillRecord in candidate.skillRecords | filter: { isFeatured: true } | orderBy: 'skillName'">
+                         {{ skillRecord.skillName }}
+                       </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-item-footer" ng-if="candidate.isHired || candidate.pendingInterviews.any()">
+        <div class="list-item-notification" ng-if="candidate.pendingInterviews.any()">
+          <i class="fa fa-clock-o"></i> Interview is set for this candidate:
+          <a href="#" class="link-underline">{{ (candidate.pendingInterviews | orderBy: 'date':true | limitTo: 1)[0].date | date: 'MMM d, y, h:mm a' }}</a>
+        </div>
+        <div class="list-item-notification list-item-notification-success" ng-if="candidate.isHired">
+          <i class="fa fa-check"></i> This candidate already works in your company
+        </div>
+      </div>
+    </div>
+    <!-- / Candidate -->
+  </div>
+  <!-- / List main -->
+
+  <!-- List side-filter -->
+  <div class="list-sidebar list-filters list-filter-side" ng-if="showFilters()">
+    <!-- Filter -->
+    <div class="filter-group">
+      <header class="filter-group-header">Availability</header>
+      <div class="filter-group-content">
+        <nav class="nav-filter">
+          <a ui-sref="{ availability: null, page: null }" class="nav-filter-link has-counter"
+             ng-class="{ 'is-active': !listFilter.availability, 'is-zero-count': !countByAvailability() }">
+            <span ng-if="countByAvailability()" class="nav-filter-link-count-badge pull-right">{{ countByAvailability() }}</span>
+            Any
+          </a>
+          <a ui-sref="{ availability: 'available_full_time', page: null }" class="nav-filter-link has-counter"
+             ng-class="{ 'is-active': listFilter.availability === 'available_full_time', 'is-zero-count': !countByAvailability('available_full_time') }">
+            <span class="nav-filter-link-count-badge pull-right">{{ countByAvailability('available_full_time') }}</span>
+            Full-time
+          </a>
+          <a ui-sref="{ availability: 'available_part_time', page: null }" class="nav-filter-link has-counter"
+             ng-class="{ 'is-active': listFilter.availability === 'available_part_time', 'is-zero-count': !countByAvailability('available_part_time') }">
+            <span class="nav-filter-link-count-badge pull-right">{{ countByAvailability('available_part_time') }}</span>
+            Part-time
+          </a>
+          <a ui-sref="{ availability: 'not_available', page: null }" class="nav-filter-link has-counter"
+             ng-class="{ 'is-active': listFilter.availability === 'not_available', 'is-zero-count': !countByAvailability('not_available') }">
+            <span class="nav-filter-link-count-badge pull-right">{{ countByAvailability('not_available') }}</span>
+            Unavailable
+          </a>
+        </nav>
+      </div>
+    </div>
+    <!-- / Filter -->
+    <!-- Filter -->
+    <div class="filter-group">
+      <header class="filter-group-header">Skills</header>
+      <div class="filter-group-content">
+        <nav class="nav-filter">
+          <a ng-repeat="facetTerm in filterFacets.data.skillName.terms" ui-sref="{ skillName: facetTerm.term, page: null }"
+             class="nav-filter-link skill-nav-filter-link has-counter"
+             ng-class="{ 'is-active': listFilter.skillName === facetTerm.term, 'is-zero-count': !facetTerm.count }">
+            <span class="nav-filter-link-count-badge pull-right">{{ facetTerm.count }}</span>
+            {{ facetTerm.term }}
+          </a>
+        </nav>
+      </div>
+    </div>
+    <!-- / Filter -->
+    <!-- Filter -->
+    <div class="filter-group">
+      <header class="filter-group-header">Years of experience</header>
+      <div class="filter-group-content">
+        <nav class="nav-filter">
+          <a ng-repeat="facetTerm in filterFacets.data.yearsOfExperience.terms" ui-sref="{ yearsOfExperience: facetTerm.term, page: null }"
+             class="nav-filter-link skill-nav-filter-link has-counter"
+             ng-class="{ 'is-active': listFilter.yearsOfExperience === facetTerm.term, 'is-zero-count': !facetTerm.count }">
+            <span class="nav-filter-link-count-badge pull-right">{{ facetTerm.count }}</span>
+            {{ facetTerm.term }}
+          </a>
+        </nav>
+      </div>
+    </div>
+    <!-- / Filter -->
+    <!-- Filter -->
+    <div class="filter-group" ng-if="filterFacets.data.degree.terms && filterFacets.data.degree.terms.length">
+      <header class="filter-group-header">Degree</header>
+      <div class="filter-group-content">
+        <nav class="nav-filter">
+          <a ng-repeat="facetTerm in filterFacets.data.degree.terms" ui-sref="{ degree: facetTerm.term, page: null }"
+             class="nav-filter-link skill-nav-filter-link has-counter"
+             ng-class="{ 'is-active': listFilter.degree === facetTerm.term, 'is-zero-count': !facetTerm.count }">
+            <span class="nav-filter-link-count-badge pull-right">{{ facetTerm.count }}</span>
+            {{ facetTerm.term }}
+          </a>
+        </nav>
+      </div>
+    </div>
+    <!-- / Filter -->
+  </div>
+  <!-- / List side-filter -->
+
+  <div class="pagination" pagination ng-if="showPagination()" ng-model="pagination.currentPage"
+       total-items="pagination.totalItems" items-per-page="pagination.itemsPerPage" boundary-links="true"
+       direction-links="false" rotate="false"></div>
+</div>

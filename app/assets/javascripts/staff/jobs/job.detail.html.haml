@@ -1,0 +1,41 @@
+.content{'ui-view' => true}
+  %header.content-title-header.row
+    %h1.content-heading.form-heading
+      .content-sub-heading.ng-cloak
+        at
+        %a.ng-cloak{data: {'ui-sref' => 'companies.detail({id:job.company.id})'}}
+          {{ job.company.name }}
+        &mdash;
+        %i.fa.fa-map-marker
+        {{ job.company | fullAddress }}
+        .pull-right
+          %span.job-status{class: 'job-status-is-{{ job.state }}'}
+            {{ job.state | jobStatus }}
+          %a.btn.btn-danger{data: {template: 'staff/jobs/confirm-flag-popover.html', 'bs-popover' => true, placement: 'bottom', 'ng-if' => 'canBeFlagged(job)'}}
+            %i.fa.fa-flag
+  .content-padded{data: {'job-overview' => true, job: 'job', company: 'job.company', aspect: 'staff'}}
+  .basic-panel
+    .panel-heading.has-options
+      Comments
+    .panel-body
+      .section{data: {'comments' => true, commentable: 'job', 'commentable-type' => '"job"', 'is-staff' => 'true'}}
+      .section{data: {'comment-list-for' => 'job', 'commentable-type' => '"job"', 'is-staff' => 'true'}}
+  .basic-panel{data: {'ng-if' => "job.state == 'published' && job.isPublic"}}
+    .panel-heading.has-options
+      Recommendations
+    .panel-body
+      .section{data: {'candidate-typeahead' => true, 'selected' => 'selected.candidate', 'ng-hide' => 'candidateSelected()'}}
+      .section{data: {'ng-show' => 'candidateSelected()'}}
+        Recommend this job to {{ selected.candidate.name }}?
+        %br/
+        %a.btn.btn-success{data: {'ng-click' => 'addRecommendation()'}} Yes
+        %a.btn.btn-danger{data: {'ng-click' => 'selected = {}'}} Cancel
+      .section{style: 'padding-top: 10px'}
+        .row.staff-recommended-candidate-list-item{data: {'ng-repeat' => 'candidate in job.favoritedCandidates'}}
+          .col-md-2
+            %div{'user-avatar-square' => true, :user => 'candidate'}
+          .col-md-9
+            %a{data: {'ng-bind' => 'candidate.name', 'ui-sref' => 'candidates.detail({id: candidate.id})'}}
+          .col-md-1{data: {'ng-if' => 'job.state=="published"'}}
+            %button.btn.btn-danger{data: {template: 'staff/jobs/confirm-recommendation-delete-popover.html', 'bs-popover' => true, placement: 'top'}}
+              %i.fa.fa-trash

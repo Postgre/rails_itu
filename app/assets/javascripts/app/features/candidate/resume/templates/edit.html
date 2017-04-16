@@ -1,0 +1,154 @@
+<div class="content">
+  <div class="content-body">
+    <header class="content-title-header">
+      <h1 class="content-heading form-heading"><strong>Edit</strong> profile information</h1>
+      <div class="content-sub-heading">
+        Provide basic profile information, be accurate and keep this up to date
+      </div>
+    </header>
+
+    <form name="_form" class="form-horizontal loading-indicator-container" ng-submit="updateProfile()" novalidate confirm-form-unload="true">
+      <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isFormLoading() || areReferencesLoading() }">
+        <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+      </div>
+
+      <fieldset ng-disabled="isFormLoading()">
+        <div class="form-group row">
+          <div class="form-hint col-sm-8 col-sm-offset-4">
+            Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+          </div>
+        </div>
+
+        <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+          <div class="col-sm-8 col-sm-offset-4">
+            <div class="form-validation-summary has-bottom-arrow">
+              <div class="validation-summary-main">
+                Some of the data you entered is not valid.
+              </div>
+              <div class="validation-summary-sub">
+                Please review the form, fix the issues and try again.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div form-group class="form-group-lg">
+          <label>Display name</label>
+
+          <input type="text" ng-model="model.name" required ng-minlength="4" disabled>
+          <p class="control-hint">Name cannot be changed from here</p>
+        </div>
+
+
+        <div form-group>
+          <label>About me</label>
+
+          <textarea rows="6" ng-model="model.about" required mz-model-error></textarea>
+          <div field-errors>
+            <div field-error="required">Please provide the short description of you own personality and goals</div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div form-group>
+          <label>Country</label>
+
+          <div class="select-control-default">
+            <select ui-select2 ng-model="model.countryIso3" required mz-model-error data-placeholder="Select Country">
+              <option value=""></option>
+              <option ng-repeat="country in countries | orderBy: 'name' track by country.id" value="{{ country.id }}">
+                {{ country.name }}
+              </option>
+            </select>
+          </div>
+          <div field-errors>
+            <div field-error="required">You need to provide the country you live</div>
+          </div>
+        </div>
+
+
+        <div form-group>
+          <label>State / province</label>
+
+          <div class="select-control-default">
+            <div class="select-control-default">
+              <select ui-select2 ng-model="model.region" ng-required="regions.length" mz-model-error
+                      data-placeholder="Select State/Province" ng-disabled="regions.$loading">
+                <option value=""></option>
+                <option ng-repeat="region in regions | orderBy: 'name' track by region.code" value="{{ region.name }}">
+                  {{ region.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div field-errors>
+            <div field-error="required">Please specify the state / province</div>
+          </div>
+        </div>
+
+
+        <div form-group>
+          <label>City</label>
+
+          <input type="text" ng-model="model.city" required mz-model-error>
+          <div field-errors>
+            <div field-error="required">Please provide the name of the city</div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div form-group>
+          <label>Availability</label>
+
+          <div class="select-control-default">
+            <select ng-model="model.availability" required mz-model-error
+                    ng-options="availabilityOption.value as availabilityOption.name for availabilityOption in availabilityOptions">
+            </select>
+          </div>
+          <div field-errors>
+            <div field-error="required">Please specify your availability</div>
+          </div>
+        </div>
+
+
+        <div form-group>
+          <div class="checkbox" data-trigger="showIsVisibleLocked()"
+               bs-tooltip title="You have active interviews, visibility can not be changed!">
+            <label>
+              <input type="checkbox" ng-model="model.isVisible" ng-disabled="model.isVisibleLocked">
+              Make resume visible and available to companies
+            </label>
+          </div>
+          <div field-errors>
+            <div field-error="required">Please specify your availability</div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <label class="checkbox">
+        <input type="checkbox" ng-model="checker">
+      </label>
+
+      <div class="form-buttons">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-4">
+            <button type="submit" class="btn btn-primary submit-btn"
+                    ng-class=" { 'is-loading': isFormLoading() }"
+                    ng-disabled="(_form.$invalid && !_form.$submitted) || isFormLoading()">
+              <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+              <span ng-if="!isFormLoading()">Save</span>
+              <span ng-if="isFormLoading()">Saving...</span>
+            </button>
+            <span class="form-buttons-splitter-text">OR</span>
+            <a ng-click="cancelForm()" class="btn-link-underline">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

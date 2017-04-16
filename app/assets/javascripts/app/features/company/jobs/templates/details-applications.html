@@ -1,0 +1,18 @@
+<div class="list-blocks candidate-list loading-indicator-container">
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': applications.$loading }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <div class="empty-list-block empty-list-block-lg" ng-if="!applications.length && !applications.$loading">
+    <div class="empty-list-icon"><i class="fa fa-male"></i></div>
+    <div class="empty-list-msg">
+      No applications yet
+    </div>
+  </div>
+
+  <!-- Candidate -->
+  <div class="list-item-block candidate-list-item"
+       ng-repeat="application in applications" candidate-list-item
+       candidate="application.candidate" job="job" company="company" application="application"></div>
+  <!-- / Candidate -->
+</div>

@@ -1,0 +1,12 @@
+.popover.popover-dialog
+  .arrow
+  %h3.popover-title
+    Please confirm flagging
+  .popover-content
+    Flag action is irreversible and will require company to start over again.
+    %br/
+    %button.btn.btn-danger{data: {'ng-click' => 'flag();$hide()'}}
+      %i.fa.fa-flag
+      Flag
+    %span.form-buttons-splitter-text OR
+    %a.btn-link-underline{data: {"ng-click" => "$hide()"}} Cancel

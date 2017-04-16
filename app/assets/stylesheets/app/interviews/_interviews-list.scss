@@ -1,0 +1,218 @@
+/* Interviews styles */
+
+.interviews-list {
+
+}
+
+.interview-list-item {
+
+  $interview-list-item-icon-size: rem-calc(50);
+  .interview-list-item-icon {
+    display: block;
+    width: $interview-list-item-icon-size;
+    height: $interview-list-item-icon-size;
+    background: #eee;
+    line-height: $interview-list-item-icon-size;
+    font-size: rem-calc(28);
+    color: #ccc;
+    border-radius: 4px;
+    text-align: center;
+
+    &:hover, &:focus, &:active {
+      background: #999;
+      color: white;
+    }
+
+    &.interview-list-item-icon-is-hired {
+      background: $theme-color-success;
+      color: white;
+    }
+  }
+
+  // Item layout
+  .interview-item-body {
+    @extend .clearfix;
+
+    padding: rem-calc(15);
+    // border: 1px solid #eee;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .interview-item-footer {
+    border-radius: 0 0 3px 3px;
+    padding-left: rem-calc(65);
+  }
+
+  .list-item-footer {
+    padding-left: rem-calc(65);
+  }
+
+  // Item elements
+
+  // TODO: Move to _ui-blocks
+  .candidate-picture,
+  .interview-image-placeholder {
+    width: rem-calc(100);
+    max-height: rem-calc(100);
+    border-radius: 3px;
+    overflow: hidden;
+
+    img {
+      max-width: rem-calc(100);
+    }
+  }
+
+  .interview-item-description {
+    margin-left: rem-calc(115);
+  }
+
+  .position-title {
+    margin: 0;
+    padding-bottom: rem-calc(3);
+    font-size: rem-calc(18);
+    font-weight: 400;
+  }
+
+  .company-name, .candidate-name {
+    margin: 0;
+    font-size: rem-calc(14);
+    color: #999;
+  }
+
+  .interview-item-text {
+    color: #999;
+    padding: rem-calc(5) 0 rem-calc(5) 0;
+    font-size: rem-calc(13);
+  }
+
+  .interview-item-properties {
+    @extend .clearfix;
+    margin-top: rem-calc(10);
+    padding-top: rem-calc(10);
+    border-top: 1px solid #eee;
+  }
+
+  .interview-item-property-section {
+    // border-left: 4px solid #eee;
+    // padding-left: rem-calc(10);
+    // padding-right: rem-calc(10);
+    font-size: rem-calc(13);
+  }
+  
+  .interview-item-property-section-heading {
+    padding: 0;
+    margin-bottom: rem-calc(5); 
+    font-size: rem-calc(12);
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .interview-item-relative-time {
+    margin-bottom: rem-calc(5);
+    font-size: rem-calc(20);
+    border: 2px solid #eee;
+    border-radius: 3px;
+    text-align: center;
+    color: #bbb;
+
+    strong {
+      color: #252525;
+      font-weight: normal;
+    }
+  }
+
+  
+  .interview-item-full-time {
+    color: #aaa;
+    font-size: rem-calc(12);
+
+    .text-date, .text-time {
+    }
+
+  }
+
+  .interview-item-options {
+    padding: rem-calc(7) rem-calc(10) rem-calc(5) rem-calc(130);
+    font-size: rem-calc(12);
+    background: rgba($theme-color, 0.1);
+
+    .interview-item-options-text {
+      margin: 0 rem-calc(8);
+      color: #bbb;
+      font-weight: 300;
+    }
+  }
+
+  .interview-item-btn {
+    min-width: rem-calc(100);
+    margin-right: rem-calc(3);
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .job-reference {
+    color: $theme-color-grey;
+    font-weight: 300;
+
+    strong {
+      color: $theme-color-darkgrey;
+      font-weight: 400;
+    }
+  }
+
+  &.interview-list-item-is-hired {
+    border-color: $theme-color-success;
+  }
+}
+
+.interview-action-btn {
+  min-width: rem-calc(100);
+  margin-right: rem-calc(3);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+// Statuses
+
+.interview-status {
+  display: inline-block;
+  padding: rem-calc(3) rem-calc(10);
+  font-size: rem-calc(14);
+  font-weight: 300;
+  background: rgba($theme-color-grey, .7);
+  color: rgba($theme-color-black, 0.8);
+  border-radius: 2px;
+}
+
+.interview-status-is-accepted {
+  $accepted-color: #19B180;
+  background: $accepted-color;
+  color: white;
+}
+
+.interview-status-is-hired {
+  $accepted-color: #19B180;
+  background: $accepted-color;
+  color: white;
+}
+
+.interview-status-is-rejected {
+  $rejected-color: #c43838;
+  background: $rejected-color;
+  color: white;
+}
+
+.interview-status-message {
+  display: block;
+  clear: both;
+  margin-top: rem-calc(3);
+  font-size: rem-calc(12);
+  color: rgba($theme-color, 0.7);
+}
+
+
+// Other elements
+.popover.interview-form-popover {
+  min-width: rem-calc(650);
+}

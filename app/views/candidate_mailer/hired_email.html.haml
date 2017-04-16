@@ -1,0 +1,12 @@
+Congratulations #{@candidate_name}!
+%br/
+#{@company_name} has hired you for the #{@job_name} position.
+%br
+Please check your interview on ITU Bridge
+%a{href: "#{url_for(controller: 'app', action: 'index', only_path: false)}#!/candidate/interviews/#{@interview.id}"}
+, or contact the employer directly for additional information.
+%br
+Sincerely,
+%br
+ITU Bridge Staff.
+%br/

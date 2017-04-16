@@ -1,0 +1,152 @@
+<div class="resume-top-section">
+  <header class="resume-header">
+    <div class="resume-avatar-block">
+      <div class="resume-avatar">
+        <img ng-if="candidate.user.avatarUrl" ng-src="{{ candidate.user.avatarUrl }}" alt="{{ [candidate.user.firstName, candidate.user.middleName, candidate.user.lastName].join(' ') }}" />
+        <div ng-if="!candidate.user.avatarUrl" class="resume-avatar-placeholder">
+          <i class="fa fa-camera avatar-placeholder-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-summary">
+      <div class="resume-summary-top">
+        <span class="resume-name">{{ candidate.name }}</span>
+        <div class="resume-summary-education" ng-if="candidate.degree">{{ candidate.degree }}</div>
+        <div class="resume-location" ng-if="candidate | fullAddress"><i class="fa fa-map-marker"></i> {{ candidate | fullAddress }}</div>
+      </div>
+
+      <div class="resume-summary-more">
+        <div class="resume-description" ng-bind-html="candidate.about | nl2br"></div>
+
+        <div class="item-properties has-top-border">
+          <div class="row">
+            <div class="item-property item-property-block col-lg-4">
+              <div class="item-property-label uppercase">Availability:</div>
+              <div class="item-property-value">{{ candidate.availability | availabilityOption }}</div>
+            </div>
+            <div class="item-property item-property-block col-lg-6" ng-if="isStaffViewing()">
+              <div class="item-property-label uppercase">Profile visibility:</div>
+              <div class="item-property-value profile-visibility profile-is-visible" ng-if="candidate.isVisible">
+                <i class="fa fa-check"></i> Profile is visible to companies
+              </div>
+              <div class="item-property-value profile-visibility" ng-if="!candidate.isVisible">
+                <i class="fa fa-eye-slash"></i> Profile is not visible to companies
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-summary-skills" ng-if="anyFeaturedSkills()">
+          <h2 class="resume-summary-skills-heading">Featured skills</h2>
+          <div class="resume-summary-skills-list">
+            <a class="resume-skill resume-summary-skill" ng-repeat="skillRecord in skillRecords | filter: { isFeatured: true } | orderBy: 'skillName'">{{ skillRecord.skillName }}</a>
+          </div>
+        </div>
+
+        <div class="resume-summary-skills" ng-if="isJobContext() && anyMatchedSkills()">
+          <h2 class="resume-summary-skills-heading">
+            Job skill match: <span class="skill-match-job-title">{{ job.title }}</span>
+            <span ng-if="candidate.percent">- {{ candidate.percent }}%</span>
+          </h2>
+          <div class="resume-summary-skills-list">
+            <a class="resume-skill resume-summary-skill skill-is-matched" ng-repeat="skillRecord in skillRecords | filter: { matched: true } | orderBy: 'skillName'">{{ skillRecord.skillName }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- Resume section -->
+<div class="bordered-panel resume-skills-panel">
+  <div class="panel-heading">
+    Skills
+  </div>
+  <div class="panel-body">
+    <div class="resume-skills resume-skills-display">
+      <!-- Skills category -->
+      <div class="resume-skills-section" ng-repeat="skillCategoryRecord in skillCategoryRecords | filter: hasSkillRecords | orderBy: 'position'">
+        <div class="resume-skills-section-heading">{{ skillCategoryRecord.skillCategoryName }}</div>
+        <div class="resume-skills-section-body">
+          <table class="table resume-skills-table">
+            <tbody>
+              <tr ng-repeat="skillRecord in ::skillRecords | filter: { skillCategoryId: skillCategoryRecord.skillCategoryId } | orderBy: 'position'">
+                <td><div class="resume-skill skill" ng-class="{ 'skill-is-matched': skillRecord.matched }">{{ skillRecord.skillName }}</div></td>
+                <td class="col-skill-experience">{{ skillRecord.yearsOfExperience }} years</td>
+                <td class="col-skill-level">{{ skillRecord.level | skillLevel }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- / Skills category -->
+    </div>
+  </div>
+</div>
+<!-- / Resume section -->
+
+<!-- Resume section -->
+<div class="bordered-panel">
+  <div class="panel-heading">
+    Employment history
+  </div>
+  <div class="panel-body">
+    <div class="employment-records">
+      <!-- Employment record -->
+      <div class="resume-record-block" ng-repeat="employmentRecord in employmentRecords | orderBy: ['isCurrentJob', 'startDate']: true">
+        <div class="resume-record-block-aside">
+          {{ employmentRecord.startDate | date: 'MMM yyyy' }} &mdash;
+          <span ng-if="employmentRecord.isCurrentJob">PRESENT</span>
+          <span ng-if="!employmentRecord.isCurrentJob">{{ employmentRecord.endDate | date: 'MMM yyyy' }}</span>
+        </div>
+        <div class="resume-record-block-body">
+          <div class="resume-record-block-heading">
+            {{ employmentRecord.companyName }}
+          </div>
+          <div class="resume-record-block-subheading">
+            {{ employmentRecord.jobTitle }}
+          </div>
+          <div class="resume-record-block-text" ng-bind-html="employmentRecord.description"></div>
+        </div>
+      </div>
+      <!-- / Employment record -->
+    </div>
+  </div>
+</div>
+<!-- / Resume section -->
+
+<!-- Resume section -->
+<div class="bordered-panel">
+  <div class="panel-heading">
+    Education
+  </div>
+  <div class="panel-body">
+    <div class="education-records">
+      <!-- Education record -->
+      <div class="resume-record-block" ng-repeat="educationRecord in educationRecords | orderBy: 'endYear':true">
+        <div class="resume-record-block-aside">
+          {{ educationRecord.startYear }} &mdash;
+          <span ng-if="educationRecord.endYear">{{ educationRecord.endYear }}</span>
+          <span ng-if="!educationRecord.endYear">PRESENT</span>
+        </div>
+        <div class="resume-record-block-body">
+          <div class="resume-record-block-heading">
+            {{ educationRecord.school }} ({{ educationRecord.country.name }}, {{ educationRecord.city }})
+          </div>
+          <div class="resume-record-block-subheading">
+            {{ educationRecord.degree }}
+          </div>
+        </div>
+      </div>
+      <!-- Courses -->
+      <div class="course-list course-list-in-block" ng-if="courses.length">
+        <header class="course-list-header">Courses</header>
+        <div course-list-item ng-repeat="course in courses" course="course" readonly="true"></div>
+      </div>
+      <!-- / Courses -->
+      <!-- / Education record -->
+    </div>
+  </div>
+</div>
+<!-- / Resume section -->

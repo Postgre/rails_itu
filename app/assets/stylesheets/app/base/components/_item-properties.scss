@@ -1,0 +1,114 @@
+/* Abstract item properties */
+
+// Property groups
+
+.item-properties {
+  &:not(.no-top-padding) {
+    padding-top: rem-calc(10);
+  }
+
+  &.has-top-border {
+    border-top: 1px solid #eee;
+    margin-top: rem-calc(10);
+  }
+
+  &.space-below {
+    &:not(last-child) {
+      margin-bottom: rem-calc(15);
+    }
+  }
+}
+
+// Item property
+// -------------
+
+.item-property {
+  font-size: rem-calc(13);
+}
+
+.item-property-label {
+  padding: 0;
+  font-weight: 300;
+  color: lighten(black, 65%);
+
+  strong {
+    font-weight: 400;
+    color: lighten(black, 35%);
+  }
+}
+
+.item-property-value {
+  color: lighten(black, 10%);
+
+  &.is-no-value {
+    color: lighten(black, 65%);
+  }
+}
+
+// ## Item property default block
+// ==============================
+
+.item-property-block {
+  .item-property-label {
+    margin-bottom: rem-calc(2);
+    font-size: rem-calc(12);
+  }
+
+  .item-property-value {
+    font-size: rem-calc(16);
+  }
+
+  &.space-after {
+    margin-bottom: rem-calc(10);
+  }
+}
+
+// ## Item property horizontal block
+// =================================
+
+.item-property-horizontal {
+  @extend .clearfix;
+
+  .item-property-label {
+    float: left;
+    width: 40%;
+  }
+
+  .item-property-value {
+    float: left;
+    width: 60%;
+  }
+}
+
+// ## Inline item property
+// =======================
+
+.item-property-inline {
+  display: inline-block;
+
+  .item-property-label, .item-property-value {
+    display: inline-block;
+  }
+}
+
+// Property types
+
+// TODO: Make them reusable block, move out of item-properties
+.item-property-tel {
+  .item-property-value {
+    font-size: rem-calc(18);
+    font-weight: 600;
+  }
+}
+
+.item-property-date {
+  .relative-date {
+    
+  }
+
+  .absolute-date {
+    font-size: 0.75em;
+    font-weight: 300;
+    color: rgba($theme-color-inverse, 0.5);
+  }
+}

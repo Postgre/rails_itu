@@ -1,0 +1,120 @@
+<form name="_form" class="form-horizontal loading-indicator-container" ng-submit="submit()" novalidate>
+  <div class="loading-indicator-cover semi-transparent align-top" ng-class="{ 'is-active': isFormLoading() || model.$loading }">
+    <div class="loading-icon loading-icon-soft"><i class="fa fa-refresh fa-spin"></i></div>
+  </div>
+
+  <div class="form-group row required">
+    <div class="col-sm-4">
+      <label for="title" class="control-label label-lg">Candidate</label>
+    </div>
+    <div class="col-sm-8">
+      <div class="form-control-static input-lg">
+        <div class="user-block-inline" ng-if="model.candidate">
+          <div class="user-avatar user-avatar-xl" ng-if="model.candidate.user.avatarUrl">
+            <img ng-src="{{ model.candidate.user.avatarUrl }}">
+          </div>
+          <div class="user-name">
+            <a ui-sref="company.job-candidate-resume({ jobId: model.job.id, candidateId: model.candidate.id })" class="link-underline">{{ model.candidate.user | fullName }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row required">
+    <div class="col-sm-4">
+      <label for="title" class="control-label label-lg">Job</label>
+    </div>
+    <div class="col-sm-8">
+      <div class="form-control-static input-lg">
+        <a ui-sref="company.jobs.details.overview({ jobId: model.job.id })" class="link-underline">{{ model.job.title }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-divider"></div>
+
+  <div class="form-group row" ng-if="model.$modelErrors.job">
+    <div class="col-sm-8 col-sm-offset-4">
+      <div class="form-validation-summary has-bottom-arrow">
+        {{ model.$modelErrors.job }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="form-hint col-sm-8 col-sm-offset-4">
+      Required fields are marked with <i class="fa fa-asterisk required-icon"></i>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-if="model.$modelErrors || (_form.$submitted && _form.$invalid)">
+    <div class="col-sm-8 col-sm-offset-4">
+      <div class="form-validation-summary has-bottom-arrow">
+        <div class="validation-summary-main">
+          Some of the data you entered is not valid.
+        </div>
+        <div class="validation-summary-sub">
+          Please review the form, fix the issues and try again.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label><i class="control-label-icon fa fa-map-marker"></i> Suggested location</label>
+
+    <input type="text" ng-model="model.location" required mz-model-error autofocus="true">
+    <div field-errors>
+      <div field-error="required">Please provide the interview location</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label><i class="control-label-icon fa fa-clock-o"></i> Suggested time</label>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <input type="text" bs-datepicker ng-model="model.date" required mz-model-error data-autoclose="1" placeholder="Date" size="10">
+      </div>
+      <div class="col-sm-6">
+        <input type="text" bs-timepicker ng-model="model.date" required mz-model-error data-autoclose="1" placeholder="Time" size="8">
+      </div>
+    </div>
+
+    <div field-errors>
+      <div field-error="required">Please provide the interview date and time</div>
+    </div>
+  </div>
+
+
+  <div form-group>
+    <label>Additional information</label>
+
+    <textarea rows="3" ng-model="model.details" mz-model-error></textarea>
+    <div field-errors></div>
+  </div>
+
+
+  <div class="form-buttons">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-4">
+        <button type="submit" class="btn btn-primary submit-btn"
+                ng-class=" { 'is-loading': isFormLoading() }"
+                ng-disabled="(_form.$invalid && !_form.$submitted) || isFormLoading()">
+          <i class="fa fa-refresh fa-spin btn-loading-icon"></i>
+          <span ng-if="!isFormLoading()">
+            <span ng-if="!isEdit">Invite to an interview</span>
+            <span ng-if="isEdit">Update interview details</span>
+          </span>
+          <span ng-if="isFormLoading()">Saving...</span>
+        </button>
+        <span class="form-buttons-splitter-text">OR</span>
+        <a ng-if="!isEdit" ui-sref="company.job-candidate-resume({ jobId: model.job.id, candidateId: model.candidate.id })" class="btn btn-link-underline">Cancel</a>
+        <a ng-if="isEdit" ui-sref="company.jobs.details.interviews({ jobId: model.job.id })" class="btn btn-link-underline">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

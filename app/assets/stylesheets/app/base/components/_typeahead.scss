@@ -1,0 +1,42 @@
+// Styles for TWBS v2 Typeahead
+
+$typeahead-color: #333;
+
+.typeahead-block {
+  position: relative;
+
+  // According to default template provided by Angular-UI Bootstrap Typeahead
+  .dropdown-menu {
+    width: 100%;
+    border-radius: 2px;
+
+    > li {
+      > a {
+        color: rgba($typeahead-color, 0.5);
+
+        strong {
+          color: $typeahead-color;
+        }
+
+        &:hover, &:focus {
+          color: rgba(white, 0.8);
+
+          strong {
+            color: white;
+          }
+        }
+      }
+
+      &.active {
+        > a, > a:hover, > a:focus {
+          color: rgba(white, 0.8);
+
+          strong {
+            color: white;
+          }
+        }
+      }
+    }
+
+  }
+}

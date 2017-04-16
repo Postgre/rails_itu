@@ -1,0 +1,48 @@
+.notification-dialog-modal {
+  width: rem-calc(400);
+
+  $icon-indent: rem-calc(38);
+
+  .notification-icon {
+    float: left;
+    width: rem-calc(30);
+    font-size: rem-calc(26);
+    color: rgba($theme-color-black, .3);
+
+    & ~ .modal-heading {
+      margin-left: $icon-indent;
+    }
+  }
+
+  .modal-header {
+    padding: rem-calc(25) rem-calc(30);
+  }
+
+  .modal-body {
+    padding: rem-calc(20) rem-calc(30);
+  }
+
+  .modal-footer {
+    padding: rem-calc(15) rem-calc(30);
+  }
+
+  .modal-close-btn {
+    top: rem-calc(20);
+    right: rem-calc(20);
+  }
+
+  .notification-title {
+    font-size: rem-calc(20);
+  }
+
+  .notification-text {
+    font-size: rem-calc(14);
+    color: rgba($theme-color-black, .5);
+  }
+
+  &.has-icon {
+    .modal-body, .modal-footer {
+      padding-left: rem-calc(30) + $icon-indent;
+    }
+  }
+}

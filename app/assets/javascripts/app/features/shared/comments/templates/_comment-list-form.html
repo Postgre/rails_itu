@@ -1,0 +1,22 @@
+<form class="comment-form" novalidate ng-submit="postComment()">
+  <div class="comment-author-block">
+    <div class="user-block-inline">
+      <div class="user-avatar user-avatar-lg">
+        <img ng-src="{{ currentUser.avatarUrl }}" ng-if="currentUser.avatarUrl">
+        <div ng-if="!currentUser.avatarUrl" class="user-avatar-icon"><i class="fa fa-user"></i></div>
+      </div>
+      <div class="user-name">
+        {{ currentUser | fullName }}
+      </div>
+    </div>
+  </div>
+  <div class="comment-form-controls">
+    <textarea class="form-control" rows="5" ng-model="comment.body"></textarea>
+
+    <div class="comment-form-buttons">
+      <button type="submit" ng-disabled="!canBeSubmitted()" class="btn btn-primary btn-sm">Comment</button>
+      <span class="btn-divider-text">OR</span>
+      <a ng-click="cancel()" class="link-underline">Cancel</a>
+    </div>
+  </div>
+</form>

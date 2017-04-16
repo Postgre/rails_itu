@@ -1,0 +1,40 @@
+/* Main content styles */
+
+.main-content {
+  // background: white;
+  background: $main-content-bg;
+  border-radius: 3px 3px 0 0;
+}
+
+.main-content-header {
+  padding: rem-calc(10) rem-calc(20);
+  border-bottom: 1px solid rgba($theme-color-inverse, 0.15);
+}
+
+.main-content-heading {
+  margin: 0;
+  font-size: rem-calc(24);
+  font-weight: 300;
+
+  strong {
+    font-weight: normal;
+  }
+}
+
+.main-content-sub-heading {
+  font-size: rem-calc(14);
+  color: rgba(black, 0.4);
+}
+
+.main-content-body {
+  padding: rem-calc(15) rem-calc(20);
+}
+
+.main-content-body-light-bg {
+  // background: #F0F4F7;
+  background: lighten($theme-color-inverse, 70%);
+}
+
+.main-content-section {
+
+}

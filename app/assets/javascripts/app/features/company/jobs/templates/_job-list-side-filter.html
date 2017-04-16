@@ -1,0 +1,48 @@
+<!-- Filter -->
+<div class="filter-group">
+  <header class="filter-group-header">Status</header>
+  <div class="filter-group-content">
+    <nav class="nav-filter">
+      <a ui-sref="{ state: null, page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': !listFilter.state }">
+        Any
+      </a>
+      <a ui-sref="{ state: 'draft', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.state === 'draft' }">
+        Draft
+      </a>
+      <a ui-sref="{ state: 'published', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.state === 'published' }">
+        Published
+      </a>
+      <a ui-sref="{ state: 'filled', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.state === 'filled' }">
+        Filled
+      </a>
+      <a ui-sref="{ state: 'closed', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.state === 'closed' }">
+        Closed
+      </a>
+      <a ui-sref="{ state: 'flagged', page: null }" class="nav-filter-link"
+         ng-class="{ 'is-active': listFilter.state === 'flagged' }">
+        Flagged
+      </a>
+    </nav>
+  </div>
+</div>
+<!-- / Filter -->
+
+<!-- Filter -->
+<div class="filter-group">
+  <header class="filter-group-header">Visibility options</header>
+
+  <div class="checkbox-filter" ng-class="{ 'is-active': listFilter.withInterviews }">
+    <label>
+      <div class="checkbox-filter-check">
+        <input type="checkbox" ng-model="listFilter.withInterviews">
+      </div>
+      <span class="checkbox-filter-text">With interviews only</span>
+    </label>
+  </div>
+</div>
+<!-- / Filter -->

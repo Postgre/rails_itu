@@ -1,0 +1,60 @@
+.content-padded{'ui-view' => true}
+  .row
+    .col-md-9
+      .table-responsive
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+                %a{data: {'ng-click' => 'setOrder("users.email")'}}
+                  Email
+                  %i.fa.fa-sort.pull-left{data: {'ng-class' => '{"fa-sort-alpha-asc": (order == "users.email" || order == "user.email") &&  !reverse, "fa-sort-alpha-desc": (order == "users.email" || order == "user.email") && reverse}'}}
+              %th
+                %a{data: {'ng-click' => 'setOrder("users.first_name")'}}
+                  First Name
+                  %i.fa.fa-sort.pull-left{data: {'ng-class' => '{"fa-sort-alpha-asc": (order == "users.first_name" || order == "user.first_name") &&  !reverse, "fa-sort-alpha-desc": (order == "users.first_name" || order == "user.first_name") && reverse}'}}
+              %th
+                %a{data: {'ng-click' => 'setOrder("users.last_name")'}}
+                  Last Name
+                  %i.fa.fa-sort.pull-left{data: {'ng-class' => '{"fa-sort-alpha-asc": (order == "users.last_name" || order == "user.last_name") &&  !reverse, "fa-sort-alpha-desc": (order == "users.last_name" || order == "user.last_name") && reverse}'}}
+          %tbody
+            %tr{data: {'ng-repeat' => 'candidate in candidates track by candidate.id'}}
+              %td
+                %a{data: {'ng-bind' => 'candidate.user.email', 'ui-sref' => '.detail({id: candidate.id})'}}
+              %td{data: {'ng-bind' => 'candidate.user.first_name'}}
+              %td{data: {'ng-bind' => 'candidate.user.last_name'}}
+            %tr{data: {'ng-if' => 'nextPageAvailable()'}}
+              %td{colspan: 4}
+                .btn.btn-success{data: {'ng-click' => 'getNextPage()', 'ng-disabled' => 'controlsDisabled'}}
+                  Load more
+    .col-md-3
+      .bs-sidebar{data: {'bs-affix' => true}}
+        %form.form
+          %fieldset
+            .form-group
+              %input.form-control{placeholder: 'search by Email', data: {'ng-model' => 'search.user_email_cont', 'ng-model-options' => '{ debounce: 300 }', 'ng-change' => 'reload()'}}
+            .form-group
+              %input.form-control{placeholder: 'search by First Name', data: {'ng-model' => 'search.user_first_name_cont', 'ng-model-options' => '{ debounce: 300 }', 'ng-change' => 'reload()'}}
+            .form-group
+              %input.form-control{placeholder: 'search by Last Name', data: {'ng-model' => 'search.user_last_name_cont', 'ng-model-options' => '{ debounce: 300 }', 'ng-change' => 'reload()'}}
+            .form-group
+              %input.form-control{placeholder: 'search by Student ID', data: {'ng-model' => 'search.user_ems_user_id_eq', 'ng-model-options' => '{ debounce: 300 }', 'ng-change' => 'reload()'}}
+            .form-group
+              .select-control-default
+                %select.form-control{placeholder: 'Availability', data: {'ng-model' => 'search.availability_eq', 'ng-change' => 'reload()'}}
+                  %option{value: ''} Any availability
+                  %option{value: '2'} Available Full Time
+                  %option{value: '1'} Available Part Time
+                  %option{value: '0'} Not Available
+            .form-group
+              .select-control-default
+                %select.form-control{placeholder: 'Visibility', data: {'ng-model' => 'search.is_visible_eq', 'ng-change' => 'reload()'}}
+                  %option{value: ''} Any visibility
+                  %option{value: 'true'} Visible
+                  %option{value: 'false'} Hidden
+            .form-group
+              .select-control-default
+                %select.form-control{placeholder: 'Profile complete', data: {'ng-model' => 'search.is_profile_complete_eq', 'ng-change' => 'reload()'}}
+                  %option{value: ''} Any completeness
+                  %option{value: 'true'} Complete
+                  %option{value: 'false'} Incomplete

@@ -1,0 +1,46 @@
+// Responsive form buttons block
+
+.form-buttons {
+  position: relative;
+  font-size: rem-calc(14);
+  font-weight: 300;
+  margin-top: rem-calc(20);
+  padding: rem-calc(16) 0 0;
+  border-top: 2px solid #eee;
+  color: #ddd;
+}
+
+.form-buttons-group {
+  @media #{$small-only} {
+    button {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.form-buttons-splitter-text {
+  font-size: rem-calc(12);
+  padding: rem-calc(6) rem-calc(6) rem-calc(6) rem-calc(8);
+  color: #ccc;
+  vertical-align: middle;
+  font-weight: 300;
+}
+
+.submit-btn {
+  min-width: rem-calc(100);
+}
+
+
+// Responsive .form-horizontal tweak (constrains the width)
+// TODO: Try to avoid this ugly fix at all
+
+.form-horizontal {
+  .form-group, // TODO: Either move it out of "forms-buttons" or rename "forms-buttons" itself
+  .form-buttons > .form-buttons-group {
+    @media #{$large-up} {
+      max-width: rem-calc(960);
+    }
+  }
+}

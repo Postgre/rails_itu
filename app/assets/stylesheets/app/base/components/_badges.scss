@@ -1,0 +1,29 @@
+// TWBS override
+
+.badge {
+  font-weight: 300; 
+}
+
+.nav-badge {
+  float: right;
+  min-width: rem-calc(18);
+  margin-top: rem-calc(1);
+  padding: rem-calc(4) rem-calc(6);
+  font-size: rem-calc(11);
+  line-height: rem-calc(10);
+}
+
+.nav-badge-inverse {
+  background: #E04154;
+  color: white;
+
+  .nav > li > .active > & {
+    background: white;
+    color: darken($theme-color-black, 5%);
+  }
+}
+
+.nav-tabs-badge {
+  margin-left: rem-calc(3);
+  background: $theme-color-grey;
+}

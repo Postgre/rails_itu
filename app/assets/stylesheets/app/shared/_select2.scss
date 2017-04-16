@@ -1,0 +1,116 @@
+@import "../base/components/select2/select2";
+@import "../base/components/select2/select2-bootstrap";
+
+// Custom overrides
+
+.form-control {
+
+  &.select2-container {
+    box-shadow: 0 1px 2px -1px rgba(black, 0.3);
+    border-radius: 1px;
+    @include dropdown-caret(#252525);
+
+    .select2-choice {
+      height: auto;
+      padding: rem-calc(6) rem-calc(8);
+      line-height: 1.42857;
+      background: #eee;
+      @include gradient-vertical(#fff, #eee);
+      border: none;
+
+      .select2-arrow {
+        background: none;
+        border: none;
+      }
+    }
+
+    &.select2-dropdown-open {
+      border-color: $theme-color;
+      border-radius: 2px 2px 0 0;
+
+      .select2-choice {
+        background: white;
+        @include gradient-vertical(#eee, #fff);
+      }
+      
+      &:not(.select2-drop-above) {
+        z-index: 100;
+      }
+    }
+
+    &.select2-drop-above {
+      border-radius: 0 0 2px 2px;
+
+      .select2-choice {
+        background: #eee;
+        @include gradient-vertical(#fff, #eee);
+      }
+    }
+
+    &.select2-container-disabled {
+      opacity: .4;
+    }
+
+    .select2-search input,
+    .select2-search-choice-close,
+    .select2-container .select2-choice abbr,
+    .select2-container .select2-choice .select2-arrow b {
+      background-image: none !important;
+
+      @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 2dppx) {
+        background-image: none !important;
+      }
+    }
+  }
+}
+
+.select2-drop {
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.3);
+
+  &.select2-drop-above {
+    border-color: $theme-color;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 -6px 15px -5px rgba(0, 0, 0, 0.3);
+
+    &.select2-drop-active {
+      border-color: $theme-color;
+    }
+  }
+
+  &.select2-drop-active {
+    border-color: $theme-color;
+  }
+}
+
+.select2-results {
+  font-size: rem-calc(14);
+
+  .select2-result {
+    &.select2-highlighted {
+      background: $theme-color;
+    }
+  }
+}
+
+
+.select2-result-label {
+  font-weight: normal;
+  color: rgba(#333, .7);
+
+  .select2-match {
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+}
+
+.select2-highlighted {
+  .select2-result-label {
+    color: rgba(white, .8);
+
+    .select2-match {
+      color: white;
+    }
+  }
+}
